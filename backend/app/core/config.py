@@ -36,12 +36,13 @@ class Settings(BaseSettings):
             return "sqlite:///:memory:"
 
         explicit_url = os.getenv("DATABASE_URL")
-        if explicit_url:
-            if explicit_url.startswith("postgres://"):
-                return explicit_url.replace("postgres://", "postgresql+psycopg2://", 1)
-            if explicit_url.startswith("postgresql://"):
-                return explicit_url.replace("postgresql://", "postgresql+psycopg2://", 1)
-            return explicit_url
+        if explicit_url and explicit_url.strip():
+            clean_url = explicit_url.strip().strip("'\"")
+            if clean_url.startswith("postgres://"):
+                return clean_url.replace("postgres://", "postgresql+psycopg2://", 1)
+            if clean_url.startswith("postgresql://"):
+                return clean_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+            return clean_url
 
         # Check if user has set their PostgreSQL credentials
         pwd = self.POSTGRES_PASSWORD

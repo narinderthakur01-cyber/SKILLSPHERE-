@@ -226,10 +226,16 @@ def verify_email(
         EmailVerificationToken.token_hash == token_hash
     ).first()
 
-    if not token_rec or token_rec.used_at is not None:
+    if not token_rec:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid or already used verification link. Please request a new verification email."
+            detail="Invalid verification link. Please request a new verification email."
+        )
+
+    if token_rec.used_at is not None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="This verification link has already been used. Please request a new verification email."
         )
 
     # Check expiration (30 minutes)
@@ -247,6 +253,7 @@ def verify_email(
             detail="Account associated with this verification link was not found or is inactive."
         )
 
+    # Safe handling for already-verified accounts
     if user.email_verified:
         token_rec.used_at = now
         db.commit()

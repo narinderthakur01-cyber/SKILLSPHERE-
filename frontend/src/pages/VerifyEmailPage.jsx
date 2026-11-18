@@ -40,6 +40,9 @@ export const VerifyEmailPage = () => {
       return;
     }
 
+    if (hasFiredRef.current) return;
+    hasFiredRef.current = true;
+
     const verify = async () => {
       try {
         const res = await authAPI.verifyEmail(token.trim());

@@ -91,7 +91,38 @@ class Settings(BaseSettings):
     BREVO_API_KEY: str = os.getenv("BREVO_API_KEY", "")
     BREVO_SENDER_EMAIL: str = os.getenv("BREVO_SENDER_EMAIL", "")
     BREVO_SENDER_NAME: str = os.getenv("BREVO_SENDER_NAME", "SkillSphere")
-    FRONTEND_BASE_URL: str = os.getenv("FRONTEND_BASE_URL", "http://localhost:5173")
+    FRONTEND_BASE_URL: str = ""
+
+    @property
+    def RESOLVED_FRONTEND_BASE_URL(self) -> str:
+        """
+        Determines the canonical frontend URL for transactional emails.
+        Guarantees that placeholder domains ('your-frontend-website.onrender.com') are
+        safely overridden by the production frontend URL: https://skillsphere-uzt5.onrender.com.
+        Preserves http://localhost:5173 for local development.
+        """
+        raw_url = os.getenv("FRONTEND_BASE_URL") or os.getenv("FRONTEND_URL") or os.getenv("CLIENT_URL") or ""
+        clean_url = raw_url.strip().rstrip("/")
+        
+        PRODUCTION_FRONTEND = "https://skillsphere-uzt5.onrender.com"
+        
+        # Check if running in cloud / Render environment
+        is_cloud = (
+            bool(os.getenv("RENDER")) or
+            bool(os.getenv("RENDER_SERVICE_ID")) or
+            bool(os.getenv("PORT")) or
+            (bool(os.getenv("DATABASE_URL")) and "sqlite" not in os.getenv("DATABASE_URL", "").lower())
+        )
+        
+        # If empty or placeholder or example domain
+        if not clean_url or "your-frontend-website" in clean_url or "placeholder" in clean_url or "example.com" in clean_url:
+            return PRODUCTION_FRONTEND if is_cloud else "http://localhost:5173"
+            
+        # If in cloud environment and localhost was passed
+        if is_cloud and ("localhost" in clean_url or "127.0.0.1" in clean_url):
+            return PRODUCTION_FRONTEND
+            
+        return clean_url
     PASSWORD_RESET_EXPIRE_MINUTES: int = int(os.getenv("PASSWORD_RESET_EXPIRE_MINUTES", "15"))
     EMAIL_VERIFICATION_EXPIRE_MINUTES: int = int(os.getenv("EMAIL_VERIFICATION_EXPIRE_MINUTES", "30"))
     EMAIL_RESEND_COOLDOWN_SECONDS: int = int(os.getenv("EMAIL_RESEND_COOLDOWN_SECONDS", "60"))
@@ -118,6 +149,7 @@ class Settings(BaseSettings):
         extra = "allow"
 
 settings = Settings()
+settings.FRONTEND_BASE_URL = settings.RESOLVED_FRONTEND_BASE_URL
 if not settings.DATABASE_URL:
     settings.DATABASE_URL = settings.SQLALCHEMY_DATABASE_URI
 

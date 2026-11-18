@@ -524,7 +524,7 @@ class PasswordResetResponse(BaseModel):
 
 # --- Email Verification Schemas ---
 class VerifyEmailRequest(BaseModel):
-    token: str = Field(..., min_length=1)
+    token: Optional[str] = Field(None)
 
 class VerifyEmailResponse(BaseModel):
     message: str

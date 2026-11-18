@@ -38,11 +38,25 @@ class Settings(BaseSettings):
         explicit_url = os.getenv("DATABASE_URL")
         if explicit_url and explicit_url.strip():
             clean_url = explicit_url.strip().strip("'\"")
+            # Handle accidental copy of "DATABASE_URL=postgres://..."
+            if clean_url.startswith("DATABASE_URL="):
+                clean_url = clean_url.split("DATABASE_URL=", 1)[1].strip().strip("'\"")
+            # Handle accidental copy of psql command "psql 'postgres://...'"
+            if clean_url.startswith("psql "):
+                clean_url = clean_url.split("psql ", 1)[1].strip().strip("'\"")
+
             if clean_url.startswith("postgres://"):
-                return clean_url.replace("postgres://", "postgresql+psycopg2://", 1)
-            if clean_url.startswith("postgresql://"):
-                return clean_url.replace("postgresql://", "postgresql+psycopg2://", 1)
-            return clean_url
+                clean_url = clean_url.replace("postgres://", "postgresql+psycopg2://", 1)
+            elif clean_url.startswith("postgresql://"):
+                clean_url = clean_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+
+            # Test parsing with SQLAlchemy; if valid return it
+            try:
+                from sqlalchemy.engine.url import make_url
+                make_url(clean_url)
+                return clean_url
+            except Exception as e:
+                print(f"⚠️ DATABASE_URL parsing warning for value '{clean_url[:25]}...': {e}", flush=True)
 
         # Check if user has set their PostgreSQL credentials
         pwd = self.POSTGRES_PASSWORD

@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==============================================================================
+   OBSIDIAN CHARCOAL × OXBLOOD SEMANTIC TOKEN SYSTEM
+   ============================================================================== */
+
+:root {
+  /* Light Theme (Clean Warm Ivory) */
+  --color-background: #EFE9E3;
+  --color-surface: rgba(255, 255, 255, 0.82);
+  --color-surface-elevated: #FFFFFF;
+  --color-surface-opaque: #FAF6F2;
+  --color-text-primary: #1B1A1B;
+  --color-text-secondary: #4A3E45;
+  --color-text-muted: #7A6F75;
+  --color-accent: #914F51;
+  --color-accent-hover: #7B3F41;
+  --color-border: rgba(55, 48, 52, 0.12);
+  --color-border-subtle: rgba(55, 48, 52, 0.06);
+  --color-specular: rgba(255, 255, 255, 0.95);
+  --color-success: #58745E;
+  --color-warning: #996F37;
+  --color-danger: #A34848;
+  --shadow-panel: 0 10px 32px -4px rgba(27, 26, 27, 0.07);
+}
+
+.dark {
+  /* Dark-first Theme (Obsidian Charcoal & Deep Slate) */
+  --color-background: #1B1A1B;
+  --color-surface: rgba(55, 48, 52, 0.42);
+  --color-surface-elevated: rgba(55, 48, 52, 0.72);
+  --color-surface-opaque: #262124;
+  --color-text-primary: #EFE9E3;
+  --color-text-secondary: #C5A49B;
+  --color-text-muted: rgba(239, 233, 227, 0.62);
+  --color-accent: #914F51;
+  --color-accent-hover: #A55B5D;
+  --color-border: rgba(197, 164, 155, 0.15);
+  --color-border-subtle: rgba(239, 233, 227, 0.08);
+  --color-specular: rgba(239, 233, 227, 0.12);
+  --color-success: #829B88;
+  --color-warning: #C49A62;
+  --color-danger: #B76565;
+  --shadow-panel: 0 16px 48px -10px rgba(0, 0, 0, 0.6);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Typography Standards */
+h1, h2, h3, h4, .font-display {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.font-mono, code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ==============================================================================
+   ADVANCED LIQUID GLASS SURFACES
+   ============================================================================== */
+
+.glass-panel {
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-panel), inset 0 1px 0 0 var(--color-specular);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card {
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-panel), inset 0 1px 0 0 var(--color-specular);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(145, 79, 81, 0.38);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.4), inset 0 1px 0 0 var(--color-specular);
+}
+
+.glass-surface-elevated {
+  background: var(--color-surface-elevated);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px 0 var(--color-specular);
+}
+
+/* Accessible High-Contrast Form Inputs & Select Controls */
+select {
+  background-color: #FFFFFF;
+  color: #1B1A1B;
+  border: 1px solid rgba(55, 48, 52, 0.2);
+}
+
+select option {
+  background-color: #FFFFFF;
+  color: #1B1A1B;
+}
+
+.dark select {
+  background-color: #252425;
+  color: #EFE9E3;
+  border-color: rgba(197, 164, 155, 0.25);
+}
+
+.dark select option {
+  background-color: #1B1A1B;
+  color: #EFE9E3;
+}
+
+/* WCAG AA legibility enhancement: Ensure dark mode text never washes out to illegible darkness */
+.dark [class*="text-slate/20"],
+.dark [class*="text-slate/30"],
+.dark [class*="text-slate/40"],
+.dark [class*="text-slate/50"],
+.dark [class*="text-slate/60"] {
+  color: rgba(239, 233, 227, 0.72) !important;
+}
+
+.dark [class*="text-slate/70"],
+.dark [class*="text-slate/80"],
+.dark [class*="text-slate/90"] {
+  color: rgba(239, 233, 227, 0.88) !important;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1B1A1B;
+  border: 1px solid rgba(55, 48, 52, 0.2);
+  border-radius: 0.75rem;
+  padding: 0.65rem 0.95rem;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+.dark .glass-input {
+  background: rgba(37, 36, 37, 0.95);
+  color: #EFE9E3;
+  border-color: rgba(197, 164, 155, 0.25);
+}
+.glass-input:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(145, 79, 81, 0.25);
+}
+
+/* Primary Action Button (Oxblood) */
+.btn-oxblood {
+  background: #914F51;
+  color: #EFE9E3;
+  border: 1px solid rgba(239, 233, 227, 0.18);
+  box-shadow: 0 4px 16px -1px rgba(145, 79, 81, 0.4), inset 0 1px 0 0 rgba(239, 233, 227, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-oxblood:hover {
+  background: #A55B5D;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -2px rgba(145, 79, 81, 0.55), inset 0 1px 0 0 rgba(239, 233, 227, 0.35);
+}
+.btn-oxblood:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* Status Badges */
+.badge-selected, .badge-success {
+  background: rgba(130, 155, 136, 0.22);
+  color: #2F4A35;
+  border: 1px solid rgba(130, 155, 136, 0.55);
+}
+.dark .badge-selected, .dark .badge-success {
+  background: rgba(130, 155, 136, 0.18);
+  color: #829B88;
+  border-color: rgba(130, 155, 136, 0.4);
+}
+
+.badge-oxblood {
+  background: rgba(145, 79, 81, 0.18);
+  color: #643233;
+  border: 1px solid rgba(145, 79, 81, 0.4);
+}
+.dark .badge-oxblood {
+  background: rgba(145, 79, 81, 0.22);
+  color: #D5A4A6;
+  border-color: rgba(145, 79, 81, 0.45);
+}
+
+.badge-rose {
+  background: rgba(197, 164, 155, 0.15);
+  color: #4A3631;
+  border: 1px solid rgba(197, 164, 155, 0.35);
+}
+.dark .badge-rose {
+  background: rgba(197, 164, 155, 0.14);
+  color: #C5A49B;
+  border-color: rgba(197, 164, 155, 0.3);
+}
+
+.badge-slate {
+  background: rgba(55, 48, 52, 0.08);
+  color: #373034;
+  border: 1px solid rgba(55, 48, 52, 0.14);
+}
+.dark .badge-slate {
+  background: rgba(239, 233, 227, 0.08);
+  color: #C5A49B;
+  border-color: rgba(239, 233, 227, 0.12);
+}
+
+/* Compatibility aliases */
+.glass-surface {
+  @apply glass-panel;
+}
+.btn-primary, .btn-copper {
+  @apply btn-oxblood;
+}
+.badge-mint {
+  @apply badge-success;
+}
+.badge-lime {
+  @apply badge-success;
+}
+.badge-copper, .badge-orange {
+  @apply badge-oxblood;
+}
+
+/* ==============================================================================
+   IMMERSIVE AMBIENT BACKGROUND MOTION
+   Continuous subtle movement of charcoal, deep slate, and restrained oxblood
+   ============================================================================== */
+
+@keyframes slowAmbientShift1 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate3d(45px, -35px, 0) rotate(5deg) scale(1.08); }
+  66% { transform: translate3d(-30px, 40px, 0) rotate(-4deg) scale(0.96); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes slowAmbientShift2 {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate3d(-40px, 45px, 0) rotate(-6deg) scale(0.95); }
+  66% { transform: translate3d(50px, -25px, 0) rotate(4deg) scale(1.06); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes slowAmbientShift3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.12; }
+  50% { transform: translate3d(30px, -20px, 0) scale(1.15); opacity: 0.18; }
+  100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.12; }
+}
+
+.ambient-shift-1 {
+  animation: slowAmbientShift1 36s ease-in-out infinite;
+}
+.ambient-shift-2 {
+  animation: slowAmbientShift2 42s ease-in-out infinite;
+}
+.ambient-shift-3 {
+  animation: slowAmbientShift3 28s ease-in-out infinite;
+}
+
+/* Resume OCR Scanner Beam Animation */
+@keyframes scanBeam {
+  0% { top: 0%; opacity: 0.8; }
+  50% { top: 96%; opacity: 1; }
+  100% { top: 0%; opacity: 0.8; }
+}
+
+.animate-scanner-beam {
+  animation: scanBeam 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .ambient-shift-1, .ambient-shift-2, .ambient-shift-3, .animate-scanner-beam,
+  .landing-mesh-1, .landing-mesh-2, .landing-mesh-3, .landing-mesh-4,
+  .landing-trail-path-1, .landing-trail-path-2, .landing-trail-path-3,
+  .landing-orb-drift-1, .landing-orb-drift-2, .landing-orb-drift-3, .landing-orb-drift-4,
+  .landing-trail-pulse-1, .landing-trail-pulse-2, .landing-card-float {
+    animation: none !important;
+  }
+}
+
+/* ==============================================================================
+   LANDING PAGE CONTINUOUS ANIMATED GRADIENT MESH & FLOWING LIGHT TRAILS
+   ============================================================================== */
+
+@keyframes landingMeshMove1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  28% { transform: translate3d(45px, -35px, 0) scale(1.06); }
+  62% { transform: translate3d(-30px, 40px, 0) scale(0.96); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes landingMeshMove2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  32% { transform: translate3d(-40px, 30px, 0) scale(0.95); }
+  68% { transform: translate3d(35px, -45px, 0) scale(1.05); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes landingMeshMove3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  35% { transform: translate3d(35px, 30px, 0) scale(1.08); }
+  72% { transform: translate3d(-25px, -20px, 0) scale(0.97); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes landingMeshMove4 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  45% { transform: translate3d(-30px, -30px, 0) scale(1.09); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes trailFlow1 {
+  0%, 100% { opacity: 0.25; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.65; transform: translate3d(25px, -15px, 0) scale(1.04); }
+}
+
+@keyframes trailFlow2 {
+  0%, 100% { opacity: 0.2; transform: translate3d(0, 0, 0) scale(1); }
+  50% { opacity: 0.55; transform: translate3d(-20px, 20px, 0) scale(0.96); }
+}
+
+@keyframes trailFlow3 {
+  0%, 100% { opacity: 0.15; transform: translate3d(0, 0, 0); }
+  50% { opacity: 0.45; transform: translate3d(30px, 10px, 0); }
+}
+
+.landing-mesh-1 {
+  animation: landingMeshMove1 28s ease-in-out infinite;
+}
+.landing-mesh-2 {
+  animation: landingMeshMove2 34s ease-in-out infinite;
+}
+.landing-mesh-3 {
+  animation: landingMeshMove3 30s ease-in-out infinite;
+}
+.landing-mesh-4 {
+  animation: landingMeshMove4 24s ease-in-out infinite;
+}
+
+.landing-trail-path-1 {
+  animation: trailFlow1 18s ease-in-out infinite;
+}
+.landing-trail-path-2 {
+  animation: trailFlow2 22s ease-in-out infinite;
+}
+.landing-trail-path-3 {
+  animation: trailFlow3 25s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 164, 155, 0.25);
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(197, 164, 155, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #914F51;
+}

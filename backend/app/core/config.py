@@ -127,6 +127,10 @@ class Settings(BaseSettings):
     EMAIL_VERIFICATION_EXPIRE_MINUTES: int = int(os.getenv("EMAIL_VERIFICATION_EXPIRE_MINUTES", "30"))
     EMAIL_RESEND_COOLDOWN_SECONDS: int = int(os.getenv("EMAIL_RESEND_COOLDOWN_SECONDS", "60"))
 
+    # Chatbot History Storage Configuration (Hybrid SQLite / PostgreSQL)
+    CHATBOT_STORAGE: str = os.getenv("CHATBOT_STORAGE", "sqlite").lower().strip()
+    CHATBOT_SQLITE_PATH: str = os.getenv("CHATBOT_SQLITE_PATH", "").strip()
+
     # Cloudinary Media Storage Configuration
     CLOUDINARY_CLOUD_NAME: str = os.getenv("CLOUDINARY_CLOUD_NAME", "skillsphere-cloud")
     CLOUDINARY_API_KEY: str = os.getenv("CLOUDINARY_API_KEY", "123456789012345")

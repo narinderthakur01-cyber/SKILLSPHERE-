@@ -168,6 +168,11 @@ export const Navbar = () => {
           label: 'OCR & Intelligence',
           active: location.pathname === '/dashboard' && search.includes('tab=resumes'),
         },
+        {
+          path: '/assistant',
+          label: 'Assistant',
+          active: location.pathname === '/assistant',
+        },
       ];
     }
     if (role === 'RECRUITER') {
@@ -203,6 +208,11 @@ export const Navbar = () => {
           label: 'Company',
           active: location.pathname === '/recruiter' && search.includes('tab=company'),
         },
+        {
+          path: '/assistant',
+          label: 'Assistant',
+          active: location.pathname === '/assistant',
+        },
       ];
     }
     if (role === 'ADMIN') {
@@ -232,6 +242,11 @@ export const Navbar = () => {
           path: '/admin?tab=question_bank',
           label: 'Question Bank',
           active: location.pathname === '/admin' && search.includes('tab=question_bank'),
+        },
+        {
+          path: '/assistant',
+          label: 'Assistant',
+          active: location.pathname === '/assistant',
         },
       ];
     }

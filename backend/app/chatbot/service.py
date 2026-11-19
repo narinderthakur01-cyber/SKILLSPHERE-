@@ -4,6 +4,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 
+from app.core.config import settings
 from app.chatbot.matcher import IntentMatcher
 from app.chatbot.history import get_history_store, SessionOwnershipError
 from app.schemas.chatbot_schemas import (

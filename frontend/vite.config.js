@@ -15,7 +15,7 @@ function spaFallbackPlugin() {
         fs.copyFileSync(indexPath, path.join(distDir, '404.html'));
 
         // 2. Physical directory fallbacks for direct-link routes on static hosts
-        const routes = ['verify-email', 'reset-password', 'login', 'register', 'dashboard', 'jobs'];
+        const routes = ['verify-email', 'reset-password', 'login', 'register', 'dashboard', 'jobs', 'assistant'];
         for (const r of routes) {
           const routeDir = path.join(distDir, r);
           if (!fs.existsSync(routeDir)) {

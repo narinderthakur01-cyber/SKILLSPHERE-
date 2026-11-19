@@ -278,4 +278,17 @@ export const proctoringAPI = {
   reviewSession: (sessionId, data) => api.put(`/admin/proctoring/sessions/${sessionId}/review`, data),
 };
 
+export const chatAPI = {
+  sendMessage: (message, sessionId = null, contextTopic = null) =>
+    api.post('/chat/message', {
+      message,
+      session_id: sessionId,
+      context_topic: contextTopic,
+    }),
+  getFAQs: (role = null) => api.get('/chat/faqs', { params: role ? { role } : {} }),
+  getHistory: (sessionId) => api.get(`/chat/history/${sessionId}`),
+  deleteHistory: (sessionId) => api.delete(`/chat/history/${sessionId}`),
+  getHealth: () => api.get('/chat/health'),
+};
+
 export default api;

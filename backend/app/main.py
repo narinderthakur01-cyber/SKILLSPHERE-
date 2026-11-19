@@ -11,7 +11,7 @@ from app.core import database as db_core
 from app.api.v1 import (
     auth, resumes, jobs, applications, recruiter, admin, skills,
     interviews, evaluations, notifications, messages, saved_jobs, audit, practice,
-    assessments, question_bank, proctoring, media, video_assessments
+    assessments, question_bank, proctoring, media, video_assessments, chat
 )
 from app.db.seed import seed_database
 from app.db.seed_question_bank import seed_question_bank
@@ -92,6 +92,7 @@ app.include_router(question_bank.router, prefix=settings.API_V1_STR)
 app.include_router(proctoring.router, prefix=settings.API_V1_STR)
 app.include_router(media.router, prefix=settings.API_V1_STR)
 app.include_router(video_assessments.router, prefix=settings.API_V1_STR)
+app.include_router(chat.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():

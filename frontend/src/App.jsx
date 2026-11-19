@@ -45,6 +45,10 @@ const VideoInterviewRoomPage = React.lazy(() =>
 const CandidateVideoAssessmentPage = React.lazy(() =>
   import('./pages/CandidateVideoAssessmentPage').then((m) => ({ default: m.CandidateVideoAssessmentPage }))
 );
+const AssistantPage = React.lazy(() =>
+  import('./pages/AssistantPage').then((m) => ({ default: m.AssistantPage }))
+);
+import { ChatWidget } from './components/chatbot/ChatWidget';
 
 /**
  * Editorial Branded Route Fallback
@@ -182,6 +186,18 @@ function AnimatedRoutes() {
             }
           />
 
+          {/* Protected Assistant Portal */}
+          <Route
+            path="/assistant"
+            element={
+              <ProtectedRoute allowedRoles={['JOB_SEEKER', 'RECRUITER', 'ADMIN']}>
+                <PageTransitionWrapper key="assistant-route">
+                  <AssistantPage />
+                </PageTransitionWrapper>
+              </ProtectedRoute>
+            }
+          />
+
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
@@ -202,6 +218,7 @@ function App() {
               <main className="flex-1">
                 <AnimatedRoutes />
               </main>
+              <ChatWidget />
             </div>
           </ToastProvider>
         </AuthProvider>

@@ -1,0 +1,764 @@
+{
+  "version": "1.0.0",
+  "faqs": [
+    {
+      "id": "faq_cand_01",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_resume_upload",
+      "title": "How do I upload and parse my resume?",
+      "sample_questions": [
+        "How do I upload my resume?",
+        "Where can I upload my CV?",
+        "How to upload resume",
+        "Upload resume",
+        "Can I upload PDF or Word documents?"
+      ],
+      "keywords": ["resume", "cv", "upload", "parse", "pdf", "docx", "file", "document"],
+      "synonyms": ["curriculum vitae", "attach", "submit file", "resume parsing"],
+      "response": "To upload your resume in SkillSphere, go to your Job Seeker Dashboard and click the 'OCR & Intelligence' tab (or navigate to /dashboard?tab=resumes). SkillSphere supports PDF and DOCX files up to 10MB. Once uploaded, our automated OCR pipeline parses your text, extracts relevant technical skills against our 139 verified skills database, and calculates your baseline match scores.",
+      "related_questions": [
+        "What file formats are supported for resume upload?",
+        "How does resume skill matching work?",
+        "How do I browse matching jobs?"
+      ],
+      "quick_replies": [
+        {"label": "Supported Formats", "query": "What file formats are supported for resume upload?", "topic": "candidate_resume_upload"},
+        {"label": "Skill Extraction", "query": "How does resume skill matching work?", "topic": "candidate_resume_intelligence"},
+        {"label": "Browse Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"}
+      ]
+    },
+    {
+      "id": "faq_cand_02",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_resume_formats",
+      "title": "What file formats and sizes are supported for resume upload?",
+      "sample_questions": [
+        "What file formats are supported?",
+        "What resume formats can I upload?",
+        "Can I upload a word document?",
+        "Is PDF supported?",
+        "What is the maximum resume file size?"
+      ],
+      "keywords": ["format", "formats", "supported", "file size", "pdf", "docx", "word", "limit"],
+      "synonyms": ["file types", "extension", "max size", "document types"],
+      "response": "SkillSphere supports standard PDF (.pdf) and Microsoft Word (.docx) document formats. The maximum allowed file size is 10 MB. For optimal OCR text extraction and skill analysis, we recommend using clean, single-column text-based PDFs without scanned image artifacts.",
+      "related_questions": [
+        "How do I upload my resume?",
+        "How does resume skill matching work?"
+      ],
+      "quick_replies": [
+        {"label": "Upload Resume", "query": "How do I upload my resume?", "topic": "candidate_resume_upload"},
+        {"label": "Skill Matching", "query": "How does resume skill matching work?", "topic": "candidate_resume_intelligence"}
+      ]
+    },
+    {
+      "id": "faq_cand_03",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_resume_intelligence",
+      "title": "How does SkillSphere analyze and extract skills from my resume?",
+      "sample_questions": [
+        "How does resume skill matching work?",
+        "How does OCR skill extraction work?",
+        "How does SkillSphere score my resume?",
+        "What is match score?",
+        "How are skills detected from my CV?"
+      ],
+      "keywords": ["ocr", "extract", "extraction", "intelligence", "match score", "skills", "score", "algorithm"],
+      "synonyms": ["skill detection", "resume scoring", "compatibility", "ranking"],
+      "response": "When you upload a resume, SkillSphere's OCR engine extracts raw text and compares it against our catalog of 139 standardized technical skills. The system calculates an affinity score (0% to 100%) against each active job opening based on required skills versus detected candidate skills.",
+      "related_questions": [
+        "How do I search and filter jobs?",
+        "How do I apply for a job?"
+      ],
+      "quick_replies": [
+        {"label": "Find Matching Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
+        {"label": "Saved Jobs", "query": "How do I save a job for later?", "topic": "candidate_save_jobs"}
+      ]
+    },
+    {
+      "id": "faq_cand_04",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_job_search",
+      "title": "How do I search, filter, and discover job openings?",
+      "sample_questions": [
+        "How do I search for jobs?",
+        "How do I filter job openings?",
+        "Where can I find jobs?",
+        "Can I filter by remote or salary?",
+        "Find jobs"
+      ],
+      "keywords": ["search", "filter", "jobs", "openings", "browse", "positions", "vacancies", "remote"],
+      "synonyms": ["job search", "explore roles", "find employment", "look for work"],
+      "response": "On your Job Seeker Dashboard under the 'Browse Jobs' tab (/dashboard?tab=jobs), you can search active openings by keyword, title, or company. You can filter by job type (Full-time, Part-time, Contract, Internship, Remote) and filter by required skills.",
+      "related_questions": [
+        "How do I save a job for later?",
+        "How do I apply for a job?"
+      ],
+      "quick_replies": [
+        {"label": "How to Apply", "query": "How do I apply for a job?", "topic": "candidate_apply_job"},
+        {"label": "Save Jobs", "query": "How do I save a job for later?", "topic": "candidate_save_jobs"}
+      ]
+    },
+    {
+      "id": "faq_cand_05",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_save_jobs",
+      "title": "How do I bookmark and view saved jobs?",
+      "sample_questions": [
+        "How do I save a job for later?",
+        "Where are my saved jobs?",
+        "Can I bookmark jobs?",
+        "Save job",
+        "View bookmarked positions"
+      ],
+      "keywords": ["save", "saved", "bookmark", "bookmarked", "favorite", "later"],
+      "synonyms": ["star job", "pin opening", "saved positions"],
+      "response": "When viewing any job card in 'Browse Jobs', click the bookmark icon to save it. You can access all your saved positions at any time from the 'Saved Jobs' tab in your dashboard (/dashboard?tab=saved).",
+      "related_questions": [
+        "How do I apply for a job?",
+        "How do I track my applications?"
+      ],
+      "quick_replies": [
+        {"label": "Apply Now", "query": "How do I apply for a job?", "topic": "candidate_apply_job"},
+        {"label": "Track Applications", "query": "How do I track my application status?", "topic": "candidate_application_status"}
+      ]
+    },
+    {
+      "id": "faq_cand_06",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_apply_job",
+      "title": "How do I apply for a job opening?",
+      "sample_questions": [
+        "How do I apply for a job?",
+        "How to apply?",
+        "Can I apply with my uploaded resume?",
+        "Submit job application",
+        "Apply to opening"
+      ],
+      "keywords": ["apply", "application", "submit", "apply job", "one-click", "opening"],
+      "synonyms": ["job application", "send application", "enter selection"],
+      "response": "To apply for an opening, navigate to 'Browse Jobs' (/dashboard?tab=jobs), select the job to review its full details, requirements, and salary, and click 'Apply Now'. Your latest uploaded resume and contact profile will be attached to your application automatically.",
+      "related_questions": [
+        "How do I track my application status?",
+        "What is the Round 1 MCQ assessment?"
+      ],
+      "quick_replies": [
+        {"label": "Application Status", "query": "How do I track my application status?", "topic": "candidate_application_status"},
+        {"label": "Round 1 Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"}
+      ]
+    },
+    {
+      "id": "faq_cand_07",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_application_status",
+      "title": "How do I track my application status?",
+      "sample_questions": [
+        "How do I track my application status?",
+        "Where can I see my applications?",
+        "What do the application stages mean?",
+        "Application progress",
+        "Did recruiter review my application?"
+      ],
+      "keywords": ["status", "track", "applications", "stages", "screening", "shortlisted", "applied"],
+      "synonyms": ["application progress", "recruitment stage", "application history"],
+      "response": "Navigate to the 'Applications' tab on your dashboard (/dashboard?tab=applications). Your applications progress through defined stages: APPLIED (submitted), SCREENING (under initial check), UNDER_REVIEW (recruiter examining profile), SHORTLISTED (qualified for next round), INTERVIEW (assessments or live meeting), and SELECTED or REJECTED.",
+      "related_questions": [
+        "What is the Round 1 MCQ assessment?",
+        "How do I join a live video interview?"
+      ],
+      "quick_replies": [
+        {"label": "MCQ Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"},
+        {"label": "Video Assessment", "query": "How does the video assessment work?", "topic": "candidate_video_assessment"}
+      ]
+    },
+    {
+      "id": "faq_cand_08",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_mcq_assessment",
+      "title": "What is the Round 1 MCQ technical assessment and how do I take it?",
+      "sample_questions": [
+        "What is the Round 1 MCQ assessment?",
+        "How do I take the technical test?",
+        "Where is my assessment?",
+        "MCQ test",
+        "Online test instructions"
+      ],
+      "keywords": ["mcq", "assessment", "round 1", "test", "quiz", "questions", "timer", "exam"],
+      "synonyms": ["technical exam", "screening test", "knowledge evaluation"],
+      "response": "When shortlisted for a job, you may be assigned a Round 1 Technical MCQ assessment. You can access it from the 'Assessments' tab (/dashboard?tab=assessments). The assessment features randomized multiple-choice questions aligned with the job's core skills, with automated scoring and instantaneous progress saving.",
+      "related_questions": [
+        "What is the automated proctoring during assessments?",
+        "How does the video assessment work?"
+      ],
+      "quick_replies": [
+        {"label": "Proctoring Rules", "query": "What is the automated proctoring during assessments?", "topic": "candidate_proctoring"},
+        {"label": "Video Assessment", "query": "How does the video assessment work?", "topic": "candidate_video_assessment"}
+      ]
+    },
+    {
+      "id": "faq_cand_09",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_proctoring",
+      "title": "What is automated proctoring and what rules must I follow during tests?",
+      "sample_questions": [
+        "What is the automated proctoring during assessments?",
+        "Is there a proctoring system?",
+        "Will my webcam be used?",
+        "Can I switch tabs during exam?",
+        "What happens if I leave full screen?"
+      ],
+      "keywords": ["proctoring", "proctor", "webcam", "tab switch", "fullscreen", "integrity", "infraction", "cheat"],
+      "synonyms": ["anti-cheating", "monitoring", "exam security", "camera supervision"],
+      "response": "SkillSphere incorporates automated browser proctoring during Round 1 assessments. The proctoring system monitors full-screen mode, logs tab switches, and captures webcam integrity snapshots if enabled. Infractions are recorded in your test dossier and visible to the recruiter. Keep your browser in full screen and stay focused on the test tab.",
+      "related_questions": [
+        "What is the Round 1 MCQ assessment?",
+        "How do I join a live video interview?"
+      ],
+      "quick_replies": [
+        {"label": "MCQ Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"},
+        {"label": "Live Interview", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"}
+      ]
+    },
+    {
+      "id": "faq_cand_10",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_video_assessment",
+      "title": "How does the one-way asynchronous video assessment work?",
+      "sample_questions": [
+        "How does the video assessment work?",
+        "What is asynchronous video assessment?",
+        "How do I record my video answers?",
+        "One-way video interview",
+        "Video response instructions"
+      ],
+      "keywords": ["video assessment", "record", "recording", "one-way", "camera", "microphone", "questions"],
+      "synonyms": ["asynchronous interview", "video questions", "recorded assessment"],
+      "response": "For roles requiring video screening, recruiters assign an asynchronous Video Assessment. You receive structured prompts one by one, with a short countdown to prepare before recording your response using your camera and microphone. Your recordings are securely uploaded to Cloudinary for recruiter evaluation.",
+      "related_questions": [
+        "How do I join a live video interview?",
+        "How do I message the recruiter?"
+      ],
+      "quick_replies": [
+        {"label": "Live Interview", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"},
+        {"label": "Message Recruiter", "query": "How do I message the recruiter?", "topic": "candidate_messaging"}
+      ]
+    },
+    {
+      "id": "faq_cand_11",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_live_interview",
+      "title": "How do I join a live video interview with a recruiter?",
+      "sample_questions": [
+        "How do I join a live video interview?",
+        "Where is the interview room?",
+        "How does LiveKit interview work?",
+        "Video meeting link",
+        "Join interview"
+      ],
+      "keywords": ["interview", "livekit", "video call", "meeting", "room", "join", "interviews tab"],
+      "synonyms": ["live meeting", "virtual interview", "web conference"],
+      "response": "Scheduled live interviews appear in your dashboard under the 'Interviews' tab (/dashboard?tab=interviews). When your session time arrives, click 'Join Interview Room' (/interview-room/:id). SkillSphere's real-time WebRTC room (powered by LiveKit) provides HD audio, video, camera toggles, and integrated chat.",
+      "related_questions": [
+        "How do I message the recruiter?",
+        "How do I track my application status?"
+      ],
+      "quick_replies": [
+        {"label": "Message Recruiter", "query": "How do I message the recruiter?", "topic": "candidate_messaging"},
+        {"label": "Application Status", "query": "How do I track my application status?", "topic": "candidate_application_status"}
+      ]
+    },
+    {
+      "id": "faq_cand_12",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_messaging",
+      "title": "How do I chat or message with recruiters?",
+      "sample_questions": [
+        "How do I message the recruiter?",
+        "Where is candidate chat?",
+        "Can I message an employer?",
+        "Direct messages",
+        "Chat with hiring team"
+      ],
+      "keywords": ["message", "messages", "chat", "inbox", "conversation", "communicate", "recruiter"],
+      "synonyms": ["direct communication", "talk to hiring manager", "send message"],
+      "response": "SkillSphere includes a direct messaging channel. Navigate to the 'Messages' tab (/dashboard?tab=messages) on your dashboard. When a recruiter opens communication regarding an application, you can exchange real-time text messages and clarify interview or role details.",
+      "related_questions": [
+        "How do I join a live video interview?",
+        "How do I track my application status?"
+      ],
+      "quick_replies": [
+        {"label": "View Applications", "query": "How do I track my application status?", "topic": "candidate_application_status"},
+        {"label": "Browse Openings", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"}
+      ]
+    },
+    {
+      "id": "faq_cand_13",
+      "category": "candidate",
+      "roles": ["JOB_SEEKER"],
+      "intent": "candidate_email_verification",
+      "title": "How does email verification work for new candidates?",
+      "sample_questions": [
+        "How do I verify my email?",
+        "I didn't receive verification email",
+        "Verification link expired",
+        "Verify email address",
+        "Account not verified"
+      ],
+      "keywords": ["verify email", "verification", "token", "activation", "brevo", "confirm email", "link"],
+      "synonyms": ["email confirmation", "activate account", "verify account"],
+      "response": "When you sign up, SkillSphere sends a verification link to your email address (via Brevo). The link points to https://skillsphere-uzt5.onrender.com/verify-email?token=... and remains valid for 30 minutes. Clicking the link verifies your account and enables full access to apply for jobs and submit assessments.",
+      "related_questions": [
+        "How do I reset my password?",
+        "How do I log in to my account?"
+      ],
+      "quick_replies": [
+        {"label": "Reset Password", "query": "How do I reset my password?", "topic": "general_password_reset"},
+        {"label": "Login Help", "query": "How do I log in to my account?", "topic": "general_login"}
+      ]
+    },
+    {
+      "id": "faq_rec_01",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_create_job",
+      "title": "How do I post and publish a new job opening?",
+      "sample_questions": [
+        "How do I post a new job?",
+        "How to create a job opening?",
+        "Post a job",
+        "Where can I publish vacancies?",
+        "Create opening"
+      ],
+      "keywords": ["create job", "post job", "new job", "publish opening", "vacancy", "requirements", "salary"],
+      "synonyms": ["add role", "post opening", "hire candidate", "new requisition"],
+      "response": "As a Recruiter, go to your Recruiter Portal at /recruiter and click the 'Post New Job' button. Fill out the position title, job description, department, job type (Full-time, Remote, Contract, etc.), required skills, minimum years of experience, and salary range. Submit the form to immediately make it visible to job seekers.",
+      "related_questions": [
+        "How do I manage my active jobs?",
+        "How does the Kanban pipeline work?"
+      ],
+      "quick_replies": [
+        {"label": "Manage Jobs", "query": "How do I manage my active jobs?", "topic": "recruiter_job_management"},
+        {"label": "Candidate Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"}
+      ]
+    },
+    {
+      "id": "faq_rec_02",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_job_management",
+      "title": "How do I view, edit, or close existing job postings?",
+      "sample_questions": [
+        "How do I manage my active jobs?",
+        "How to edit a job posting?",
+        "Can I close a job?",
+        "View active openings",
+        "Job listings management"
+      ],
+      "keywords": ["manage jobs", "edit job", "close job", "active postings", "openings", "status"],
+      "synonyms": ["update listing", "deactivate vacancy", "job dashboard"],
+      "response": "In the Recruiter Dashboard under the 'Openings' tab (/recruiter?tab=jobs), you will find all your active and closed listings. Each listing card displays the total applicant count, creation date, and options to edit details or toggle the job status between ACTIVE and CLOSED.",
+      "related_questions": [
+        "How does the Kanban pipeline work?",
+        "How do I review candidate resumes?"
+      ],
+      "quick_replies": [
+        {"label": "Pipeline (Kanban)", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"},
+        {"label": "Resume Review", "query": "How do I review candidate resumes and scores?", "topic": "recruiter_resume_review"}
+      ]
+    },
+    {
+      "id": "faq_rec_03",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_kanban_pipeline",
+      "title": "How does the candidate pipeline Kanban board work?",
+      "sample_questions": [
+        "How does the Kanban pipeline work?",
+        "How do I advance a candidate to the next stage?",
+        "Where is the candidate pipeline?",
+        "Pipeline stages",
+        "Shortlist or reject applicants"
+      ],
+      "keywords": ["pipeline", "kanban", "stages", "advance", "screening", "shortlist", "interview", "reject"],
+      "synonyms": ["applicant tracking", "hiring funnel", "candidate stages"],
+      "response": "Navigate to /recruiter?tab=pipeline to view your interactive Kanban board. Applications are organized into stages: Screening, Under Review, Shortlisted, Interview, Selected, and Rejected. You can move candidates between columns to update their application status in real time and trigger notification updates.",
+      "related_questions": [
+        "How do I review candidate resumes and scores?",
+        "How do I schedule a LiveKit video interview?"
+      ],
+      "quick_replies": [
+        {"label": "Resume Review", "query": "How do I review candidate resumes and scores?", "topic": "recruiter_resume_review"},
+        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"}
+      ]
+    },
+    {
+      "id": "faq_rec_04",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_resume_review",
+      "title": "How do I review candidate resumes and OCR skill match scores?",
+      "sample_questions": [
+        "How do I review candidate resumes and scores?",
+        "Where can I see candidate OCR skills?",
+        "How do I open candidate dossier?",
+        "Resume match percentage",
+        "View applicant CV"
+      ],
+      "keywords": ["resume review", "dossier", "ocr skills", "match score", "candidate profile", "applicant"],
+      "synonyms": ["candidate evaluation", "inspect resume", "check candidate qualifications"],
+      "response": "Click on any applicant's card in your pipeline to open the Candidate Dossier modal. You can inspect extracted contact information, the OCR-detected skill tags, calculated match percentage against the opening, the original resume document, and any past assessment scores.",
+      "related_questions": [
+        "How do I manage the Question Bank for tests?",
+        "How do I review video assessments?"
+      ],
+      "quick_replies": [
+        {"label": "Question Bank", "query": "How do I manage the Question Bank for tests?", "topic": "recruiter_question_bank"},
+        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"}
+      ]
+    },
+    {
+      "id": "faq_rec_05",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_question_bank",
+      "title": "How do I manage the Question Bank for technical assessments?",
+      "sample_questions": [
+        "How do I manage the Question Bank for tests?",
+        "Can I add questions to the question bank?",
+        "Where is the technical question bank?",
+        "Assessment questions",
+        "Add MCQ question"
+      ],
+      "keywords": ["question bank", "mcq questions", "add question", "assessments tab", "technical questions", "bank"],
+      "synonyms": ["test library", "evaluation repository", "exam questions"],
+      "response": "SkillSphere includes a seeded repository of 191 verified technical questions. From /recruiter?tab=assessments, you can filter questions by category, search questions, view options and correct answers, and upload new single or bulk MCQs using the Inline Question Upload Modal.",
+      "related_questions": [
+        "How do I review candidate test results and proctoring logs?",
+        "How do I review candidate video assessments?"
+      ],
+      "quick_replies": [
+        {"label": "Test Results", "query": "How do I review candidate test results and proctoring logs?", "topic": "recruiter_mcq_review"},
+        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"}
+      ]
+    },
+    {
+      "id": "faq_rec_06",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_mcq_review",
+      "title": "How do I review candidate test results and proctoring logs?",
+      "sample_questions": [
+        "How do I review candidate test results and proctoring logs?",
+        "Where can I see MCQ scores?",
+        "Did candidate cheat during test?",
+        "Proctoring logs review",
+        "Candidate test analytics"
+      ],
+      "keywords": ["test results", "scores", "proctoring logs", "infractions", "tab switches", "review test"],
+      "synonyms": ["exam analytics", "test report", "assessment score"],
+      "response": "In /recruiter?tab=assessments, switch to the 'Candidate Results' view. You can see overall score percentages, time taken, question breakdown, and detailed proctoring logs highlighting full-screen exits, tab switches, and webcam flags.",
+      "related_questions": [
+        "How do I review candidate video assessments?",
+        "How do I schedule a LiveKit video interview?"
+      ],
+      "quick_replies": [
+        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"},
+        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"}
+      ]
+    },
+    {
+      "id": "faq_rec_07",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_video_review",
+      "title": "How do I review candidate asynchronous video assessment submissions?",
+      "sample_questions": [
+        "How do I review candidate video assessments?",
+        "Where are candidate recorded video answers?",
+        "Watch video submissions",
+        "Video library for recruiter",
+        "Candidate video responses"
+      ],
+      "keywords": ["video submissions", "recordings", "cloudinary", "review video", "video assessment", "playback"],
+      "synonyms": ["video review", "watch interview", "asynchronous responses"],
+      "response": "Navigate to the 'Assessments' or 'Media Library' tab in your Recruiter Dashboard. You can stream candidate video submissions delivered via Cloudinary, grade responses individually, and leave recruiter notes before deciding whether to advance the applicant.",
+      "related_questions": [
+        "How do I schedule a LiveKit video interview?",
+        "How does direct messaging with candidates work?"
+      ],
+      "quick_replies": [
+        {"label": "LiveKit Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"},
+        {"label": "Direct Messaging", "query": "How does direct messaging with candidates work?", "topic": "recruiter_messaging"}
+      ]
+    },
+    {
+      "id": "faq_rec_08",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_schedule_interview",
+      "title": "How do I schedule and host a LiveKit live video interview?",
+      "sample_questions": [
+        "How do I schedule a LiveKit video interview?",
+        "How do I set up a live interview?",
+        "Where do I conduct virtual interviews?",
+        "LiveKit room creation",
+        "Schedule meeting with candidate"
+      ],
+      "keywords": ["schedule interview", "livekit", "meeting", "interview room", "virtual meeting", "video call"],
+      "synonyms": ["setup meeting", "online interview", "host interview"],
+      "response": "In the 'Interviews' tab (/recruiter?tab=interviews), select 'Schedule Interview'. Choose the shortlisted candidate, select date and time, and create the session. SkillSphere generates a secure LiveKit room token. When it's time, both parties join /interview-room/:id with full camera, microphone, screen sharing, and chat capabilities.",
+      "related_questions": [
+        "How does direct messaging with candidates work?",
+        "How does the Kanban pipeline work?"
+      ],
+      "quick_replies": [
+        {"label": "Direct Messaging", "query": "How does direct messaging with candidates work?", "topic": "recruiter_messaging"},
+        {"label": "Kanban Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"}
+      ]
+    },
+    {
+      "id": "faq_rec_09",
+      "category": "recruiter",
+      "roles": ["RECRUITER"],
+      "intent": "recruiter_messaging",
+      "title": "How does direct messaging with candidates work for recruiters?",
+      "sample_questions": [
+        "How does direct messaging with candidates work?",
+        "Can I chat directly with applicants?",
+        "Where is recruiter chat?",
+        "Message candidate",
+        "Send message to applicant"
+      ],
+      "keywords": ["chat", "messaging", "inbox", "candidate message", "communicate", "messages tab"],
+      "synonyms": ["message applicant", "direct message", "talk to candidate"],
+      "response": "Recruiters can communicate with applicants via the 'Messages' tab (/recruiter?tab=messages). Selecting any candidate conversation lets you exchange messages, coordinate schedule adjustments, and send feedback directly.",
+      "related_questions": [
+        "How do I schedule a LiveKit video interview?",
+        "How does the Kanban pipeline work?"
+      ],
+      "quick_replies": [
+        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"},
+        {"label": "View Openings", "query": "How do I manage my active jobs?", "topic": "recruiter_job_management"}
+      ]
+    },
+    {
+      "id": "faq_gen_01",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_skillsphere_overview",
+      "title": "What is SkillSphere and what features does it provide?",
+      "sample_questions": [
+        "What is SkillSphere?",
+        "Tell me about SkillSphere",
+        "What features does this platform have?",
+        "How does SkillSphere work?",
+        "Overview of SkillSphere"
+      ],
+      "keywords": ["skillsphere", "platform", "overview", "features", "about", "what is", "system"],
+      "synonyms": ["platform guide", "about us", "summary"],
+      "response": "SkillSphere is an all-in-one talent recruitment and intelligence platform. It bridges candidates and recruiters through OCR resume parsing against 139 standardized skills, intelligent job matching, interactive Kanban applicant tracking, Round 1 proctored technical assessments, and LiveKit WebRTC video interviews.",
+      "related_questions": [
+        "What account roles exist in SkillSphere?",
+        "How do I verify my email address?"
+      ],
+      "quick_replies": [
+        {"label": "User Roles", "query": "What account roles exist in SkillSphere?", "topic": "general_roles"},
+        {"label": "Technical Support", "query": "How do I get technical support?", "topic": "general_technical_support"}
+      ]
+    },
+    {
+      "id": "faq_gen_02",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_roles",
+      "title": "What account roles exist in SkillSphere?",
+      "sample_questions": [
+        "What account roles exist in SkillSphere?",
+        "What is the difference between Job Seeker and Recruiter?",
+        "Can I register as a recruiter?",
+        "Account types",
+        "User roles"
+      ],
+      "keywords": ["roles", "account types", "job seeker", "recruiter", "admin", "candidate"],
+      "synonyms": ["profile types", "user categories", "access levels"],
+      "response": "SkillSphere supports three user roles: 1) Job Seeker (Candidate) — upload resumes, explore matching jobs, take MCQ and video assessments, join live interviews; 2) Recruiter — post openings, manage applicants via Kanban, configure question banks, conduct LiveKit video meetings; 3) Administrator — manage users and system health.",
+      "related_questions": [
+        "What is SkillSphere?",
+        "How do I log in to my account?"
+      ],
+      "quick_replies": [
+        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
+        {"label": "Login Help", "query": "How do I log in to my account?", "topic": "general_login"}
+      ]
+    },
+    {
+      "id": "faq_gen_03",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_login",
+      "title": "How do I log in or access my account?",
+      "sample_questions": [
+        "How do I log in to my account?",
+        "Where is the login page?",
+        "Sign in to SkillSphere",
+        "Login issues",
+        "How to sign in"
+      ],
+      "keywords": ["login", "sign in", "auth", "credentials", "password", "access account"],
+      "synonyms": ["log into platform", "authentication", "sign into account"],
+      "response": "To log in, visit /auth and enter your registered email address and password. Make sure your account email has been verified via the verification link sent upon registration. If you forgot your password, click 'Forgot Password' on the login screen.",
+      "related_questions": [
+        "How do I reset my password?",
+        "How does email verification work?"
+      ],
+      "quick_replies": [
+        {"label": "Forgot Password", "query": "How do I reset my password?", "topic": "general_password_reset"},
+        {"label": "Email Verification", "query": "How does email verification work?", "topic": "candidate_email_verification"}
+      ]
+    },
+    {
+      "id": "faq_gen_04",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_password_reset",
+      "title": "How do I reset my password if I forgot it?",
+      "sample_questions": [
+        "How do I reset my password?",
+        "Forgot my password",
+        "Password reset link",
+        "Change password",
+        "Can't remember password"
+      ],
+      "keywords": ["reset password", "forgot password", "password", "recover account", "brevo", "reset link"],
+      "synonyms": ["recover password", "new password", "lost password"],
+      "response": "Click 'Forgot password?' on the login page (/forgot-password) and enter your registered email. SkillSphere sends a secure reset link valid for 15 minutes. Click the link to open /reset-password?token=... and choose a strong new password.",
+      "related_questions": [
+        "How do I log in to my account?",
+        "How does email verification work?"
+      ],
+      "quick_replies": [
+        {"label": "Back to Login", "query": "How do I log in to my account?", "topic": "general_login"},
+        {"label": "Technical Support", "query": "How do I get technical support?", "topic": "general_technical_support"}
+      ]
+    },
+    {
+      "id": "faq_gen_05",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_technical_support",
+      "title": "How do I get technical support or troubleshoot platform issues?",
+      "sample_questions": [
+        "How do I get technical support?",
+        "Contact support",
+        "Report an issue",
+        "Platform troubleshooting",
+        "Help with website"
+      ],
+      "keywords": ["support", "help", "troubleshoot", "contact", "technical issue", "error", "problem"],
+      "synonyms": ["customer service", "assistance", "report bug"],
+      "response": "If you experience any technical issues (such as email delivery delays or camera/microphone permissions during assessments), please ensure you are using an updated version of Google Chrome, Firefox, or Safari. For email issues, check your spam folder or request a resend verification email from /verify-email-pending.",
+      "related_questions": [
+        "What is SkillSphere?",
+        "How do I reset my password?"
+      ],
+      "quick_replies": [
+        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
+        {"label": "Forgot Password", "query": "How do I reset my password?", "topic": "general_password_reset"}
+      ]
+    },
+    {
+      "id": "faq_gen_06",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_greeting",
+      "title": "Welcome to SkillSphere Assistant",
+      "sample_questions": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Greetings",
+        "Good morning",
+        "Good afternoon",
+        "Who are you?"
+      ],
+      "keywords": ["hi", "hello", "hey", "greetings", "good morning", "good evening", "who are you"],
+      "synonyms": ["welcome", "howdy", "sup"],
+      "response": "Hello! I am your SkillSphere Assistant. I am here to help you navigate the platform, understand resume OCR processing, manage job applications or postings, and prepare for assessments and interviews. How can I assist you today?",
+      "related_questions": [
+        "What is SkillSphere?",
+        "How do I search for jobs?",
+        "How do I post a new job?"
+      ],
+      "quick_replies": [
+        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
+        {"label": "Browse Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
+        {"label": "Post Job", "query": "How do I post a new job?", "topic": "recruiter_create_job"}
+      ]
+    },
+    {
+      "id": "faq_gen_07",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_help_menu",
+      "title": "What topics can the SkillSphere Assistant help me with?",
+      "sample_questions": [
+        "Help",
+        "What can you do?",
+        "What can I ask?",
+        "Menu",
+        "Options",
+        "Show me topics"
+      ],
+      "keywords": ["help", "menu", "topics", "options", "what can you do", "commands"],
+      "synonyms": ["assistance list", "available queries", "guide"],
+      "response": "You can ask me anything about SkillSphere! For Job Seekers: Resume upload & OCR parsing, job search & bookmarks, application tracking, Round 1 MCQ assessments & proctoring, video responses, and live meetings. For Recruiters: Job creation, Kanban pipeline management, candidate dossiers, question bank customization, and scheduling LiveKit meetings.",
+      "related_questions": [
+        "What is SkillSphere?",
+        "What account roles exist in SkillSphere?"
+      ],
+      "quick_replies": [
+        {"label": "Resume OCR", "query": "How do I upload my resume?", "topic": "candidate_resume_upload"},
+        {"label": "Job Search", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
+        {"label": "Kanban Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"},
+        {"label": "Live Interviews", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"}
+      ]
+    },
+    {
+      "id": "faq_gen_08",
+      "category": "general",
+      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "intent": "general_theme_toggle",
+      "title": "How do I toggle between Dark Mode and Light Mode in SkillSphere?",
+      "sample_questions": [
+        "How do I switch dark mode?",
+        "Is there a dark theme?",
+        "Light mode",
+        "Change website theme",
+        "Night mode"
+      ],
+      "keywords": ["dark mode", "light mode", "theme", "night mode", "toggle theme", "colors"],
+      "synonyms": ["color scheme", "appearance", "dark theme"],
+      "response": "SkillSphere includes a fully responsive Dark/Light theme toggle. You can switch themes at any time by clicking the Sun/Moon icon located in the upper right corner of the top navigation bar.",
+      "related_questions": [
+        "What is SkillSphere?",
+        "How do I get technical support?"
+      ],
+      "quick_replies": [
+        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
+        {"label": "Help Menu", "query": "What topics can you help me with?", "topic": "general_help_menu"}
+      ]
+    }
+  ]
+}

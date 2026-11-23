@@ -1,6 +1,8 @@
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status, Query
+from sqlalchemy.orm import Session
 
+from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.models.models import User
 from app.chatbot.service import chatbot_service
@@ -20,6 +22,7 @@ router = APIRouter(prefix="/chat", tags=["SkillSphere Assistant"])
 @router.post("/message", response_model=ChatResponse)
 def send_chat_message(
     payload: ChatMessageRequest,
+    db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
     """
@@ -77,7 +80,10 @@ def send_chat_message(
         message=clean_msg,
         role=user_role_str,
         session_id=session["id"],
-        context_topic=active_context
+        context_topic=active_context,
+        language_preference=payload.language_preference,
+        db=db,
+        current_user=current_user
     )
 
     # 5. Save assistant response to history

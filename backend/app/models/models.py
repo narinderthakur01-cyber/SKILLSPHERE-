@@ -1233,3 +1233,139 @@ class MediaAuditLog(Base):
 
     media_asset = relationship("MediaAsset", back_populates="audit_logs")
     actor = relationship("User")
+
+
+# ======================================================================
+# Support Ticket System Models (Stage 4)
+# ======================================================================
+
+class TicketStatusEnum(str, PyEnum):
+    OPEN = "OPEN"
+    IN_PROGRESS = "IN_PROGRESS"
+    WAITING_USER = "WAITING_USER"
+    RESOLVED = "RESOLVED"
+    CLOSED = "CLOSED"
+
+
+class TicketPriorityEnum(str, PyEnum):
+    LOW = "LOW"
+    MEDIUM = "MEDIUM"
+    HIGH = "HIGH"
+    URGENT = "URGENT"
+
+
+class TicketCategoryEnum(str, PyEnum):
+    RESUME_OCR = "RESUME_OCR"
+    LIVEKIT_VIDEO = "LIVEKIT_VIDEO"
+    PROCTORING_MCQ = "PROCTORING_MCQ"
+    ACCOUNT_AUTH = "ACCOUNT_AUTH"
+    GENERAL = "GENERAL"
+
+
+class TicketSequence(Base):
+    """
+    Atomic counter table for concurrency-safe ticket number generation across all databases.
+    """
+    __tablename__ = "ticket_sequences"
+
+    year = Column(Integer, primary_key=True)
+    last_number = Column(Integer, default=0, nullable=False)
+
+
+class SupportTicket(Base):
+    """
+    Support ticket entity with role-isolated ownership and lifecycle tracking.
+    """
+    __tablename__ = "support_tickets"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    ticket_number = Column(String(30), unique=True, index=True, nullable=False)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    user_role = Column(Enum(RoleEnum), nullable=False)
+    subject = Column(String(200), nullable=False)
+    description = Column(Text, nullable=False)
+    category = Column(Enum(TicketCategoryEnum), nullable=False, default=TicketCategoryEnum.GENERAL, index=True)
+    priority = Column(Enum(TicketPriorityEnum), nullable=False, default=TicketPriorityEnum.MEDIUM, index=True)
+    status = Column(Enum(TicketStatusEnum), nullable=False, default=TicketStatusEnum.OPEN, index=True)
+    assigned_admin_id = Column(String(36), ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
+    is_live_chat = Column(Boolean, default=False, nullable=False, index=True)
+    live_chat_requested_at = Column(DateTime, nullable=True)
+    live_chat_ended_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True, nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)
+
+    user = relationship("User", foreign_keys=[user_id])
+    assigned_admin = relationship("User", foreign_keys=[assigned_admin_id])
+    messages = relationship("TicketMessage", back_populates="ticket", cascade="all, delete-orphan", order_by="TicketMessage.created_at")
+    audit_logs = relationship("TicketAuditLog", back_populates="ticket", cascade="all, delete-orphan", order_by="TicketAuditLog.created_at")
+
+
+class TicketMessage(Base):
+    """
+    Public replies and internal admin-only notes for support tickets.
+    """
+    __tablename__ = "ticket_messages"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    ticket_id = Column(String(36), ForeignKey("support_tickets.id", ondelete="CASCADE"), nullable=False, index=True)
+    sender_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    sender_role = Column(Enum(RoleEnum), nullable=False)
+    message = Column(Text, nullable=False)
+    is_internal = Column(Boolean, default=False, nullable=False, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), index=True, nullable=False)
+
+    ticket = relationship("SupportTicket", back_populates="messages")
+    sender = relationship("User", foreign_keys=[sender_id])
+
+
+class TicketAuditLog(Base):
+    """
+    Lifecycle change audit log for state transitions and administrative actions.
+    """
+    __tablename__ = "ticket_audit_logs"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    ticket_id = Column(String(36), ForeignKey("support_tickets.id", ondelete="CASCADE"), nullable=False, index=True)
+    actor_id = Column(String(36), ForeignKey("users.id", ondelete="SET NULL"), nullable=True, index=True)
+    action = Column(String(50), nullable=False)  # CREATED, STATUS_CHANGED, ASSIGNED, USER_REPLY, ADMIN_REPLY, INTERNAL_NOTE
+    old_status = Column(String(30), nullable=True)
+    new_status = Column(String(30), nullable=True)
+    details = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+
+    ticket = relationship("SupportTicket", back_populates="audit_logs")
+    actor = relationship("User", foreign_keys=[actor_id])
+
+
+class AdminAvailability(Base):
+    """
+    Tracks administrator live-chat availability, capacity limits, and heartbeat presence.
+    """
+    __tablename__ = "admin_availability"
+
+    admin_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    is_available = Column(Boolean, default=False, nullable=False, index=True)
+    max_active_chats = Column(Integer, default=3, nullable=False)
+    last_heartbeat_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)
+
+    admin = relationship("User", foreign_keys=[admin_id])
+
+
+class WebSocketAuthTicket(Base):
+    """
+    Short-lived, single-use connection ticket for authenticating WebSocket connections
+    without passing long-lived JWTs in WebSocket URLs.
+    """
+    __tablename__ = "websocket_auth_tickets"
+
+    ticket_token = Column(String(64), primary_key=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    ticket_id = Column(String(36), ForeignKey("support_tickets.id", ondelete="CASCADE"), nullable=False, index=True)
+    expires_at = Column(DateTime, nullable=False, index=True)
+    is_used = Column(Boolean, default=False, nullable=False, index=True)
+    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
+
+    user = relationship("User", foreign_keys=[user_id])
+    ticket = relationship("SupportTicket", foreign_keys=[ticket_id])

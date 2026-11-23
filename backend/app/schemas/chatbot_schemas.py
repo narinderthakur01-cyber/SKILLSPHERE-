@@ -5,6 +5,7 @@ class ChatMessageRequest(BaseModel):
     message: str = Field(..., min_length=1, max_length=1000, description="User question or input")
     session_id: Optional[str] = Field(None, max_length=100, description="Session ID for context tracking")
     context_topic: Optional[str] = Field(None, max_length=100, description="Active topic hint from client")
+    language_preference: Optional[str] = Field(None, max_length=10, description="Optional manual language preference: en, hi, pa, etc.")
 
 class QuickReply(BaseModel):
     label: str
@@ -20,6 +21,10 @@ class ChatResponse(BaseModel):
     quick_replies: List[QuickReply] = []
     suggested_questions: List[str] = []
     timestamp: str
+    detected_language: Optional[str] = Field(None, description="Detected input language code")
+    writing_script: Optional[str] = Field(None, description="Identified writing script")
+    language_confidence: Optional[float] = Field(None, description="Confidence of language detection")
+    ticket_data: Optional[Dict[str, Any]] = Field(None, description="Structured support ticket data (preview or created ticket)")
 
 class FAQItem(BaseModel):
     id: str
@@ -31,6 +36,7 @@ class FAQItem(BaseModel):
     keywords: List[str]
     synonyms: List[str] = []
     response: str
+    multilingual_responses: Optional[Dict[str, str]] = Field(default_factory=dict, description="Translations keyed by language code")
     related_questions: List[str] = []
     quick_replies: List[QuickReply] = []
 

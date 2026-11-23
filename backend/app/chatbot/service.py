@@ -5,8 +5,11 @@ from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 
 from app.core.config import settings
+from app.chatbot.language import multilingual_engine
 from app.chatbot.matcher import IntentMatcher
 from app.chatbot.history import get_history_store, SessionOwnershipError
+from app.chatbot.troubleshooter import troubleshooting_engine, TroubleshootingEngine
+from app.chatbot.llm import llm_fallback_engine, HybridLLMFallback
 from app.schemas.chatbot_schemas import (
     ChatResponse, QuickReply, FAQItem, FAQListResponse, ChatbotHealthResponse
 )
@@ -14,10 +17,16 @@ from app.schemas.chatbot_schemas import (
 class ChatbotService:
     """
     Coordinates FAQ knowledge loading, intent matching, role gating,
-    context restoration, and conversation persistence for SkillSphere Assistant.
+    guided troubleshooting state machine, hybrid LLM fallback,
+    and conversation persistence for SkillSphere Assistant.
     """
 
-    def __init__(self, kb_path: Optional[str] = None):
+    def __init__(
+        self,
+        kb_path: Optional[str] = None,
+        llm_fallback: Optional[HybridLLMFallback] = None,
+        troubleshooter: Optional[TroubleshootingEngine] = None
+    ):
         if kb_path is None:
             current_dir = os.path.dirname(os.path.abspath(__file__))
             kb_path = os.path.join(current_dir, "knowledge_base.json")
@@ -25,6 +34,8 @@ class ChatbotService:
         self.data = self._load_knowledge_base()
         self.faqs: List[Dict[str, Any]] = self.data.get("faqs", [])
         self.matcher = IntentMatcher(self.faqs)
+        self.llm_fallback = llm_fallback or llm_fallback_engine
+        self.troubleshooter = troubleshooter or troubleshooting_engine
 
     def _load_knowledge_base(self) -> Dict[str, Any]:
         """Safely load JSON knowledge base from disk."""
@@ -60,6 +71,7 @@ class ChatbotService:
                     keywords=f.get("keywords", []),
                     synonyms=f.get("synonyms", []),
                     response=f.get("response"),
+                    multilingual_responses=f.get("multilingual_responses", {}),
                     related_questions=f.get("related_questions", []),
                     quick_replies=q_replies
                 )
@@ -90,41 +102,180 @@ class ChatbotService:
         message: str,
         role: Optional[str] = None,
         session_id: Optional[str] = None,
-        context_topic: Optional[str] = None
+        context_topic: Optional[str] = None,
+        language_preference: Optional[str] = None,
+        db: Optional[Any] = None,
+        current_user: Optional[Any] = None
     ) -> ChatResponse:
         """
-        Process a user message through intent matching and return a structured response.
+        Process a user message through multilingual detection, ambiguity check,
+        and intent matching, returning an appropriately localized structured response.
         """
         active_session = session_id or str(uuid.uuid4())
         timestamp = datetime.now(timezone.utc).isoformat()
 
-        # Execute rule-based matching
+        # Multilingual processing
+        detection = multilingual_engine.process(message)
+
+        # Resolve effective language for response generation (manual preference takes precedence)
+        effective_lang = (language_preference or detection.detected_language.value).lower().strip()
+        if effective_lang in ["hi", "hi-deva"]:
+            target_key = "hi"
+        elif effective_lang in ["pa"]:
+            target_key = "pa"
+        elif effective_lang in ["pa-latn"]:
+            target_key = "pa-Latn"
+        elif effective_lang in ["hinglish"]:
+            target_key = "hinglish"
+        else:
+            target_key = "en"
+
+        # 1. Active Troubleshooting Session or Ticket Tracking / Escalation
+        existing_tb_state = self.troubleshooter.get_session_state(active_session)
+        if existing_tb_state or context_topic in ["track_tickets", "ticket_escalation", "confirm_ticket_submission", "cancel_ticket_creation"]:
+            tb_response = self.troubleshooter.handle_message(
+                message=message,
+                session_id=active_session,
+                role=role,
+                context_topic=context_topic,
+                target_lang=target_key,
+                db=db,
+                current_user=current_user
+            )
+            if tb_response:
+                tb_response.session_id = active_session
+                tb_response.timestamp = timestamp
+                tb_response.detected_language = detection.detected_language.value
+                tb_response.writing_script = detection.script.value
+                tb_response.language_confidence = detection.confidence
+                return tb_response
+
+        # 2. Check for Exact FAQ Match First (Preserves Master Prompt Canonical Questions)
         matched_faq, score, match_type = self.matcher.match(
             query=message,
             role=role,
             context_topic=context_topic
         )
-
-        if matched_faq:
+        if matched_faq and match_type in ["exact_sample_match", "exact_aligned_match"]:
             q_replies = [QuickReply(**qr) for qr in matched_faq.get("quick_replies", [])]
+            resp_text = (
+                matched_faq.get("multilingual_responses", {}).get(target_key) or
+                matched_faq.get("response", "")
+            )
             return ChatResponse(
-                message=matched_faq.get("response", ""),
+                message=resp_text,
                 matched_intent=matched_faq.get("intent", "unknown"),
                 confidence_score=score,
                 session_id=active_session,
                 category=matched_faq.get("category", "general"),
                 quick_replies=q_replies,
                 suggested_questions=matched_faq.get("related_questions", []),
-                timestamp=timestamp
+                timestamp=timestamp,
+                detected_language=detection.detected_language.value,
+                writing_script=detection.script.value,
+                language_confidence=detection.confidence
             )
 
-        # Fallback response for unmapped queries
-        fallback_msg = (
-            "I'm not quite sure I understand that question about SkillSphere. "
-            "I can help with resume uploads & OCR parsing, job search & bookmarks, "
-            "proctored MCQ assessments, video assessments, pipeline tracking, or live video meetings. "
-            "Please try selecting one of the suggested topics below or rephrasing your question."
+        # 3. Smart Guided Troubleshooting Engine Layer (New Flow Initialization)
+        tb_response = self.troubleshooter.handle_message(
+            message=message,
+            session_id=active_session,
+            role=role,
+            context_topic=context_topic,
+            target_lang=target_key,
+            db=db,
+            current_user=current_user
         )
+        if tb_response:
+            tb_response.session_id = active_session
+            tb_response.timestamp = timestamp
+            tb_response.detected_language = detection.detected_language.value
+            tb_response.writing_script = detection.script.value
+            tb_response.language_confidence = detection.confidence
+            return tb_response
+
+        # 4. Standard Rule-Based / Keyword / Ambiguity FAQ Match
+        if matched_faq:
+            q_replies = [QuickReply(**qr) for qr in matched_faq.get("quick_replies", [])]
+            resp_text = (
+                matched_faq.get("multilingual_responses", {}).get(target_key) or
+                matched_faq.get("response", "")
+            )
+            return ChatResponse(
+                message=resp_text,
+                matched_intent=matched_faq.get("intent", "unknown"),
+                confidence_score=score,
+                session_id=active_session,
+                category=matched_faq.get("category", "general"),
+                quick_replies=q_replies,
+                suggested_questions=matched_faq.get("related_questions", []),
+                timestamp=timestamp,
+                detected_language=detection.detected_language.value,
+                writing_script=detection.script.value,
+                language_confidence=detection.confidence
+            )
+
+        # 5. Grounded Hybrid LLM Fallback Layer (Optional, temperature=0.0)
+        llm_answer = self.llm_fallback.generate_grounded_response(
+            user_message=message,
+            detected_language=detection.detected_language.value,
+            language_preference=language_preference,
+            user_role=role
+        )
+        if llm_answer:
+            return ChatResponse(
+                message=llm_answer,
+                matched_intent="llm_grounded_fallback",
+                confidence_score=0.75,
+                session_id=active_session,
+                category="llm_fallback",
+                quick_replies=self.get_default_quick_replies(role),
+                suggested_questions=[
+                    "How do I upload my resume?",
+                    "What is the Round 1 MCQ assessment?",
+                    "How do I get technical support?"
+                ],
+                timestamp=timestamp,
+                detected_language=detection.detected_language.value,
+                writing_script=detection.script.value,
+                language_confidence=detection.confidence
+            )
+
+        # 4. Fallback response for unmapped queries with localized guidance
+        fallback_messages = {
+            "en": (
+                "I'm not quite sure I understand that question about SkillSphere. "
+                "I can help with resume uploads & OCR parsing, job search & bookmarks, "
+                "proctored MCQ assessments, video assessments, pipeline tracking, or live video meetings. "
+                "Please try selecting one of the suggested topics below or rephrasing your question."
+            ),
+            "hi": (
+                "मुझे SkillSphere के बारे में आपका प्रश्न पूरी तरह समझ नहीं आया। "
+                "मैं रिज्यूम अपलोड और OCR पार्सिंग, नौकरी खोज, प्रॉक्टर्ड MCQ असेसमेंट, "
+                "वीडियो असेसमेंट और लाइव वीडियो इंटरव्यू में सहायता कर सकता हूँ। "
+                "कृपया नीचे दिए गए सुझावों में से चुनें या अपना प्रश्न पुनः लिखें।"
+            ),
+            "hinglish": (
+                "Mujhe SkillSphere ke baare mein aapka question samajh nahi aaya. "
+                "Main resume upload & OCR parsing, job search, proctored MCQ assessments, "
+                "video assessments, aur live video interviews mein aapki help kar sakta hoon. "
+                "Kripya neeche diye gaye topics mein se select karein ya question rephrase karein."
+            ),
+            "pa": (
+                "ਮੈਨੂੰ SkillSphere ਬਾਰੇ ਤੁਹਾਡਾ ਸਵਾਲ ਪੂਰੀ ਤਰ੍ਹਾਂ ਸਮਝ ਨਹੀਂ ਆਇਆ। "
+                "ਮੈਂ ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ, ਨੌਕਰੀਆਂ ਦੀ ਭਾਲ, ਪ੍ਰੋਕਟਰਡ MCQ ਟੈਸਟ, "
+                "ਵੀਡੀਓ ਅਸੈਸਮੈਂਟ ਅਤੇ ਲਾਈਵ ਵੀਡੀਓ ਇੰਟਰਵਿਊਆਂ ਵਿੱਚ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ। "
+                "ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੇ ਵਿਕਲਪਾਂ ਵਿੱਚੋਂ ਚੁਣੋ।"
+            ),
+            "pa-Latn": (
+                "Mainu SkillSphere baare tuhada swal samajh nahi aaya. "
+                "Main resume upload, job search, MCQ assessments, "
+                "video assessments, te live video interviews vich help kar sakda han. "
+                "Please thalle ditte topics cho select karo ya swal dubara likho."
+            )
+        }
+        fallback_msg = fallback_messages.get(target_key, fallback_messages["en"])
+
         return ChatResponse(
             message=fallback_msg,
             matched_intent="fallback",
@@ -138,7 +289,10 @@ class ChatbotService:
                 "How does the Kanban pipeline work?",
                 "How do I get technical support?"
             ],
-            timestamp=timestamp
+            timestamp=timestamp,
+            detected_language=detection.detected_language.value,
+            writing_script=detection.script.value,
+            language_confidence=detection.confidence
         )
 
     def get_health(self) -> ChatbotHealthResponse:

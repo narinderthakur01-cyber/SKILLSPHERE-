@@ -21,15 +21,16 @@ import {
   Download, ArrowUpRight, Check, Award, Search, Phone, Mail,
   Calendar, Trash2, ArrowRight, MessageSquare, Send, Star, Columns,
   List, Sparkles, SlidersHorizontal, UserCheck, Video, PhoneCall,
-  History, CheckCheck, BarChart3, HelpCircle, Clock, ChevronRight, Film
+  History, CheckCheck, BarChart3, HelpCircle, Clock, ChevronRight, Film, LifeBuoy
 } from 'lucide-react';
 import { RecruiterAssessmentsSection } from '../components/RecruiterAssessmentsSection';
 import { RecruiterMediaLibraryTab } from '../components/RecruiterMediaLibraryTab';
 import { RecruiterVideoAssessmentsTab } from '../components/RecruiterVideoAssessmentsTab';
 import { RecruiterInterviewHubTab } from '../components/RecruiterInterviewHubTab';
 import { CandidateDossierModal } from '../components/CandidateDossierModal';
+import { UserSupportTicketsTab } from '../components/UserSupportTicketsTab';
 
-const VALID_RECRUITER_TABS = ['jobs', 'pipeline', 'assessments', 'video-assessments', 'interviews', 'media', 'messages', 'analytics', 'company'];
+const VALID_RECRUITER_TABS = ['jobs', 'pipeline', 'assessments', 'video-assessments', 'interviews', 'media', 'messages', 'analytics', 'company', 'tickets'];
 
 export const RecruiterDashboard = () => {
   const { user } = useAuth();
@@ -771,7 +772,8 @@ export const RecruiterDashboard = () => {
               { id: 'media', label: 'Media Library', icon: Film },
               { id: 'messages', label: 'Messages', icon: MessageSquare },
               { id: 'analytics', label: 'Recruitment Analytics', icon: BarChart3 },
-              { id: 'company', label: 'Company Profile', icon: Building }
+              { id: 'company', label: 'Company Profile', icon: Building },
+              { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy }
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -1768,6 +1770,15 @@ export const RecruiterDashboard = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* TAB: SUPPORT TICKETS & ESCALATION TRACKING */}
+          {/* ======================================================== */}
+          {activeTab === 'tickets' && (
+            <div className="space-y-6">
+              <UserSupportTicketsTab />
             </div>
           )}
 

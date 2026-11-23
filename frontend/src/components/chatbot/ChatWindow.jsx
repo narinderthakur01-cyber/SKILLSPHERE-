@@ -66,13 +66,15 @@ export const ChatWindow = ({
               { label: 'Post a Job', query: 'How do I post a new job?', topic: 'recruiter_create_job' },
               { label: 'Kanban Pipeline', query: 'How does the Kanban pipeline work?', topic: 'recruiter_kanban_pipeline' },
               { label: 'Question Bank', query: 'How do I manage the Question Bank for tests?', topic: 'recruiter_question_bank' },
-              { label: 'LiveKit Interview', query: 'How do I schedule a LiveKit video interview?', topic: 'recruiter_schedule_interview' }
+              { label: 'LiveKit Interview', query: 'How do I schedule a LiveKit video interview?', topic: 'recruiter_schedule_interview' },
+              { label: 'Track My Tickets', query: 'Where are my support tickets?', topic: 'track_tickets' }
             ]
           : [
               { label: 'Upload Resume', query: 'How do I upload my resume?', topic: 'candidate_resume_upload' },
               { label: 'Browse Jobs', query: 'How do I search and filter jobs?', topic: 'candidate_job_search' },
               { label: 'MCQ Assessment', query: 'What is the Round 1 MCQ assessment?', topic: 'candidate_mcq_assessment' },
-              { label: 'Live Interview', query: 'How do I join a live video interview?', topic: 'candidate_live_interview' }
+              { label: 'Live Interview', query: 'How do I join a live video interview?', topic: 'candidate_live_interview' },
+              { label: 'Track My Tickets', query: 'Where are my support tickets?', topic: 'track_tickets' }
             ];
 
         setMessages([
@@ -136,6 +138,7 @@ export const ChatWindow = ({
         content: data.message,
         intent: data.matched_intent,
         confidence: data.confidence_score,
+        ticket_data: data.ticket_data || null,
         created_at: data.timestamp || new Date().toISOString()
       };
       setMessages((prev) => [...prev, botMsg]);
@@ -262,7 +265,11 @@ export const ChatWindow = ({
       {/* Message Feed Container */}
       <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2 select-text">
         {messages.map((m) => (
-          <ChatMessage key={m.id} message={m} />
+          <ChatMessage
+            key={m.id}
+            message={m}
+            onAction={(query, topic) => handleSend(query, topic)}
+          />
         ))}
 
         {/* Typing / Thinking Indicator */}

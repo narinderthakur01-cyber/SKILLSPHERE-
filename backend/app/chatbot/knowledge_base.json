@@ -4,7 +4,9 @@
     {
       "id": "faq_cand_01",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_resume_upload",
       "title": "How do I upload and parse my resume?",
       "sample_questions": [
@@ -12,10 +14,36 @@
         "Where can I upload my CV?",
         "How to upload resume",
         "Upload resume",
-        "Can I upload PDF or Word documents?"
+        "Can I upload PDF or Word documents?",
+        "Mera resume upload nahi ho raha",
+        "Mera CV upload nhi ho rha",
+        "Resume upload ni ho reha",
+        "Resume upload kaise kare",
+        "Resume kive upload kran",
+        "मेरा रिज्यूम अपलोड नहीं हो रहा है",
+        "ਮੇਰਾ ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ ਨਹੀਂ ਹੋ ਰਿਹਾ",
+        "How do I upload resume",
+        "मैं अपना रिज्यूमे कैसे अपलोड करूं",
+        "रिज्यूम कैसे अपलोड करें",
+        "ਮੈਂ ਆਪਣਾ ਰੈਜ਼ਿਊਮੇ ਕਿਵੇਂ ਅੱਪਲੋਡ ਕਰਾਂ",
+        "ਰਿਜ਼ਿਊਮ ਕਿਵੇਂ ਅੱਪਲੋਡ ਕਰਨਾ ਹੈ"
       ],
-      "keywords": ["resume", "cv", "upload", "parse", "pdf", "docx", "file", "document"],
-      "synonyms": ["curriculum vitae", "attach", "submit file", "resume parsing"],
+      "keywords": [
+        "resume",
+        "cv",
+        "upload",
+        "parse",
+        "pdf",
+        "docx",
+        "file",
+        "document"
+      ],
+      "synonyms": [
+        "curriculum vitae",
+        "attach",
+        "submit file",
+        "resume parsing"
+      ],
       "response": "To upload your resume in SkillSphere, go to your Job Seeker Dashboard and click the 'OCR & Intelligence' tab (or navigate to /dashboard?tab=resumes). SkillSphere supports PDF and DOCX files up to 10MB. Once uploaded, our automated OCR pipeline parses your text, extracts relevant technical skills against our 139 verified skills database, and calculates your baseline match scores.",
       "related_questions": [
         "What file formats are supported for resume upload?",
@@ -23,15 +51,36 @@
         "How do I browse matching jobs?"
       ],
       "quick_replies": [
-        {"label": "Supported Formats", "query": "What file formats are supported for resume upload?", "topic": "candidate_resume_upload"},
-        {"label": "Skill Extraction", "query": "How does resume skill matching work?", "topic": "candidate_resume_intelligence"},
-        {"label": "Browse Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"}
-      ]
+        {
+          "label": "Supported Formats",
+          "query": "What file formats are supported for resume upload?",
+          "topic": "candidate_resume_upload"
+        },
+        {
+          "label": "Skill Extraction",
+          "query": "How does resume skill matching work?",
+          "topic": "candidate_resume_intelligence"
+        },
+        {
+          "label": "Browse Jobs",
+          "query": "How do I search and filter jobs?",
+          "topic": "candidate_job_search"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "To upload your resume in SkillSphere, go to your Job Seeker Dashboard and click the 'OCR & Intelligence' tab (or navigate to /dashboard?tab=resumes). SkillSphere supports PDF and DOCX files up to 10MB. Once uploaded, our automated OCR pipeline parses your text, extracts relevant technical skills against our 139 verified skills database, and calculates your baseline match scores.",
+        "hi": "SkillSphere में अपना रिज्यूम अपलोड करने के लिए, अपने Job Seeker Dashboard पर जाएं और 'OCR & Intelligence' टैब (/dashboard?tab=resumes) पर क्लिक करें। SkillSphere 10MB तक की PDF और DOCX फाइलों को सपोर्ट करता है। अपलोड होने के बाद, हमारा ऑटोमेटेड OCR सिस्टम आपके टेक्स्ट को पार्स करता है और 139 सत्यापित स्किल्स के आधार पर मैच स्कोर की गणना करता है।",
+        "hinglish": "SkillSphere mein apna resume upload karne ke liye, apne Job Seeker Dashboard par jayein aur 'OCR & Intelligence' tab (/dashboard?tab=resumes) par click karein. SkillSphere 10MB tak ke PDF aur DOCX files ko support karta hai. Upload hone ke baad, hamara automated OCR pipeline aapke text ko parse karta hai aur 139 verified skills ke sath match score calculate karta hai.",
+        "pa": "SkillSphere ਵਿੱਚ ਆਪਣਾ ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ ਕਰਨ ਲਈ, ਆਪਣੇ Job Seeker Dashboard 'ਤੇ ਜਾਓ ਅਤੇ 'OCR & Intelligence' ਟੈਬ (/dashboard?tab=resumes) 'ਤੇ ਕਲਿੱਕ ਕਰੋ। SkillSphere 10MB ਤੱਕ ਦੀਆਂ PDF ਅਤੇ DOCX ਫਾਈਲਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ। ਅਪਲੋਡ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਸਾਡਾ ਆਟੋਮੇਟਿਡ OCR ਸਿਸਟਮ ਤੁਹਾਡੇ ਹੁਨਰਾਂ ਨੂੰ ਸਕੈਨ ਕਰਦਾ ਹੈ ਅਤੇ ਮੈਚ ਸਕੋਰ ਕੈਲਕੂਲੇਟ ਕਰਦਾ ਹੈ।",
+        "pa-Latn": "SkillSphere vich apna resume upload karan layi, apne Job Seeker Dashboard te jao te 'OCR & Intelligence' tab (/dashboard?tab=resumes) te click karo. SkillSphere 10MB tak diyan PDF te DOCX files nu support karda hai. Upload hon de baad, automated OCR pipeline skills nu extract karke match score calculate kardi hai."
+      }
     },
     {
       "id": "faq_cand_02",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_resume_formats",
       "title": "What file formats and sizes are supported for resume upload?",
       "sample_questions": [
@@ -39,24 +88,61 @@
         "What resume formats can I upload?",
         "Can I upload a word document?",
         "Is PDF supported?",
-        "What is the maximum resume file size?"
+        "What is the maximum resume file size?",
+        "Resume ke liye kaunsi file format chalegi",
+        "Resume format kitna size hona chahiye",
+        "Kehdian formats support hundian ne",
+        "File size limit kitni hai",
+        "ਫਾਈਲ ਫਾਰਮੈਟ ਅਤੇ ਸਾਈਜ਼ ਕੀ ਹੈ",
+        "कौन से फॉर्मेट सपोर्टेड हैं"
       ],
-      "keywords": ["format", "formats", "supported", "file size", "pdf", "docx", "word", "limit"],
-      "synonyms": ["file types", "extension", "max size", "document types"],
+      "keywords": [
+        "format",
+        "formats",
+        "supported",
+        "file size",
+        "pdf",
+        "docx",
+        "word",
+        "limit"
+      ],
+      "synonyms": [
+        "file types",
+        "extension",
+        "max size",
+        "document types"
+      ],
       "response": "SkillSphere supports standard PDF (.pdf) and Microsoft Word (.docx) document formats. The maximum allowed file size is 10 MB. For optimal OCR text extraction and skill analysis, we recommend using clean, single-column text-based PDFs without scanned image artifacts.",
       "related_questions": [
         "How do I upload my resume?",
         "How does resume skill matching work?"
       ],
       "quick_replies": [
-        {"label": "Upload Resume", "query": "How do I upload my resume?", "topic": "candidate_resume_upload"},
-        {"label": "Skill Matching", "query": "How does resume skill matching work?", "topic": "candidate_resume_intelligence"}
-      ]
+        {
+          "label": "Upload Resume",
+          "query": "How do I upload my resume?",
+          "topic": "candidate_resume_upload"
+        },
+        {
+          "label": "Skill Matching",
+          "query": "How does resume skill matching work?",
+          "topic": "candidate_resume_intelligence"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere supports standard PDF (.pdf) and Microsoft Word (.docx) document formats. The maximum allowed file size is 10 MB. For optimal OCR text extraction and skill analysis, we recommend using clean, single-column text-based PDFs without scanned image artifacts.",
+        "hi": "SkillSphere रिज्यूम अपलोड के लिए केवल PDF (.pdf) और Microsoft Word (.docx) फाइल फॉर्मेट सपोर्ट करता है। अधिकतम फाइल साइज 10MB है। उच्च-सटीक OCR टेक्स्ट निष्कर्षण सुनिश्चित करने के लिए इमेज (PNG, JPG) और सादा टेक्स्ट (.txt) स्वीकार नहीं किए जाते हैं।",
+        "hinglish": "SkillSphere resume upload ke liye strictly PDF (.pdf) aur Microsoft Word (.docx) formats support karta hai. Maximum allowed file size 10MB hai. Accurate OCR parsing ke liye image files (PNG, JPG) aur plain text (.txt) allow nahi hain.",
+        "pa": "SkillSphere ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ ਲਈ ਸਿਰਫ਼ PDF (.pdf) ਅਤੇ Microsoft Word (.docx) ਫਾਈਲ ਫਾਰਮੈਟਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ। ਵੱਧ ਤੋਂ ਵੱਧ ਫਾਈਲ ਸਾਈਜ਼ 10MB ਹੈ। ਸਹੀ OCR ਟੈਕਸਟ ਐਕਸਟ੍ਰੈਕਸ਼ਨ ਲਈ ਫੋਟੋਆਂ ਜਾਂ ਸਾਦੇ ਟੈਕਸਟ ਨੂੰ ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤਾ ਜਾਂਦਾ।",
+        "pa-Latn": "SkillSphere resume upload layi strictly PDF (.pdf) te Microsoft Word (.docx) formats nu support karda hai. Maximum allowed file size 10MB hai. Sahi OCR extraction layi images te plain text allow nahi han."
+      }
     },
     {
       "id": "faq_cand_03",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_resume_intelligence",
       "title": "How does SkillSphere analyze and extract skills from my resume?",
       "sample_questions": [
@@ -64,24 +150,61 @@
         "How does OCR skill extraction work?",
         "How does SkillSphere score my resume?",
         "What is match score?",
-        "How are skills detected from my CV?"
+        "How are skills detected from my CV?",
+        "Skill matching kaise kaam karta hai",
+        "Resume score kaise badhaye",
+        "Skills kive match hunde ne",
+        "Resume intelligence ki hai",
+        "स्किल्स कैसे मैच होते हैं",
+        "ਸਕਿੱਲ ਮੈਚਿੰਗ ਕਿਵੇਂ ਕੰਮ ਕਰਦੀ ਹੈ"
       ],
-      "keywords": ["ocr", "extract", "extraction", "intelligence", "match score", "skills", "score", "algorithm"],
-      "synonyms": ["skill detection", "resume scoring", "compatibility", "ranking"],
+      "keywords": [
+        "ocr",
+        "extract",
+        "extraction",
+        "intelligence",
+        "match score",
+        "skills",
+        "score",
+        "algorithm"
+      ],
+      "synonyms": [
+        "skill detection",
+        "resume scoring",
+        "compatibility",
+        "ranking"
+      ],
       "response": "When you upload a resume, SkillSphere's OCR engine extracts raw text and compares it against our catalog of 139 standardized technical skills. The system calculates an affinity score (0% to 100%) against each active job opening based on required skills versus detected candidate skills.",
       "related_questions": [
         "How do I search and filter jobs?",
         "How do I apply for a job?"
       ],
       "quick_replies": [
-        {"label": "Find Matching Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
-        {"label": "Saved Jobs", "query": "How do I save a job for later?", "topic": "candidate_save_jobs"}
-      ]
+        {
+          "label": "Find Matching Jobs",
+          "query": "How do I search and filter jobs?",
+          "topic": "candidate_job_search"
+        },
+        {
+          "label": "Saved Jobs",
+          "query": "How do I save a job for later?",
+          "topic": "candidate_save_jobs"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "When you upload a resume, SkillSphere's OCR engine extracts raw text and compares it against our catalog of 139 standardized technical skills. The system calculates an affinity score (0% to 100%) against each active job opening based on required skills versus detected candidate skills.",
+        "hi": "हमारा Resume Intelligence इंजन ऑटोमेटेड OCR और सेमेंटिक स्किल मैचिंग का उपयोग करता है। यह आपके रिज्यूम को 139 मानकीकृत तकनीकी कौशलों के विरुद्ध स्कैन करता है, और 0-100% प्रोफाइल स्कोर तैयार करके आपको उपयुक्त नौकरियों से मिलाता है।",
+        "hinglish": "Hamara Resume Intelligence engine automated OCR aur semantic skill matching use karta hai. Yeh aapke resume ko 139 standardized technical skills ke against scan karta hai aur 0-100% profile score generate karke matching jobs suggest karta hai.",
+        "pa": "ਸਾਡਾ Resume Intelligence ਇੰਜਣ ਆਟੋਮੇਟਿਡ OCR ਅਤੇ ਸਕਿੱਲ ਮੈਚਿੰਗ ਦੀ ਵਰਤੋਂ ਕਰਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਰਿਜ਼ਿਊਮ ਨੂੰ 139 ਮਿਆਰੀ ਤਕਨੀਕੀ ਹੁਨਰਾਂ ਦੇ ਵਿਰੁੱਧ ਸਕੈਨ ਕਰਦਾ ਹੈ ਅਤੇ 0-100% ਸਕੋਰ ਬਣਾ ਕੇ ਨੌਕਰੀਆਂ ਸੁਝਾਉਂਦਾ ਹੈ।",
+        "pa-Latn": "Sada Resume Intelligence engine automated OCR te semantic skill matching use karda hai. Eh tuhade resume nu 139 standardized technical skills de against scan karke 0-100% profile score generate karda hai te matching jobs labhda hai."
+      }
     },
     {
       "id": "faq_cand_04",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_job_search",
       "title": "How do I search, filter, and discover job openings?",
       "sample_questions": [
@@ -89,24 +212,61 @@
         "How do I filter job openings?",
         "Where can I find jobs?",
         "Can I filter by remote or salary?",
-        "Find jobs"
+        "Find jobs",
+        "Jobs kaise search kare",
+        "Naukri kaise dhundhe",
+        "Nokri kive labhni hai",
+        "Jobs filter kaise kare",
+        "नौकरी कैसे खोजें",
+        "ਨੌਕਰੀ ਕਿਵੇਂ ਲੱਭਣੀ ਹੈ"
       ],
-      "keywords": ["search", "filter", "jobs", "openings", "browse", "positions", "vacancies", "remote"],
-      "synonyms": ["job search", "explore roles", "find employment", "look for work"],
+      "keywords": [
+        "search",
+        "filter",
+        "jobs",
+        "openings",
+        "browse",
+        "positions",
+        "vacancies",
+        "remote"
+      ],
+      "synonyms": [
+        "job search",
+        "explore roles",
+        "find employment",
+        "look for work"
+      ],
       "response": "On your Job Seeker Dashboard under the 'Browse Jobs' tab (/dashboard?tab=jobs), you can search active openings by keyword, title, or company. You can filter by job type (Full-time, Part-time, Contract, Internship, Remote) and filter by required skills.",
       "related_questions": [
         "How do I save a job for later?",
         "How do I apply for a job?"
       ],
       "quick_replies": [
-        {"label": "How to Apply", "query": "How do I apply for a job?", "topic": "candidate_apply_job"},
-        {"label": "Save Jobs", "query": "How do I save a job for later?", "topic": "candidate_save_jobs"}
-      ]
+        {
+          "label": "How to Apply",
+          "query": "How do I apply for a job?",
+          "topic": "candidate_apply_job"
+        },
+        {
+          "label": "Save Jobs",
+          "query": "How do I save a job for later?",
+          "topic": "candidate_save_jobs"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "On your Job Seeker Dashboard under the 'Browse Jobs' tab (/dashboard?tab=jobs), you can search active openings by keyword, title, or company. You can filter by job type (Full-time, Part-time, Contract, Internship, Remote) and filter by required skills.",
+        "hi": "नौकरियां खोजने के लिए, /dashboard?tab=jobs पर जाएं। आप रोल टाइप (Full-time, Part-time, Remote, Internship), आवश्यक स्किल्स और कंपनी के आधार पर नौकरियों को फ़िल्टर कर सकते हैं।",
+        "hinglish": "Job search karne ke liye, /dashboard?tab=jobs par jayein. Aap role type (Full-time, Part-time, Remote, Internship), required skills, aur company ke basis par jobs filter kar sakte hain.",
+        "pa": "ਨੌਕਰੀਆਂ ਲੱਭਣ ਲਈ, /dashboard?tab=jobs 'ਤੇ ਜਾਓ। ਤੁਸੀਂ ਨੌਕਰੀ ਦੀ ਕਿਸਮ (Full-time, Part-time, Remote, Internship), ਲੋੜੀਂਦੇ ਹੁਨਰਾਂ ਅਤੇ ਕੰਪਨੀ ਅਨੁਸਾਰ ਫਿਲਟਰ ਕਰ ਸਕਦੇ ਹੋ।",
+        "pa-Latn": "Jobs search karan layi, /dashboard?tab=jobs te jao. Tussi role type (Full-time, Part-time, Remote, Internship), required skills, te company de hisaab naal jobs filter kar sakde ho."
+      }
     },
     {
       "id": "faq_cand_05",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_save_jobs",
       "title": "How do I bookmark and view saved jobs?",
       "sample_questions": [
@@ -114,24 +274,57 @@
         "Where are my saved jobs?",
         "Can I bookmark jobs?",
         "Save job",
-        "View bookmarked positions"
+        "View bookmarked positions",
+        "Job bookmark kaise kare",
+        "Saved jobs kahan dikhte hain",
+        "Jobs save kive karni hai",
+        "Saved jobs kithe ne",
+        "सेव की गई नौकरियां कहां हैं"
       ],
-      "keywords": ["save", "saved", "bookmark", "bookmarked", "favorite", "later"],
-      "synonyms": ["star job", "pin opening", "saved positions"],
+      "keywords": [
+        "save",
+        "saved",
+        "bookmark",
+        "bookmarked",
+        "favorite",
+        "later"
+      ],
+      "synonyms": [
+        "star job",
+        "pin opening",
+        "saved positions"
+      ],
       "response": "When viewing any job card in 'Browse Jobs', click the bookmark icon to save it. You can access all your saved positions at any time from the 'Saved Jobs' tab in your dashboard (/dashboard?tab=saved).",
       "related_questions": [
         "How do I apply for a job?",
         "How do I track my applications?"
       ],
       "quick_replies": [
-        {"label": "Apply Now", "query": "How do I apply for a job?", "topic": "candidate_apply_job"},
-        {"label": "Track Applications", "query": "How do I track my application status?", "topic": "candidate_application_status"}
-      ]
+        {
+          "label": "Apply Now",
+          "query": "How do I apply for a job?",
+          "topic": "candidate_apply_job"
+        },
+        {
+          "label": "Track Applications",
+          "query": "How do I track my application status?",
+          "topic": "candidate_application_status"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "When viewing any job card in 'Browse Jobs', click the bookmark icon to save it. You can access all your saved positions at any time from the 'Saved Jobs' tab in your dashboard (/dashboard?tab=saved).",
+        "hi": "आप जॉब कार्ड पर बुकमार्क/दिल के आइकन पर क्लिक करके किसी भी नौकरी को सेव कर सकते हैं। अपने सभी सेव किए गए पदों को देखने के लिए /dashboard?tab=saved पर जाएं।",
+        "hinglish": "Aap kisi bhi job card par bookmark/heart icon par click karke job save kar sakte hain. Apni saari saved jobs dekhne ke liye /dashboard?tab=saved par jayein.",
+        "pa": "ਤੁਸੀਂ ਜਾਬ ਕਾਰਡ 'ਤੇ ਬੁੱਕਮਾਰਕ ਆਈਕਨ 'ਤੇ ਕਲਿੱਕ ਕਰਕੇ ਨੌਕਰੀ ਨੂੰ ਸੇਵ ਕਰ ਸਕਦੇ ਹੋ। ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਸੇਵ ਕੀਤੀਆਂ ਨੌਕਰੀਆਂ ਵੇਖਣ ਲਈ /dashboard?tab=saved 'ਤੇ ਜਾਓ।",
+        "pa-Latn": "Tussi job card te bookmark icon te click karke job save kar sakde ho. Apniyan sariyan saved jobs vekhan layi /dashboard?tab=saved te jao."
+      }
     },
     {
       "id": "faq_cand_06",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_apply_job",
       "title": "How do I apply for a job opening?",
       "sample_questions": [
@@ -139,24 +332,57 @@
         "How to apply?",
         "Can I apply with my uploaded resume?",
         "Submit job application",
-        "Apply to opening"
+        "Apply to opening",
+        "Job ke liye apply kaise kare",
+        "Application kaise submit kare",
+        "Nokri layi apply kive kran",
+        "Apply button kahan hai",
+        "नौकरी के लिए आवेदन कैसे करें"
       ],
-      "keywords": ["apply", "application", "submit", "apply job", "one-click", "opening"],
-      "synonyms": ["job application", "send application", "enter selection"],
+      "keywords": [
+        "apply",
+        "application",
+        "submit",
+        "apply job",
+        "one-click",
+        "opening"
+      ],
+      "synonyms": [
+        "job application",
+        "send application",
+        "enter selection"
+      ],
       "response": "To apply for an opening, navigate to 'Browse Jobs' (/dashboard?tab=jobs), select the job to review its full details, requirements, and salary, and click 'Apply Now'. Your latest uploaded resume and contact profile will be attached to your application automatically.",
       "related_questions": [
         "How do I track my application status?",
         "What is the Round 1 MCQ assessment?"
       ],
       "quick_replies": [
-        {"label": "Application Status", "query": "How do I track my application status?", "topic": "candidate_application_status"},
-        {"label": "Round 1 Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"}
-      ]
+        {
+          "label": "Application Status",
+          "query": "How do I track my application status?",
+          "topic": "candidate_application_status"
+        },
+        {
+          "label": "Round 1 Assessment",
+          "query": "What is the Round 1 MCQ assessment?",
+          "topic": "candidate_mcq_assessment"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "To apply for an opening, navigate to 'Browse Jobs' (/dashboard?tab=jobs), select the job to review its full details, requirements, and salary, and click 'Apply Now'. Your latest uploaded resume and contact profile will be attached to your application automatically.",
+        "hi": "आवेदन करने के लिए, सुनिश्चित करें कि आपका रिज्यूम अपलोड है, फिर जॉब विवरण में 'Apply Now' पर क्लिक करें। आपका नवीनतम रिज्यूम और प्रोफाइल रिक्रूटर्स के पास जमा हो जाएगा।",
+        "hinglish": "Apply karne ke liye, check karein ki aapka resume uploaded hai, phir job details mein jakar 'Apply Now' par click karein. Aapka latest resume aur skill profile recruiter ko submit ho jayega.",
+        "pa": "ਅਪਲਾਈ ਕਰਨ ਲਈ, ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਤੁਹਾਡਾ ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ ਹੈ, ਫਿਰ ਨੌਕਰੀ ਦੇ ਵੇਰਵਿਆਂ ਵਿੱਚ 'Apply Now' 'ਤੇ ਕਲਿੱਕ ਕਰੋ। ਤੁਹਾਡਾ ਰਿਜ਼ਿਊਮ ਰਿਕਰੂਟਰ ਕੋਲ ਜਮ੍ਹਾਂ ਹੋ ਜਾਵੇਗਾ।",
+        "pa-Latn": "Apply karan layi, pehla check karo ki tuhada resume uploaded hai, fer job details vich jaake 'Apply Now' te click karo. Tuhada latest resume recruiter nu submit ho javega."
+      }
     },
     {
       "id": "faq_cand_07",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_application_status",
       "title": "How do I track my application status?",
       "sample_questions": [
@@ -164,24 +390,59 @@
         "Where can I see my applications?",
         "What do the application stages mean?",
         "Application progress",
-        "Did recruiter review my application?"
+        "Did recruiter review my application?",
+        "Mera application status kaise check kare",
+        "Application status kahan dikhta hai",
+        "Status kive check kran",
+        "Application shortlist hui ya nahi",
+        "एप्लिकेशन स्टेटस कैसे चेक करें",
+        "ਐਪਲੀਕੇਸ਼ਨ ਸਥਿਤੀ ਕਿਵੇਂ ਵੇਖੀਏ"
       ],
-      "keywords": ["status", "track", "applications", "stages", "screening", "shortlisted", "applied"],
-      "synonyms": ["application progress", "recruitment stage", "application history"],
+      "keywords": [
+        "status",
+        "track",
+        "applications",
+        "stages",
+        "screening",
+        "shortlisted",
+        "applied"
+      ],
+      "synonyms": [
+        "application progress",
+        "recruitment stage",
+        "application history"
+      ],
       "response": "Navigate to the 'Applications' tab on your dashboard (/dashboard?tab=applications). Your applications progress through defined stages: APPLIED (submitted), SCREENING (under initial check), UNDER_REVIEW (recruiter examining profile), SHORTLISTED (qualified for next round), INTERVIEW (assessments or live meeting), and SELECTED or REJECTED.",
       "related_questions": [
         "What is the Round 1 MCQ assessment?",
         "How do I join a live video interview?"
       ],
       "quick_replies": [
-        {"label": "MCQ Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"},
-        {"label": "Video Assessment", "query": "How does the video assessment work?", "topic": "candidate_video_assessment"}
-      ]
+        {
+          "label": "MCQ Assessment",
+          "query": "What is the Round 1 MCQ assessment?",
+          "topic": "candidate_mcq_assessment"
+        },
+        {
+          "label": "Video Assessment",
+          "query": "How does the video assessment work?",
+          "topic": "candidate_video_assessment"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Navigate to the 'Applications' tab on your dashboard (/dashboard?tab=applications). Your applications progress through defined stages: APPLIED (submitted), SCREENING (under initial check), UNDER_REVIEW (recruiter examining profile), SHORTLISTED (qualified for next round), INTERVIEW (assessments or live meeting), and SELECTED or REJECTED.",
+        "hi": "अपनी सभी सबमिट की गई एप्लिकेशन्स को /dashboard?tab=applications पर ट्रैक करें। SkillSphere 8 चरणों (APPLIED, SCREENING, UNDER_REVIEW, SHORTLISTED, INTERVIEW, SELECTED, REJECTED, WITHDRAWN) में रीयल-टाइम ट्रैकिंग प्रदान करता है।",
+        "hinglish": "Apni applications ko /dashboard?tab=applications par track karein. SkillSphere 8 stages (APPLIED, SCREENING, UNDER_REVIEW, SHORTLISTED, INTERVIEW, SELECTED, REJECTED, WITHDRAWN) mein real-time tracking provide karta hai.",
+        "pa": "ਆਪਣੀਆਂ ਸਾਰੀਆਂ ਅਰਜ਼ੀਆਂ ਨੂੰ /dashboard?tab=applications 'ਤੇ ਟਰੈਕ ਕਰੋ। SkillSphere 8 ਪੜਾਵਾਂ ਵਿੱਚ ਰੀਅਲ-ਟਾਈਮ ਸਥਿਤੀ ਦਿਖਾਉਂਦਾ ਹੈ।",
+        "pa-Latn": "Apniyan sariyan applications nu /dashboard?tab=applications te track karo. SkillSphere 8 stages vich real-time status dikhaunda hai."
+      }
     },
     {
       "id": "faq_cand_08",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_mcq_assessment",
       "title": "What is the Round 1 MCQ technical assessment and how do I take it?",
       "sample_questions": [
@@ -189,24 +450,60 @@
         "How do I take the technical test?",
         "Where is my assessment?",
         "MCQ test",
-        "Online test instructions"
+        "Online test instructions",
+        "MCQ test kaise hota hai",
+        "Round 1 assessment kya hai",
+        "Test kive dena hai",
+        "Technical test details",
+        "राउंड 1 एमसीक्यू टेस्ट क्या है",
+        "ਟੈਕਨੀਕਲ ਟੈਸਟ ਕਿਵੇਂ ਦੇਣਾ ਹੈ"
       ],
-      "keywords": ["mcq", "assessment", "round 1", "test", "quiz", "questions", "timer", "exam"],
-      "synonyms": ["technical exam", "screening test", "knowledge evaluation"],
+      "keywords": [
+        "mcq",
+        "assessment",
+        "round 1",
+        "test",
+        "quiz",
+        "questions",
+        "timer",
+        "exam"
+      ],
+      "synonyms": [
+        "technical exam",
+        "screening test",
+        "knowledge evaluation"
+      ],
       "response": "When shortlisted for a job, you may be assigned a Round 1 Technical MCQ assessment. You can access it from the 'Assessments' tab (/dashboard?tab=assessments). The assessment features randomized multiple-choice questions aligned with the job's core skills, with automated scoring and instantaneous progress saving.",
       "related_questions": [
         "What is the automated proctoring during assessments?",
         "How does the video assessment work?"
       ],
       "quick_replies": [
-        {"label": "Proctoring Rules", "query": "What is the automated proctoring during assessments?", "topic": "candidate_proctoring"},
-        {"label": "Video Assessment", "query": "How does the video assessment work?", "topic": "candidate_video_assessment"}
-      ]
+        {
+          "label": "Proctoring Rules",
+          "query": "What is the automated proctoring during assessments?",
+          "topic": "candidate_proctoring"
+        },
+        {
+          "label": "Video Assessment",
+          "query": "How does the video assessment work?",
+          "topic": "candidate_video_assessment"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "When shortlisted for a job, you may be assigned a Round 1 Technical MCQ assessment. You can access it from the 'Assessments' tab (/dashboard?tab=assessments). The assessment features randomized multiple-choice questions aligned with the job's core skills, with automated scoring and instantaneous progress saving.",
+        "hi": "राउंड 1 तकनीकी असेसमेंट में समयबद्ध बहुविकल्पीय प्रश्न (MCQ) होते हैं जो 191 प्रश्नों के बैंक से चुने जाते हैं। असाइन होने पर, /dashboard?tab=assessments पर जाकर अपना टेस्ट शुरू करें। इसमें टाइमर और ऑटोमैटिक सबमिशन शामिल है।",
+        "hinglish": "Round 1 technical assessment mein timed MCQ questions hote hain jo recruiter ya hamare 191 Question Bank se aate hain. Assign hone par /dashboard?tab=assessments par jakar test start karein. Isme countdown timer aur auto-submit hota hai.",
+        "pa": "ਰਾਊਂਡ 1 ਤਕਨੀਕੀ ਅਸੈਸਮੈਂਟ ਵਿੱਚ ਸਮੇਂ ਸਿਰ MCQ ਸਵਾਲ ਹੁੰਦੇ ਹਨ। ਅਸਾਈਨ ਹੋਣ 'ਤੇ, /dashboard?tab=assessments 'ਤੇ ਜਾ ਕੇ ਟੈਸਟ ਸ਼ੁਰੂ ਕਰੋ। ਇਸ ਵਿੱਚ ਕਾਊਂਟਡਾਊਨ ਟਾਈਮਰ ਹੁੰਦਾ ਹੈ।",
+        "pa-Latn": "Round 1 technical assessment vich timed MCQ questions hunde han. Assign hon te /dashboard?tab=assessments te jaake test start karo. Is vich countdown timer te auto-submit hunda hai."
+      }
     },
     {
       "id": "faq_cand_09",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_proctoring",
       "title": "What is automated proctoring and what rules must I follow during tests?",
       "sample_questions": [
@@ -214,24 +511,61 @@
         "Is there a proctoring system?",
         "Will my webcam be used?",
         "Can I switch tabs during exam?",
-        "What happens if I leave full screen?"
+        "What happens if I leave full screen?",
+        "Proctoring ke rules kya hain",
+        "Webcam kyu on karna padta hai",
+        "Anti cheating rules kya hain",
+        "Camera on karna zaroori hai",
+        "ਪ੍ਰੋਕਟਰਿੰਗ ਦੇ ਨਿਯਮ ਕੀ ਹਨ",
+        "प्रॉक्टरिंग नियम क्या हैं"
       ],
-      "keywords": ["proctoring", "proctor", "webcam", "tab switch", "fullscreen", "integrity", "infraction", "cheat"],
-      "synonyms": ["anti-cheating", "monitoring", "exam security", "camera supervision"],
+      "keywords": [
+        "proctoring",
+        "proctor",
+        "webcam",
+        "tab switch",
+        "fullscreen",
+        "integrity",
+        "infraction",
+        "cheat"
+      ],
+      "synonyms": [
+        "anti-cheating",
+        "monitoring",
+        "exam security",
+        "camera supervision"
+      ],
       "response": "SkillSphere incorporates automated browser proctoring during Round 1 assessments. The proctoring system monitors full-screen mode, logs tab switches, and captures webcam integrity snapshots if enabled. Infractions are recorded in your test dossier and visible to the recruiter. Keep your browser in full screen and stay focused on the test tab.",
       "related_questions": [
         "What is the Round 1 MCQ assessment?",
         "How do I join a live video interview?"
       ],
       "quick_replies": [
-        {"label": "MCQ Assessment", "query": "What is the Round 1 MCQ assessment?", "topic": "candidate_mcq_assessment"},
-        {"label": "Live Interview", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"}
-      ]
+        {
+          "label": "MCQ Assessment",
+          "query": "What is the Round 1 MCQ assessment?",
+          "topic": "candidate_mcq_assessment"
+        },
+        {
+          "label": "Live Interview",
+          "query": "How do I join a live video interview?",
+          "topic": "candidate_live_interview"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere incorporates automated browser proctoring during Round 1 assessments. The proctoring system monitors full-screen mode, logs tab switches, and captures webcam integrity snapshots if enabled. Infractions are recorded in your test dossier and visible to the recruiter. Keep your browser in full screen and stay focused on the test tab.",
+        "hi": "SkillSphere टेस्ट की निष्पक्षता सुनिश्चित करने के लिए ऑटोमेटेड प्रॉक्टरिंग लागू करता है। उम्मीदवारों को वेबकैम अनुमति देनी होगी। सिस्टम टैब स्विच, फुल-स्क्रीन निकास, और एकाधिक चेहरों जैसे उल्लंघनों को रिकॉर्ड करता है।",
+        "hinglish": "SkillSphere test integrity ensure karne ke liye automated proctoring enforce karta hai. Candidates ko webcam permission deni hoti hai. System tab switch, full-screen exit aur camera band karne par infraction log karta hai.",
+        "pa": "SkillSphere ਇਮਤਿਹਾਨ ਦੀ ਨਿਰਪੱਖਤਾ ਲਈ ਆਟੋਮੇਟਿਡ ਪ੍ਰੋਕਟਰਿੰਗ ਲਾਗੂ ਕਰਦਾ ਹੈ। ਉਮੀਦਵਾਰਾਂ ਨੂੰ ਵੈੱਬਕੈਮ ਇਜਾਜ਼ਤ ਦੇਣੀ ਪੈਂਦੀ ਹੈ। ਸਿਸਟਮ ਟੈਬ ਸਵਿੱਚ ਅਤੇ ਸਕ੍ਰੀਨ ਛੱਡਣ ਵਰਗੀਆਂ ਗਤੀਵਿਧੀਆਂ ਨੂੰ ਨੋਟ ਕਰਦਾ ਹੈ।",
+        "pa-Latn": "SkillSphere test integrity layi automated proctoring enforce karda hai. Candidates nu webcam permission deni hundi hai. System tab switch te full-screen exit te infraction record karda hai."
+      }
     },
     {
       "id": "faq_cand_10",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_video_assessment",
       "title": "How does the one-way asynchronous video assessment work?",
       "sample_questions": [
@@ -239,24 +573,59 @@
         "What is asynchronous video assessment?",
         "How do I record my video answers?",
         "One-way video interview",
-        "Video response instructions"
+        "Video response instructions",
+        "Video assessment kaise record kare",
+        "Video answer kaise submit kare",
+        "Video assessment kive deni hai",
+        "Video recording submit nahi ho rahi",
+        "वीडियो असेसमेंट कैसे दें",
+        "ਵੀਡੀਓ ਅਸੈਸਮੈਂਟ ਕਿਵੇਂ ਦੇਣੀ ਹੈ"
       ],
-      "keywords": ["video assessment", "record", "recording", "one-way", "camera", "microphone", "questions"],
-      "synonyms": ["asynchronous interview", "video questions", "recorded assessment"],
+      "keywords": [
+        "video assessment",
+        "record",
+        "recording",
+        "one-way",
+        "camera",
+        "microphone",
+        "questions"
+      ],
+      "synonyms": [
+        "asynchronous interview",
+        "video questions",
+        "recorded assessment"
+      ],
       "response": "For roles requiring video screening, recruiters assign an asynchronous Video Assessment. You receive structured prompts one by one, with a short countdown to prepare before recording your response using your camera and microphone. Your recordings are securely uploaded to Cloudinary for recruiter evaluation.",
       "related_questions": [
         "How do I join a live video interview?",
         "How do I message the recruiter?"
       ],
       "quick_replies": [
-        {"label": "Live Interview", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"},
-        {"label": "Message Recruiter", "query": "How do I message the recruiter?", "topic": "candidate_messaging"}
-      ]
+        {
+          "label": "Live Interview",
+          "query": "How do I join a live video interview?",
+          "topic": "candidate_live_interview"
+        },
+        {
+          "label": "Message Recruiter",
+          "query": "How do I message the recruiter?",
+          "topic": "candidate_messaging"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "For roles requiring video screening, recruiters assign an asynchronous Video Assessment. You receive structured prompts one by one, with a short countdown to prepare before recording your response using your camera and microphone. Your recordings are securely uploaded to Cloudinary for recruiter evaluation.",
+        "hi": "असिंक्रोनस वीडियो असेसमेंट में उम्मीदवार अपने कैमरे और माइक से प्रश्नों के उत्तर रिकॉर्ड करते हैं। /video-assessment/:assignmentId पर जाएं, उपकरण टेस्ट करें, रिकॉर्ड करें और 'Accept & Proceed' दबाएं। वीडियो सुरक्षित रूप से Cloudinary पर अपलोड होते हैं।",
+        "hinglish": "Video Assessment mein aap camera aur mic se structured sawalon ke video answers record karte hain. /video-assessment/:assignmentId par jayein, camera test karein, answer record karein aur 'Accept & Proceed' karein. Videos securely Cloudinary par upload hote hain.",
+        "pa": "ਵੀਡੀਓ ਅਸੈਸਮੈਂਟ ਵਿੱਚ ਉਮੀਦਵਾਰ ਕੈਮਰੇ ਅਤੇ ਮਾਈਕ ਰਾਹੀਂ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਰਿਕਾਰਡ ਕਰਦੇ ਹਨ। /video-assessment/:assignmentId 'ਤੇ ਜਾਓ, ਰਿਕਾਰਡ ਕਰੋ ਅਤੇ 'Accept & Proceed' 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
+        "pa-Latn": "Video Assessment vich tussi camera te mic naal sawalan de video answers record karde ho. /video-assessment/:assignmentId te jao, test karo, record karo te 'Accept & Proceed' te click karo."
+      }
     },
     {
       "id": "faq_cand_11",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_live_interview",
       "title": "How do I join a live video interview with a recruiter?",
       "sample_questions": [
@@ -264,24 +633,59 @@
         "Where is the interview room?",
         "How does LiveKit interview work?",
         "Video meeting link",
-        "Join interview"
+        "Join interview",
+        "Live interview kaise join kare",
+        "LiveKit meeting kaise join kare",
+        "Video call kive join karni hai",
+        "Interview room link kahan hai",
+        "लाइव इंटरव्यू कैसे ज्वाइन करें",
+        "ਲਾਈਵ ਇੰਟਰਵਿਊ ਕਿਵੇਂ ਜੁਆਇਨ ਕਰਨੀ ਹੈ"
       ],
-      "keywords": ["interview", "livekit", "video call", "meeting", "room", "join", "interviews tab"],
-      "synonyms": ["live meeting", "virtual interview", "web conference"],
+      "keywords": [
+        "interview",
+        "livekit",
+        "video call",
+        "meeting",
+        "room",
+        "join",
+        "interviews tab"
+      ],
+      "synonyms": [
+        "live meeting",
+        "virtual interview",
+        "web conference"
+      ],
       "response": "Scheduled live interviews appear in your dashboard under the 'Interviews' tab (/dashboard?tab=interviews). When your session time arrives, click 'Join Interview Room' (/interview-room/:id). SkillSphere's real-time WebRTC room (powered by LiveKit) provides HD audio, video, camera toggles, and integrated chat.",
       "related_questions": [
         "How do I message the recruiter?",
         "How do I track my application status?"
       ],
       "quick_replies": [
-        {"label": "Message Recruiter", "query": "How do I message the recruiter?", "topic": "candidate_messaging"},
-        {"label": "Application Status", "query": "How do I track my application status?", "topic": "candidate_application_status"}
-      ]
+        {
+          "label": "Message Recruiter",
+          "query": "How do I message the recruiter?",
+          "topic": "candidate_messaging"
+        },
+        {
+          "label": "Application Status",
+          "query": "How do I track my application status?",
+          "topic": "candidate_application_status"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Scheduled live interviews appear in your dashboard under the 'Interviews' tab (/dashboard?tab=interviews). When your session time arrives, click 'Join Interview Room' (/interview-room/:id). SkillSphere's real-time WebRTC room (powered by LiveKit) provides HD audio, video, camera toggles, and integrated chat.",
+        "hi": "जब कोई रिक्रूटर्स लाइव वीडियो इंटरव्यू शेड्यूल करता है, तो आपको रूम लिंक मिलता है। /interview-room/:interviewId पर जाकर मीटिंग ज्वाइन करें। SkillSphere बिना किसी बाहरी सॉफ़्टवेयर के ब्राउज़र में HD वीडियो और स्क्रीनशेयरिंग के लिए LiveKit WebRTC का उपयोग करता है।",
+        "hinglish": "Jab recruiter live interview schedule karta hai, toh room link milta hai. /interview-room/:interviewId par jakar meeting join karein. SkillSphere HD video aur screensharing ke liye browser mein LiveKit WebRTC use karta hai.",
+        "pa": "ਜਦੋਂ ਰਿਕਰੂਟਰ ਲਾਈਵ ਇੰਟਰਵਿਊ ਨਿਯਤ ਕਰਦਾ ਹੈ, ਤਾਂ ਤੁਹਾਨੂੰ ਰੂਮ ਲਿੰਕ ਮਿਲਦਾ ਹੈ। /interview-room/:interviewId 'ਤੇ ਜਾ ਕੇ ਮੀਟਿੰਗ ਜੁਆਇਨ ਕਰੋ। ਇਹ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ ਲਾਈਵ ਵੀਡੀਓ ਲਈ LiveKit WebRTC ਵਰਤਦਾ ਹੈ।",
+        "pa-Latn": "Jad recruiter live interview schedule karda hai, taan room link milda hai. /interview-room/:interviewId te jaake meeting join karo. Browser vich LiveKit WebRTC naal live video call hundi hai."
+      }
     },
     {
       "id": "faq_cand_12",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_messaging",
       "title": "How do I chat or message with recruiters?",
       "sample_questions": [
@@ -289,24 +693,58 @@
         "Where is candidate chat?",
         "Can I message an employer?",
         "Direct messages",
-        "Chat with hiring team"
+        "Chat with hiring team",
+        "Recruiter ko message kaise kare",
+        "Chat kaise kare",
+        "Recruiter naal gal kive kran",
+        "Messages kahan dikhte hain",
+        "रिक्रूटर्स को मैसेज कैसे भेजें"
       ],
-      "keywords": ["message", "messages", "chat", "inbox", "conversation", "communicate", "recruiter"],
-      "synonyms": ["direct communication", "talk to hiring manager", "send message"],
+      "keywords": [
+        "message",
+        "messages",
+        "chat",
+        "inbox",
+        "conversation",
+        "communicate",
+        "recruiter"
+      ],
+      "synonyms": [
+        "direct communication",
+        "talk to hiring manager",
+        "send message"
+      ],
       "response": "SkillSphere includes a direct messaging channel. Navigate to the 'Messages' tab (/dashboard?tab=messages) on your dashboard. When a recruiter opens communication regarding an application, you can exchange real-time text messages and clarify interview or role details.",
       "related_questions": [
         "How do I join a live video interview?",
         "How do I track my application status?"
       ],
       "quick_replies": [
-        {"label": "View Applications", "query": "How do I track my application status?", "topic": "candidate_application_status"},
-        {"label": "Browse Openings", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"}
-      ]
+        {
+          "label": "View Applications",
+          "query": "How do I track my application status?",
+          "topic": "candidate_application_status"
+        },
+        {
+          "label": "Browse Openings",
+          "query": "How do I search and filter jobs?",
+          "topic": "candidate_job_search"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere includes a direct messaging channel. Navigate to the 'Messages' tab (/dashboard?tab=messages) on your dashboard. When a recruiter opens communication regarding an application, you can exchange real-time text messages and clarify interview or role details.",
+        "hi": "SkillSphere डायरेक्ट कैंडिडेट-टू-रिक्रूटर्स मैसेजिंग प्रदान करता है। /dashboard?tab=messages पर जाएं। आप उन रिक्रूटर्स से बात कर सकते हैं जिनकी नौकरियों के लिए आपने आवेदन किया है।",
+        "hinglish": "SkillSphere direct candidate-to-recruiter messaging provide karta hai. /dashboard?tab=messages par jayein. Jin jobs ke liye aapne apply kiya hai, unke recruiters ke sath direct chat kar sakte hain.",
+        "pa": "SkillSphere ਸਿੱਧੀ ਉਮੀਦਵਾਰ-ਤੋਂ-ਰਿਕਰੂਟਰ ਮੈਸੇਜਿੰਗ ਪ੍ਰਦਾਨ ਕਰਦਾ ਹੈ। /dashboard?tab=messages 'ਤੇ ਜਾਓ ਅਤੇ ਰਿਕਰੂਟਰਾਂ ਨਾਲ ਗੱਲਬਾਤ ਕਰੋ।",
+        "pa-Latn": "SkillSphere direct candidate-to-recruiter messaging provide karda hai. /dashboard?tab=messages te jaake recruiters naal direct chat kar sakde ho."
+      }
     },
     {
       "id": "faq_cand_13",
       "category": "candidate",
-      "roles": ["JOB_SEEKER"],
+      "roles": [
+        "JOB_SEEKER"
+      ],
       "intent": "candidate_email_verification",
       "title": "How does email verification work for new candidates?",
       "sample_questions": [
@@ -314,24 +752,59 @@
         "I didn't receive verification email",
         "Verification link expired",
         "Verify email address",
-        "Account not verified"
+        "Account not verified",
+        "Email verify nahi hua",
+        "Verification link nahi aaya",
+        "Email verify kive kran",
+        "Verification mail resend kaise kare",
+        "ईमेल वेरिफाई कैसे करें",
+        "ਈਮੇਲ ਵੈਰੀਫਾਈ ਕਿਵੇਂ ਕਰੀਏ"
       ],
-      "keywords": ["verify email", "verification", "token", "activation", "brevo", "confirm email", "link"],
-      "synonyms": ["email confirmation", "activate account", "verify account"],
+      "keywords": [
+        "verify email",
+        "verification",
+        "token",
+        "activation",
+        "brevo",
+        "confirm email",
+        "link"
+      ],
+      "synonyms": [
+        "email confirmation",
+        "activate account",
+        "verify account"
+      ],
       "response": "When you sign up, SkillSphere sends a verification link to your email address (via Brevo). The link points to https://skillsphere-uzt5.onrender.com/verify-email?token=... and remains valid for 30 minutes. Clicking the link verifies your account and enables full access to apply for jobs and submit assessments.",
       "related_questions": [
         "How do I reset my password?",
         "How do I log in to my account?"
       ],
       "quick_replies": [
-        {"label": "Reset Password", "query": "How do I reset my password?", "topic": "general_password_reset"},
-        {"label": "Login Help", "query": "How do I log in to my account?", "topic": "general_login"}
-      ]
+        {
+          "label": "Reset Password",
+          "query": "How do I reset my password?",
+          "topic": "general_password_reset"
+        },
+        {
+          "label": "Login Help",
+          "query": "How do I log in to my account?",
+          "topic": "general_login"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "When you sign up, SkillSphere sends a verification link to your email address (via Brevo). The link points to https://skillsphere-uzt5.onrender.com/verify-email?token=... and remains valid for 30 minutes. Clicking the link verifies your account and enables full access to apply for jobs and submit assessments.",
+        "hi": "रजिस्ट्रेशन के बाद, SkillSphere Brevo के माध्यम से आपके ईमेल पर एक सुरक्षित वेरिफिकेशन लिंक भेजता है। अपने खाते को सक्रिय करने के लिए उस लिंक पर क्लिक करें। यदि नहीं मिला, तो स्पैम फोल्डर चेक करें या /auth पर नया लिंक मंगाएं।",
+        "hinglish": "Registration ke baad, SkillSphere Brevo ke through aapki email par verification link bhejta hai. Account activate karne ke liye link par click karein. Agar link na mile toh /auth par jakar resend request karein.",
+        "pa": "ਰਜਿਸਟ੍ਰੇਸ਼ਨ ਤੋਂ ਬਾਅਦ, SkillSphere ਤੁਹਾਡੇ ਈਮੇਲ 'ਤੇ ਵੈਰੀਫਿਕੇਸ਼ਨ ਲਿੰਕ ਭੇਜਦਾ ਹੈ। ਖਾਤਾ ਐਕਟੀਵੇਟ ਕਰਨ ਲਈ ਲਿੰਕ 'ਤੇ ਕਲਿੱਕ ਕਰੋ ਜਾਂ /auth 'ਤੇ ਦੁਬਾਰਾ ਬੇਨਤੀ ਕਰੋ।",
+        "pa-Latn": "Registration de baad, SkillSphere tuhadi email te verification link bhejda hai. Account activate karan layi link te click karo ya /auth te resend request karo."
+      }
     },
     {
       "id": "faq_rec_01",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_create_job",
       "title": "How do I post and publish a new job opening?",
       "sample_questions": [
@@ -339,24 +812,62 @@
         "How to create a job opening?",
         "Post a job",
         "Where can I publish vacancies?",
-        "Create opening"
+        "Create opening",
+        "Nayi job kaise post kare",
+        "Job vacancy kaise publish kare",
+        "Nava job kive post krna hai",
+        "How to create job",
+        "नई नौकरी कैसे पोस्ट करें",
+        "ਨਵੀਂ ਨੌਕਰੀ ਕਿਵੇਂ ਪੋਸਟ ਕਰਨੀ ਹੈ",
+        "नौकरी कैसे पोस्ट करें",
+        "ਨੌਕਰੀ ਕਿਵੇਂ ਪੋਸਟ ਕਰਨੀ ਹੈ"
       ],
-      "keywords": ["create job", "post job", "new job", "publish opening", "vacancy", "requirements", "salary"],
-      "synonyms": ["add role", "post opening", "hire candidate", "new requisition"],
+      "keywords": [
+        "create job",
+        "post job",
+        "new job",
+        "publish opening",
+        "vacancy",
+        "requirements",
+        "salary"
+      ],
+      "synonyms": [
+        "add role",
+        "post opening",
+        "hire candidate",
+        "new requisition"
+      ],
       "response": "As a Recruiter, go to your Recruiter Portal at /recruiter and click the 'Post New Job' button. Fill out the position title, job description, department, job type (Full-time, Remote, Contract, etc.), required skills, minimum years of experience, and salary range. Submit the form to immediately make it visible to job seekers.",
       "related_questions": [
         "How do I manage my active jobs?",
         "How does the Kanban pipeline work?"
       ],
       "quick_replies": [
-        {"label": "Manage Jobs", "query": "How do I manage my active jobs?", "topic": "recruiter_job_management"},
-        {"label": "Candidate Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"}
-      ]
+        {
+          "label": "Manage Jobs",
+          "query": "How do I manage my active jobs?",
+          "topic": "recruiter_job_management"
+        },
+        {
+          "label": "Candidate Pipeline",
+          "query": "How does the Kanban pipeline work?",
+          "topic": "recruiter_kanban_pipeline"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "As a Recruiter, go to your Recruiter Portal at /recruiter and click the 'Post New Job' button. Fill out the position title, job description, department, job type (Full-time, Remote, Contract, etc.), required skills, minimum years of experience, and salary range. Submit the form to immediately make it visible to job seekers.",
+        "hi": "नई नौकरी पोस्ट करने के लिए, /recruiter पर जाएं और 'Post a Job' पर क्लिक करें। शीर्षक, विभाग, नौकरी प्रकार, स्थान, वेतन और आवश्यक स्किल्स दर्ज करके प्रकाशित करें।",
+        "hinglish": "Nayi job post karne ke liye, /recruiter par jayein aur 'Post a Job' par click karein. Job title, department, job type, location, salary aur required skills enter karke publish karein.",
+        "pa": "ਨਵੀਂ ਨੌਕਰੀ ਪੋਸਟ ਕਰਨ ਲਈ, /recruiter 'ਤੇ ਜਾਓ ਅਤੇ 'Post a Job' 'ਤੇ ਕਲਿੱਕ ਕਰੋ। ਸਿਰਲੇਖ, ਵਿਭਾਗ, ਤਨਖਾਹ ਅਤੇ ਲੋੜੀਂਦੇ ਹੁਨਰ ਭਰੋ।",
+        "pa-Latn": "Nayi job post karan layi, /recruiter te jao te 'Post a Job' te click karo. Title, department, location, salary te required skills fill karke publish karo."
+      }
     },
     {
       "id": "faq_rec_02",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_job_management",
       "title": "How do I view, edit, or close existing job postings?",
       "sample_questions": [
@@ -364,24 +875,56 @@
         "How to edit a job posting?",
         "Can I close a job?",
         "View active openings",
-        "Job listings management"
+        "Job listings management",
+        "Job edit ya close kaise kare",
+        "Posted jobs kahan dikhte hain",
+        "Job status kive change kran",
+        "नौकरी का स्टेटस कैसे बदलें"
       ],
-      "keywords": ["manage jobs", "edit job", "close job", "active postings", "openings", "status"],
-      "synonyms": ["update listing", "deactivate vacancy", "job dashboard"],
+      "keywords": [
+        "manage jobs",
+        "edit job",
+        "close job",
+        "active postings",
+        "openings",
+        "status"
+      ],
+      "synonyms": [
+        "update listing",
+        "deactivate vacancy",
+        "job dashboard"
+      ],
       "response": "In the Recruiter Dashboard under the 'Openings' tab (/recruiter?tab=jobs), you will find all your active and closed listings. Each listing card displays the total applicant count, creation date, and options to edit details or toggle the job status between ACTIVE and CLOSED.",
       "related_questions": [
         "How does the Kanban pipeline work?",
         "How do I review candidate resumes?"
       ],
       "quick_replies": [
-        {"label": "Pipeline (Kanban)", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"},
-        {"label": "Resume Review", "query": "How do I review candidate resumes and scores?", "topic": "recruiter_resume_review"}
-      ]
+        {
+          "label": "Pipeline (Kanban)",
+          "query": "How does the Kanban pipeline work?",
+          "topic": "recruiter_kanban_pipeline"
+        },
+        {
+          "label": "Resume Review",
+          "query": "How do I review candidate resumes and scores?",
+          "topic": "recruiter_resume_review"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "In the Recruiter Dashboard under the 'Openings' tab (/recruiter?tab=jobs), you will find all your active and closed listings. Each listing card displays the total applicant count, creation date, and options to edit details or toggle the job status between ACTIVE and CLOSED.",
+        "hi": "/recruiter?tab=jobs पर अपनी नौकरियों का प्रबंधन करें। सक्रिय और बंद लिस्टिंग देखें, विवरण संपादित करें, या स्थिति को ACTIVE और CLOSED के बीच टॉगल करें।",
+        "hinglish": "Apni jobs ko /recruiter?tab=jobs par manage karein. Saari active aur closed jobs dekhein, requirements edit karein, ya status ko ACTIVE/CLOSED mein switch karein.",
+        "pa": "/recruiter?tab=jobs 'ਤੇ ਆਪਣੀਆਂ ਨੌਕਰੀਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ। ਸਾਰੀਆਂ ਸਰਗਰਮ ਅਤੇ ਬੰਦ ਨੌਕਰੀਆਂ ਵੇਖੋ ਅਤੇ ਸਥਿਤੀ ਬਦਲੋ।",
+        "pa-Latn": "Apni jobs nu /recruiter?tab=jobs te manage karo. Active te closed jobs vekho, requirements edit karo, ya status ACTIVE/CLOSED vich badlo."
+      }
     },
     {
       "id": "faq_rec_03",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_kanban_pipeline",
       "title": "How does the candidate pipeline Kanban board work?",
       "sample_questions": [
@@ -389,24 +932,59 @@
         "How do I advance a candidate to the next stage?",
         "Where is the candidate pipeline?",
         "Pipeline stages",
-        "Shortlist or reject applicants"
+        "Shortlist or reject applicants",
+        "Kanban pipeline kaise kaam karta hai",
+        "Candidate ko shortlist kaise kare",
+        "Pipeline board kive chalda hai",
+        "कैनबन पाइपलाइन कैसे काम करती है",
+        "ਕੈਨਬਨ ਪਾਈਪਲਾਈਨ ਕਿਵੇਂ ਕੰਮ ਕਰਦੀ ਹੈ"
       ],
-      "keywords": ["pipeline", "kanban", "stages", "advance", "screening", "shortlist", "interview", "reject"],
-      "synonyms": ["applicant tracking", "hiring funnel", "candidate stages"],
+      "keywords": [
+        "pipeline",
+        "kanban",
+        "stages",
+        "advance",
+        "screening",
+        "shortlist",
+        "interview",
+        "reject"
+      ],
+      "synonyms": [
+        "applicant tracking",
+        "hiring funnel",
+        "candidate stages"
+      ],
       "response": "Navigate to /recruiter?tab=pipeline to view your interactive Kanban board. Applications are organized into stages: Screening, Under Review, Shortlisted, Interview, Selected, and Rejected. You can move candidates between columns to update their application status in real time and trigger notification updates.",
       "related_questions": [
         "How do I review candidate resumes and scores?",
         "How do I schedule a LiveKit video interview?"
       ],
       "quick_replies": [
-        {"label": "Resume Review", "query": "How do I review candidate resumes and scores?", "topic": "recruiter_resume_review"},
-        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"}
-      ]
+        {
+          "label": "Resume Review",
+          "query": "How do I review candidate resumes and scores?",
+          "topic": "recruiter_resume_review"
+        },
+        {
+          "label": "Schedule Interview",
+          "query": "How do I schedule a LiveKit video interview?",
+          "topic": "recruiter_schedule_interview"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Navigate to /recruiter?tab=pipeline to view your interactive Kanban board. Applications are organized into stages: Screening, Under Review, Shortlisted, Interview, Selected, and Rejected. You can move candidates between columns to update their application status in real time and trigger notification updates.",
+        "hi": "इंटरैक्टिव कैनबन पाइपलाइन बोर्ड /recruiter?tab=pipeline पर स्थित है। उम्मीदवारों को 8 चरणों में आगे बढ़ाएं। प्रत्येक परिवर्तन से ऑडिट लॉग और सूचनाएं उत्पन्न होती हैं।",
+        "hinglish": "Interactive Kanban pipeline board /recruiter?tab=pipeline par hai. Candidates ko drag-and-drop karke 8 stages mein move karein. Har transition par audit log aur notification generate hota hai.",
+        "pa": "ਕੈਨਬਨ ਪਾਈਪਲਾਈਨ ਬੋਰਡ /recruiter?tab=pipeline 'ਤੇ ਹੈ। ਉਮੀਦਵਾਰਾਂ ਨੂੰ 8 ਪੜਾਵਾਂ ਵਿੱਚ ਅੱਗੇ ਵਧਾਓ।",
+        "pa-Latn": "Interactive Kanban pipeline board /recruiter?tab=pipeline te hai. Candidates nu 8 stages vich move karo. Har change te notification generate hundi hai."
+      }
     },
     {
       "id": "faq_rec_04",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_resume_review",
       "title": "How do I review candidate resumes and OCR skill match scores?",
       "sample_questions": [
@@ -414,24 +992,56 @@
         "Where can I see candidate OCR skills?",
         "How do I open candidate dossier?",
         "Resume match percentage",
-        "View applicant CV"
+        "View applicant CV",
+        "Candidate ka resume kaise check kare",
+        "OCR score kaise dekhe",
+        "Candidate resume kive check kran",
+        "उम्मीदवार का रिज्यूम कैसे देखें"
       ],
-      "keywords": ["resume review", "dossier", "ocr skills", "match score", "candidate profile", "applicant"],
-      "synonyms": ["candidate evaluation", "inspect resume", "check candidate qualifications"],
+      "keywords": [
+        "resume review",
+        "dossier",
+        "ocr skills",
+        "match score",
+        "candidate profile",
+        "applicant"
+      ],
+      "synonyms": [
+        "candidate evaluation",
+        "inspect resume",
+        "check candidate qualifications"
+      ],
       "response": "Click on any applicant's card in your pipeline to open the Candidate Dossier modal. You can inspect extracted contact information, the OCR-detected skill tags, calculated match percentage against the opening, the original resume document, and any past assessment scores.",
       "related_questions": [
         "How do I manage the Question Bank for tests?",
         "How do I review video assessments?"
       ],
       "quick_replies": [
-        {"label": "Question Bank", "query": "How do I manage the Question Bank for tests?", "topic": "recruiter_question_bank"},
-        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"}
-      ]
+        {
+          "label": "Question Bank",
+          "query": "How do I manage the Question Bank for tests?",
+          "topic": "recruiter_question_bank"
+        },
+        {
+          "label": "Video Assessments",
+          "query": "How do I review candidate video assessments?",
+          "topic": "recruiter_video_review"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Click on any applicant's card in your pipeline to open the Candidate Dossier modal. You can inspect extracted contact information, the OCR-detected skill tags, calculated match percentage against the opening, the original resume document, and any past assessment scores.",
+        "hi": "कैनबन या एप्लिकेशन ड्रॉअर में सीधे उम्मीदवारों के क्रेडेंशियल की समीक्षा करें। SkillSphere OCR स्किल मैट्रिक्स, मैच प्रतिशत और ओरिजिनल रिज्यूम डाउनलोड दिखाता है।",
+        "hinglish": "Kanban ya Application Drawer mein candidate resume review karein. SkillSphere OCR skill matrix, match percentage (0-100%) aur resume download render karta hai.",
+        "pa": "ਕੈਨਬਨ ਵਿੱਚ ਉਮੀਦਵਾਰਾਂ ਦੇ ਰਿਜ਼ਿਊਮ ਵੇਖੋ। SkillSphere OCR ਸਕਿੱਲ ਮੈਟ੍ਰਿਕਸ ਅਤੇ ਮੈਚ ਸਕੋਰ ਦਿਖਾਉਂਦਾ ਹੈ।",
+        "pa-Latn": "Kanban vich candidate resume review karo. SkillSphere OCR skill matrix, match score te original resume download provide karda hai."
+      }
     },
     {
       "id": "faq_rec_05",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_question_bank",
       "title": "How do I manage the Question Bank for technical assessments?",
       "sample_questions": [
@@ -439,24 +1049,57 @@
         "Can I add questions to the question bank?",
         "Where is the technical question bank?",
         "Assessment questions",
-        "Add MCQ question"
+        "Add MCQ question",
+        "Question Bank kaise manage kare",
+        "Naye sawal kaise add kare",
+        "Question Bank kive use kran",
+        "Question authoring guide",
+        "प्रश्न बैंक कैसे प्रबंधित करें"
       ],
-      "keywords": ["question bank", "mcq questions", "add question", "assessments tab", "technical questions", "bank"],
-      "synonyms": ["test library", "evaluation repository", "exam questions"],
+      "keywords": [
+        "question bank",
+        "mcq questions",
+        "add question",
+        "assessments tab",
+        "technical questions",
+        "bank"
+      ],
+      "synonyms": [
+        "test library",
+        "evaluation repository",
+        "exam questions"
+      ],
       "response": "SkillSphere includes a seeded repository of 191 verified technical questions. From /recruiter?tab=assessments, you can filter questions by category, search questions, view options and correct answers, and upload new single or bulk MCQs using the Inline Question Upload Modal.",
       "related_questions": [
         "How do I review candidate test results and proctoring logs?",
         "How do I review candidate video assessments?"
       ],
       "quick_replies": [
-        {"label": "Test Results", "query": "How do I review candidate test results and proctoring logs?", "topic": "recruiter_mcq_review"},
-        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"}
-      ]
+        {
+          "label": "Test Results",
+          "query": "How do I review candidate test results and proctoring logs?",
+          "topic": "recruiter_mcq_review"
+        },
+        {
+          "label": "Video Assessments",
+          "query": "How do I review candidate video assessments?",
+          "topic": "recruiter_video_review"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere includes a seeded repository of 191 verified technical questions. From /recruiter?tab=assessments, you can filter questions by category, search questions, view options and correct answers, and upload new single or bulk MCQs using the Inline Question Upload Modal.",
+        "hi": "/recruiter?tab=question_bank पर प्रश्नों का प्रबंधन करें। 14 तकनीकी डोमेन में 191 प्रश्नों तक पहुंचें, कस्टम प्रश्न जोड़ें और संग्रह बनाएं।",
+        "hinglish": "/recruiter?tab=question_bank par Question Bank manage karein. 191 verified questions use karein, naye sawal add karein aur reusable collections banayein.",
+        "pa": "/recruiter?tab=question_bank 'ਤੇ ਪ੍ਰਸ਼ਨ ਬੈਂਕ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ। 191 ਪ੍ਰਮਾਣਿਤ ਸਵਾਲਾਂ ਦੀ ਵਰਤੋਂ ਕਰੋ ਅਤੇ ਨਵੇਂ ਸਵਾਲ ਸ਼ਾਮਲ ਕਰੋ।",
+        "pa-Latn": "/recruiter?tab=question_bank te Question Bank manage karo. 191 verified questions use karo te custom questions add karo."
+      }
     },
     {
       "id": "faq_rec_06",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_mcq_review",
       "title": "How do I review candidate test results and proctoring logs?",
       "sample_questions": [
@@ -464,24 +1107,56 @@
         "Where can I see MCQ scores?",
         "Did candidate cheat during test?",
         "Proctoring logs review",
-        "Candidate test analytics"
+        "Candidate test analytics",
+        "Candidate ke test results kaise dekhe",
+        "Proctoring logs kaise check kare",
+        "Test results kive vekhiye",
+        "टेस्ट परिणाम कैसे देखें"
       ],
-      "keywords": ["test results", "scores", "proctoring logs", "infractions", "tab switches", "review test"],
-      "synonyms": ["exam analytics", "test report", "assessment score"],
+      "keywords": [
+        "test results",
+        "scores",
+        "proctoring logs",
+        "infractions",
+        "tab switches",
+        "review test"
+      ],
+      "synonyms": [
+        "exam analytics",
+        "test report",
+        "assessment score"
+      ],
       "response": "In /recruiter?tab=assessments, switch to the 'Candidate Results' view. You can see overall score percentages, time taken, question breakdown, and detailed proctoring logs highlighting full-screen exits, tab switches, and webcam flags.",
       "related_questions": [
         "How do I review candidate video assessments?",
         "How do I schedule a LiveKit video interview?"
       ],
       "quick_replies": [
-        {"label": "Video Assessments", "query": "How do I review candidate video assessments?", "topic": "recruiter_video_review"},
-        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"}
-      ]
+        {
+          "label": "Video Assessments",
+          "query": "How do I review candidate video assessments?",
+          "topic": "recruiter_video_review"
+        },
+        {
+          "label": "Schedule Interview",
+          "query": "How do I schedule a LiveKit video interview?",
+          "topic": "recruiter_schedule_interview"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "In /recruiter?tab=assessments, switch to the 'Candidate Results' view. You can see overall score percentages, time taken, question breakdown, and detailed proctoring logs highlighting full-screen exits, tab switches, and webcam flags.",
+        "hi": "असेसमेंट रिव्यू टैब में टेस्ट स्कोरकार्ड, व्यक्तिगत प्रश्न विश्लेषण और प्रॉक्टरिंग लॉग (टैब स्विच, वेबकैम अवरोध) देखें।",
+        "hinglish": "Assessment Review tab mein test scorecards, question-wise breakdown aur proctoring logs (tab switches, camera infractions) check karein.",
+        "pa": "ਟੈਸਟ ਸਕੋਰਕਾਰਡ ਅਤੇ ਪ੍ਰੋਕਟਰਿੰਗ ਲੌਗ ਵੇਖਣ ਲਈ ਅਸੈਸਮੈਂਟ ਰਿਵਿਊ ਟੈਬ ਵਿੱਚ ਜਾਓ।",
+        "pa-Latn": "Assessment Review tab vich test scorecards te proctoring logs check karo."
+      }
     },
     {
       "id": "faq_rec_07",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_video_review",
       "title": "How do I review candidate asynchronous video assessment submissions?",
       "sample_questions": [
@@ -489,24 +1164,56 @@
         "Where are candidate recorded video answers?",
         "Watch video submissions",
         "Video library for recruiter",
-        "Candidate video responses"
+        "Candidate video responses",
+        "Video assessment recording kaise dekhe",
+        "Candidate video grading kaise kare",
+        "Video answers kive check kran",
+        "वीडियो रिकॉर्डिंग कैसे चेक करें"
       ],
-      "keywords": ["video submissions", "recordings", "cloudinary", "review video", "video assessment", "playback"],
-      "synonyms": ["video review", "watch interview", "asynchronous responses"],
+      "keywords": [
+        "video submissions",
+        "recordings",
+        "cloudinary",
+        "review video",
+        "video assessment",
+        "playback"
+      ],
+      "synonyms": [
+        "video review",
+        "watch interview",
+        "asynchronous responses"
+      ],
       "response": "Navigate to the 'Assessments' or 'Media Library' tab in your Recruiter Dashboard. You can stream candidate video submissions delivered via Cloudinary, grade responses individually, and leave recruiter notes before deciding whether to advance the applicant.",
       "related_questions": [
         "How do I schedule a LiveKit video interview?",
         "How does direct messaging with candidates work?"
       ],
       "quick_replies": [
-        {"label": "LiveKit Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"},
-        {"label": "Direct Messaging", "query": "How does direct messaging with candidates work?", "topic": "recruiter_messaging"}
-      ]
+        {
+          "label": "LiveKit Interview",
+          "query": "How do I schedule a LiveKit video interview?",
+          "topic": "recruiter_schedule_interview"
+        },
+        {
+          "label": "Direct Messaging",
+          "query": "How does direct messaging with candidates work?",
+          "topic": "recruiter_messaging"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Navigate to the 'Assessments' or 'Media Library' tab in your Recruiter Dashboard. You can stream candidate video submissions delivered via Cloudinary, grade responses individually, and leave recruiter notes before deciding whether to advance the applicant.",
+        "hi": "रिक्रूटर्स रिव्यू ड्रॉअर में Cloudinary वीडियो प्लेबैक के साथ वीडियो उत्तर देखें। स्कोर दें, मूल्यांकन नोट्स लिखें और निर्णय लें।",
+        "hinglish": "Recruiter Review Drawer mein Cloudinary video playback ke sath candidate video answers dekhein. Scores dein, notes likhein aur decision lein.",
+        "pa": "ਰਿਕਰੂਟਰ ਰਿਵਿਊ ਡ੍ਰਾਅਰ ਵਿੱਚ ਵੀਡੀਓ ਜਵਾਬ ਵੇਖੋ ਅਤੇ ਸਕੋਰ ਦਿਓ।",
+        "pa-Latn": "Recruiter Review Drawer vich candidate de video answers vekho te grading karo."
+      }
     },
     {
       "id": "faq_rec_08",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_schedule_interview",
       "title": "How do I schedule and host a LiveKit live video interview?",
       "sample_questions": [
@@ -514,24 +1221,56 @@
         "How do I set up a live interview?",
         "Where do I conduct virtual interviews?",
         "LiveKit room creation",
-        "Schedule meeting with candidate"
+        "Schedule meeting with candidate",
+        "Interview kaise schedule kare",
+        "LiveKit meeting kaise banaye",
+        "Interview kive schedule kran",
+        "इंटरव्यू कैसे शेड्यूल करें"
       ],
-      "keywords": ["schedule interview", "livekit", "meeting", "interview room", "virtual meeting", "video call"],
-      "synonyms": ["setup meeting", "online interview", "host interview"],
+      "keywords": [
+        "schedule interview",
+        "livekit",
+        "meeting",
+        "interview room",
+        "virtual meeting",
+        "video call"
+      ],
+      "synonyms": [
+        "setup meeting",
+        "online interview",
+        "host interview"
+      ],
       "response": "In the 'Interviews' tab (/recruiter?tab=interviews), select 'Schedule Interview'. Choose the shortlisted candidate, select date and time, and create the session. SkillSphere generates a secure LiveKit room token. When it's time, both parties join /interview-room/:id with full camera, microphone, screen sharing, and chat capabilities.",
       "related_questions": [
         "How does direct messaging with candidates work?",
         "How does the Kanban pipeline work?"
       ],
       "quick_replies": [
-        {"label": "Direct Messaging", "query": "How does direct messaging with candidates work?", "topic": "recruiter_messaging"},
-        {"label": "Kanban Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"}
-      ]
+        {
+          "label": "Direct Messaging",
+          "query": "How does direct messaging with candidates work?",
+          "topic": "recruiter_messaging"
+        },
+        {
+          "label": "Kanban Pipeline",
+          "query": "How does the Kanban pipeline work?",
+          "topic": "recruiter_kanban_pipeline"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "In the 'Interviews' tab (/recruiter?tab=interviews), select 'Schedule Interview'. Choose the shortlisted candidate, select date and time, and create the session. SkillSphere generates a secure LiveKit room token. When it's time, both parties join /interview-room/:id with full camera, microphone, screen sharing, and chat capabilities.",
+        "hi": "कैंडिडेट एप्लिकेशन व्यू से लाइव वीडियो कॉल शेड्यूल करें। सुरक्षित LiveKit मीटिंग टोकन बनाएं। दोनों पक्ष /interview-room/:interviewId पर जुड़ सकते हैं।",
+        "hinglish": "Candidate application view se live interview schedule karein. Date aur time select karein aur LiveKit meeting token create karein. Dono /interview-room/:interviewId par join kar sakte hain.",
+        "pa": "ਉਮੀਦਵਾਰ ਦੇ ਪੰਨੇ ਤੋਂ ਲਾਈਵ ਇੰਟਰਵਿਊ ਨਿਯਤ ਕਰੋ। ਦੋਵੇਂ ਧਿਰਾਂ /interview-room/:interviewId 'ਤੇ ਮੀਟਿੰਗ ਜੁਆਇਨ ਕਰ ਸਕਦੀਆਂ ਹਨ।",
+        "pa-Latn": "Candidate view ton live interview schedule karo. Dono parties /interview-room/:interviewId te meeting join kar sakdiyan han."
+      }
     },
     {
       "id": "faq_rec_09",
       "category": "recruiter",
-      "roles": ["RECRUITER"],
+      "roles": [
+        "RECRUITER"
+      ],
       "intent": "recruiter_messaging",
       "title": "How does direct messaging with candidates work for recruiters?",
       "sample_questions": [
@@ -539,24 +1278,58 @@
         "Can I chat directly with applicants?",
         "Where is recruiter chat?",
         "Message candidate",
-        "Send message to applicant"
+        "Send message to applicant",
+        "Candidate ko message kaise bheje",
+        "Recruiter chat kahan hai",
+        "Candidate naal chat kive kran",
+        "कैंडिडेट से चैट कैसे करें"
       ],
-      "keywords": ["chat", "messaging", "inbox", "candidate message", "communicate", "messages tab"],
-      "synonyms": ["message applicant", "direct message", "talk to candidate"],
+      "keywords": [
+        "chat",
+        "messaging",
+        "inbox",
+        "candidate message",
+        "communicate",
+        "messages tab"
+      ],
+      "synonyms": [
+        "message applicant",
+        "direct message",
+        "talk to candidate"
+      ],
       "response": "Recruiters can communicate with applicants via the 'Messages' tab (/recruiter?tab=messages). Selecting any candidate conversation lets you exchange messages, coordinate schedule adjustments, and send feedback directly.",
       "related_questions": [
         "How do I schedule a LiveKit video interview?",
         "How does the Kanban pipeline work?"
       ],
       "quick_replies": [
-        {"label": "Schedule Interview", "query": "How do I schedule a LiveKit video interview?", "topic": "recruiter_schedule_interview"},
-        {"label": "View Openings", "query": "How do I manage my active jobs?", "topic": "recruiter_job_management"}
-      ]
+        {
+          "label": "Schedule Interview",
+          "query": "How do I schedule a LiveKit video interview?",
+          "topic": "recruiter_schedule_interview"
+        },
+        {
+          "label": "View Openings",
+          "query": "How do I manage my active jobs?",
+          "topic": "recruiter_job_management"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Recruiters can communicate with applicants via the 'Messages' tab (/recruiter?tab=messages). Selecting any candidate conversation lets you exchange messages, coordinate schedule adjustments, and send feedback directly.",
+        "hi": "रिक्रूटर्स /recruiter?tab=messages से या सीधे पाइपलाइन ड्रॉअर से उम्मीदवारों को मैसेज भेज सकते हैं।",
+        "hinglish": "Recruiters /recruiter?tab=messages se ya candidate pipeline drawer se applicants ke sath direct chat kar sakte hain.",
+        "pa": "ਰਿਕਰੂਟਰ /recruiter?tab=messages ਜਾਂ ਪਾਈਪਲਾਈਨ ਡ੍ਰਾਅਰ ਤੋਂ ਉਮੀਦਵਾਰਾਂ ਨੂੰ ਸੰਦੇਸ਼ ਭੇਜ ਸਕਦੇ ਹਨ।",
+        "pa-Latn": "Recruiters /recruiter?tab=messages ton ya pipeline drawer ton candidates nu direct message bhej sakde han."
+      }
     },
     {
       "id": "faq_gen_01",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_skillsphere_overview",
       "title": "What is SkillSphere and what features does it provide?",
       "sample_questions": [
@@ -564,24 +1337,61 @@
         "Tell me about SkillSphere",
         "What features does this platform have?",
         "How does SkillSphere work?",
-        "Overview of SkillSphere"
+        "Overview of SkillSphere",
+        "SkillSphere kya hai",
+        "Platform ke features kya hain",
+        "SkillSphere ki hai",
+        "What does SkillSphere do",
+        "SkillSphere क्या है",
+        "SkillSphere ਕੀ ਹੈ"
       ],
-      "keywords": ["skillsphere", "platform", "overview", "features", "about", "what is", "system"],
-      "synonyms": ["platform guide", "about us", "summary"],
+      "keywords": [
+        "skillsphere",
+        "platform",
+        "overview",
+        "features",
+        "about",
+        "what is",
+        "system"
+      ],
+      "synonyms": [
+        "platform guide",
+        "about us",
+        "summary"
+      ],
       "response": "SkillSphere is an all-in-one talent recruitment and intelligence platform. It bridges candidates and recruiters through OCR resume parsing against 139 standardized skills, intelligent job matching, interactive Kanban applicant tracking, Round 1 proctored technical assessments, and LiveKit WebRTC video interviews.",
       "related_questions": [
         "What account roles exist in SkillSphere?",
         "How do I verify my email address?"
       ],
       "quick_replies": [
-        {"label": "User Roles", "query": "What account roles exist in SkillSphere?", "topic": "general_roles"},
-        {"label": "Technical Support", "query": "How do I get technical support?", "topic": "general_technical_support"}
-      ]
+        {
+          "label": "User Roles",
+          "query": "What account roles exist in SkillSphere?",
+          "topic": "general_roles"
+        },
+        {
+          "label": "Technical Support",
+          "query": "How do I get technical support?",
+          "topic": "general_technical_support"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere is an all-in-one talent recruitment and intelligence platform. It bridges candidates and recruiters through OCR resume parsing against 139 standardized skills, intelligent job matching, interactive Kanban applicant tracking, Round 1 proctored technical assessments, and LiveKit WebRTC video interviews.",
+        "hi": "SkillSphere एक आधुनिक टैलेंट इंटेलिजेंस और रिक्रूटमेंट प्लेटफॉर्म है जिसमें 139 कौशलों के विरुद्ध OCR रिज्यूम पार्सिंग, प्रॉक्टर्ड MCQ असेसमेंट, वीडियो इंटरव्यू और संपूर्ण भर्ती प्रबंधन शामिल है।",
+        "hinglish": "SkillSphere ek comprehensive talent intelligence aur recruitment platform hai jisme OCR resume parsing (139 skills), proctored MCQ tests, video assessments, aur LiveKit video interviews integrated hain.",
+        "pa": "SkillSphere ਇੱਕ ਆਧੁਨਿਕ ਭਰਤੀ ਪਲੇਟਫਾਰਮ ਹੈ ਜਿਸ ਵਿੱਚ OCR ਰਿਜ਼ਿਊਮ ਸਕੈਨਿੰਗ, ਪ੍ਰੋਕਟਰਡ MCQ ਟੈਸਟ ਅਤੇ ਲਾਈਵ ਵੀਡੀਓ ਇੰਟਰਵਿਊ ਸ਼ਾਮਲ ਹਨ।",
+        "pa-Latn": "SkillSphere ek modern recruitment platform hai jis vich OCR resume parsing, proctored MCQ tests, video assessments te live video interviews integrated han."
+      }
     },
     {
       "id": "faq_gen_02",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_roles",
       "title": "What account roles exist in SkillSphere?",
       "sample_questions": [
@@ -589,24 +1399,60 @@
         "What is the difference between Job Seeker and Recruiter?",
         "Can I register as a recruiter?",
         "Account types",
-        "User roles"
+        "User roles",
+        "Account types kya hain",
+        "Job seeker aur recruiter mein kya farak hai",
+        "Mera account open karna hai",
+        "Account roles ki ne",
+        "खाते के प्रकार क्या हैं",
+        "ਖਾਤੇ ਦੀਆਂ ਕਿਸਮਾਂ ਕੀ ਹਨ"
       ],
-      "keywords": ["roles", "account types", "job seeker", "recruiter", "admin", "candidate"],
-      "synonyms": ["profile types", "user categories", "access levels"],
+      "keywords": [
+        "roles",
+        "account types",
+        "job seeker",
+        "recruiter",
+        "admin",
+        "candidate"
+      ],
+      "synonyms": [
+        "profile types",
+        "user categories",
+        "access levels"
+      ],
       "response": "SkillSphere supports three user roles: 1) Job Seeker (Candidate) — upload resumes, explore matching jobs, take MCQ and video assessments, join live interviews; 2) Recruiter — post openings, manage applicants via Kanban, configure question banks, conduct LiveKit video meetings; 3) Administrator — manage users and system health.",
       "related_questions": [
         "What is SkillSphere?",
         "How do I log in to my account?"
       ],
       "quick_replies": [
-        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
-        {"label": "Login Help", "query": "How do I log in to my account?", "topic": "general_login"}
-      ]
+        {
+          "label": "Platform Overview",
+          "query": "What is SkillSphere?",
+          "topic": "general_skillsphere_overview"
+        },
+        {
+          "label": "Login Help",
+          "query": "How do I log in to my account?",
+          "topic": "general_login"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere supports three user roles: 1) Job Seeker (Candidate) — upload resumes, explore matching jobs, take MCQ and video assessments, join live interviews; 2) Recruiter — post openings, manage applicants via Kanban, configure question banks, conduct LiveKit video meetings; 3) Administrator — manage users and system health.",
+        "hi": "SkillSphere तीन भूमिकाओं का समर्थन करता है: JOB_SEEKER (उम्मीदवार जो रिज्यूम अपलोड करते हैं और नौकरियों के लिए आवेदन करते हैं), RECRUITER (नियोक्ता जो नौकरियां प्रकाशित करते हैं और इंटरव्यू लेते हैं), और ADMIN (सिस्टम प्रबंधन)।",
+        "hinglish": "SkillSphere teen authenticated roles support karta hai: JOB_SEEKER (candidates jo resume upload aur job apply karte hain), RECRUITER (employers jo jobs post aur interview conduct karte hain), aur ADMIN (platform management).",
+        "pa": "SkillSphere ਤਿੰਨ ਭੂਮਿਕਾਵਾਂ ਦਾ ਸਮਰਥਨ ਕਰਦਾ ਹੈ: JOB_SEEKER (ਉਮੀਦਵਾਰ), RECRUITER (ਰਿਕਰੂਟਰ), ਅਤੇ ADMIN (ਪਲੇਟਫਾਰਮ ਪ੍ਰਬੰਧਨ)।",
+        "pa-Latn": "SkillSphere tin roles support karda hai: JOB_SEEKER (candidates), RECRUITER (employers), te ADMIN (management)."
+      }
     },
     {
       "id": "faq_gen_03",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_login",
       "title": "How do I log in or access my account?",
       "sample_questions": [
@@ -614,24 +1460,60 @@
         "Where is the login page?",
         "Sign in to SkillSphere",
         "Login issues",
-        "How to sign in"
+        "How to sign in",
+        "Login nahi ho raha",
+        "Mera account open nahi ho raha",
+        "Sign in issues",
+        "Login kive kran",
+        "लॉगिन कैसे करें",
+        "ਲੌਗਇਨ ਕਿਵੇਂ ਕਰੀਏ"
       ],
-      "keywords": ["login", "sign in", "auth", "credentials", "password", "access account"],
-      "synonyms": ["log into platform", "authentication", "sign into account"],
+      "keywords": [
+        "login",
+        "sign in",
+        "auth",
+        "credentials",
+        "password",
+        "access account"
+      ],
+      "synonyms": [
+        "log into platform",
+        "authentication",
+        "sign into account"
+      ],
       "response": "To log in, visit /auth and enter your registered email address and password. Make sure your account email has been verified via the verification link sent upon registration. If you forgot your password, click 'Forgot Password' on the login screen.",
       "related_questions": [
         "How do I reset my password?",
         "How does email verification work?"
       ],
       "quick_replies": [
-        {"label": "Forgot Password", "query": "How do I reset my password?", "topic": "general_password_reset"},
-        {"label": "Email Verification", "query": "How does email verification work?", "topic": "candidate_email_verification"}
-      ]
+        {
+          "label": "Forgot Password",
+          "query": "How do I reset my password?",
+          "topic": "general_password_reset"
+        },
+        {
+          "label": "Email Verification",
+          "query": "How does email verification work?",
+          "topic": "candidate_email_verification"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "To log in, visit /auth and enter your registered email address and password. Make sure your account email has been verified via the verification link sent upon registration. If you forgot your password, click 'Forgot Password' on the login screen.",
+        "hi": "लॉग इन करने के लिए, /auth पर जाएं और अपना ईमेल और पासवर्ड दर्ज करें। सुनिश्चित करें कि आपका ईमेल सत्यापित है। यदि आप पासवर्ड भूल गए हैं, तो 'Forgot Password' पर क्लिक करें।",
+        "hinglish": "Log in karne ke liye, /auth par jayein aur apna registered email aur password enter karein. Check karein ki email verified hai. Agar password bhul gaye hain, toh 'Forgot Password' par click karein.",
+        "pa": "ਲੌਗਇਨ ਕਰਨ ਲਈ, /auth 'ਤੇ ਜਾਓ ਅਤੇ ਆਪਣਾ ਈਮੇਲ ਅਤੇ ਪਾਸਵਰਡ ਭਰੋ। ਜੇਕਰ ਪਾਸਵਰਡ ਭੁੱਲ ਗਏ ਹੋ ਤਾਂ 'Forgot Password' 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
+        "pa-Latn": "Login karan layi, /auth te jao te apna registered email te password enter karo. Password bhul gaye ho taan 'Forgot Password' te click karo."
+      }
     },
     {
       "id": "faq_gen_04",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_password_reset",
       "title": "How do I reset my password if I forgot it?",
       "sample_questions": [
@@ -639,24 +1521,60 @@
         "Forgot my password",
         "Password reset link",
         "Change password",
-        "Can't remember password"
+        "Can't remember password",
+        "Password bhul gaya",
+        "Password reset kaise kare",
+        "Password bhul gya kive reset kran",
+        "Reset link nahi mila",
+        "पासवर्ड रीसेट कैसे करें",
+        "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਿਵੇਂ ਕਰੀਏ"
       ],
-      "keywords": ["reset password", "forgot password", "password", "recover account", "brevo", "reset link"],
-      "synonyms": ["recover password", "new password", "lost password"],
+      "keywords": [
+        "reset password",
+        "forgot password",
+        "password",
+        "recover account",
+        "brevo",
+        "reset link"
+      ],
+      "synonyms": [
+        "recover password",
+        "new password",
+        "lost password"
+      ],
       "response": "Click 'Forgot password?' on the login page (/forgot-password) and enter your registered email. SkillSphere sends a secure reset link valid for 15 minutes. Click the link to open /reset-password?token=... and choose a strong new password.",
       "related_questions": [
         "How do I log in to my account?",
         "How does email verification work?"
       ],
       "quick_replies": [
-        {"label": "Back to Login", "query": "How do I log in to my account?", "topic": "general_login"},
-        {"label": "Technical Support", "query": "How do I get technical support?", "topic": "general_technical_support"}
-      ]
+        {
+          "label": "Back to Login",
+          "query": "How do I log in to my account?",
+          "topic": "general_login"
+        },
+        {
+          "label": "Technical Support",
+          "query": "How do I get technical support?",
+          "topic": "general_technical_support"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Click 'Forgot password?' on the login page (/forgot-password) and enter your registered email. SkillSphere sends a secure reset link valid for 15 minutes. Click the link to open /reset-password?token=... and choose a strong new password.",
+        "hi": "पासवर्ड रीसेट करने के लिए, /auth पर जाएं, 'Forgot Password' चुनें और अपना ईमेल दर्ज करें। SkillSphere पासवर्ड रीसेट के लिए Brevo के माध्यम से 15 मिनट का लिंक भेजता है।",
+        "hinglish": "Password reset karne ke liye, /auth par jayein, 'Forgot Password' select karein aur email enter karein. SkillSphere Brevo ke through 15-minute token link bhejta hai.",
+        "pa": "ਪਾਸਵਰਡ ਰੀਸੈੱਟ ਕਰਨ ਲਈ, /auth 'ਤੇ ਜਾਓ, 'Forgot Password' ਚੁਣੋ ਅਤੇ ਆਪਣਾ ਈਮੇਲ ਭਰੋ। SkillSphere 15 ਮਿੰਟਾਂ ਦਾ ਰੀਸੈੱਟ ਲਿੰਕ ਭੇਜਦਾ ਹੈ।",
+        "pa-Latn": "Password reset karan layi, /auth te jao, 'Forgot Password' select karo te email enter karo. Brevo through 15-min token link aayega."
+      }
     },
     {
       "id": "faq_gen_05",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_technical_support",
       "title": "How do I get technical support or troubleshoot platform issues?",
       "sample_questions": [
@@ -664,24 +1582,61 @@
         "Contact support",
         "Report an issue",
         "Platform troubleshooting",
-        "Help with website"
+        "Help with website",
+        "Help chahiye",
+        "Website me error aa raha hai",
+        "Technical support kaise milegi",
+        "Madad chahidi hai",
+        "तकनीकी सहायता कैसे प्राप्त करें",
+        "ਤਕਨੀਕੀ ਸਹਾਇਤਾ ਕਿਵੇਂ ਲਈਏ"
       ],
-      "keywords": ["support", "help", "troubleshoot", "contact", "technical issue", "error", "problem"],
-      "synonyms": ["customer service", "assistance", "report bug"],
+      "keywords": [
+        "support",
+        "help",
+        "troubleshoot",
+        "contact",
+        "technical issue",
+        "error",
+        "problem"
+      ],
+      "synonyms": [
+        "customer service",
+        "assistance",
+        "report bug"
+      ],
       "response": "If you experience any technical issues (such as email delivery delays or camera/microphone permissions during assessments), please ensure you are using an updated version of Google Chrome, Firefox, or Safari. For email issues, check your spam folder or request a resend verification email from /verify-email-pending.",
       "related_questions": [
         "What is SkillSphere?",
         "How do I reset my password?"
       ],
       "quick_replies": [
-        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
-        {"label": "Forgot Password", "query": "How do I reset my password?", "topic": "general_password_reset"}
-      ]
+        {
+          "label": "Platform Overview",
+          "query": "What is SkillSphere?",
+          "topic": "general_skillsphere_overview"
+        },
+        {
+          "label": "Forgot Password",
+          "query": "How do I reset my password?",
+          "topic": "general_password_reset"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "If you experience any technical issues (such as email delivery delays or camera/microphone permissions during assessments), please ensure you are using an updated version of Google Chrome, Firefox, or Safari. For email issues, check your spam folder or request a resend verification email from /verify-email-pending.",
+        "hi": "तकनीकी सहायता या बग रिपोर्ट के लिए, इस असिस्टेंट का उपयोग करें या सपोर्ट टिकट बनाएं। सर्वोत्तम प्रदर्शन के लिए, Chrome, Firefox या Edge का उपयोग करें।",
+        "hinglish": "Technical support ke liye is Assistant ka use karein ya support ticket raise karein. Best experience ke liye latest Chrome, Firefox, ya Edge browser use karein.",
+        "pa": "ਤਕਨੀਕੀ ਸਹਾਇਤਾ ਲਈ ਇਸ ਅਸਿਸਟੈਂਟ ਦੀ ਵਰਤੋਂ ਕਰੋ ਜਾਂ ਸਹਾਇਤਾ ਟਿਕਟ ਬਣਾਓ। ਬਿਹਤਰ ਕੰਮ ਲਈ Chrome ਜਾਂ Edge ਦੀ ਵਰਤੋਂ ਕਰੋ।",
+        "pa-Latn": "Technical support layi is Assistant da use karo ya support ticket raise karo. Best performance layi updated Chrome ya Edge use karo."
+      }
     },
     {
       "id": "faq_gen_06",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_greeting",
       "title": "Welcome to SkillSphere Assistant",
       "sample_questions": [
@@ -691,10 +1646,29 @@
         "Greetings",
         "Good morning",
         "Good afternoon",
-        "Who are you?"
+        "Who are you?",
+        "Namaste",
+        "Sat sri akaal",
+        "Hello assistant",
+        "Kiddan",
+        "Kaise ho",
+        "नमस्ते",
+        "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ"
       ],
-      "keywords": ["hi", "hello", "hey", "greetings", "good morning", "good evening", "who are you"],
-      "synonyms": ["welcome", "howdy", "sup"],
+      "keywords": [
+        "hi",
+        "hello",
+        "hey",
+        "greetings",
+        "good morning",
+        "good evening",
+        "who are you"
+      ],
+      "synonyms": [
+        "welcome",
+        "howdy",
+        "sup"
+      ],
       "response": "Hello! I am your SkillSphere Assistant. I am here to help you navigate the platform, understand resume OCR processing, manage job applications or postings, and prepare for assessments and interviews. How can I assist you today?",
       "related_questions": [
         "What is SkillSphere?",
@@ -702,15 +1676,38 @@
         "How do I post a new job?"
       ],
       "quick_replies": [
-        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
-        {"label": "Browse Jobs", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
-        {"label": "Post Job", "query": "How do I post a new job?", "topic": "recruiter_create_job"}
-      ]
+        {
+          "label": "Platform Overview",
+          "query": "What is SkillSphere?",
+          "topic": "general_skillsphere_overview"
+        },
+        {
+          "label": "Browse Jobs",
+          "query": "How do I search and filter jobs?",
+          "topic": "candidate_job_search"
+        },
+        {
+          "label": "Post Job",
+          "query": "How do I post a new job?",
+          "topic": "recruiter_create_job"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "Hello! I am your SkillSphere Assistant. I am here to help you navigate the platform, understand resume OCR processing, manage job applications or postings, and prepare for assessments and interviews. How can I assist you today?",
+        "hi": "नमस्ते! मैं आपका SkillSphere असिस्टेंट हूँ। मैं रिज्यूम पार्सिंग, नौकरी खोज, असेसमेंट, और वीडियो इंटरव्यू में आपकी सहायता कर सकता हूँ। आज मैं आपकी क्या मदद कर सकता हूँ?",
+        "hinglish": "Namaste! Main aapka SkillSphere Assistant hoon. Main resume upload, job search, assessments, aur interviews mein aapki madad kar sakta hoon. Aaj main aapki kya help karoon?",
+        "pa": "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ! ਮੈਂ ਤੁਹਾਡਾ SkillSphere ਅਸਿਸਟੈਂਟ ਹਾਂ। ਮੈਂ ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ, ਨੌਕਰੀਆਂ ਦੀ ਭਾਲ, ਅਤੇ ਇੰਟਰਵਿਊਆਂ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ। ਅੱਜ ਮੈਂ ਤੁਹਾਡੀ ਕੀ ਮਦਦ ਕਰਾਂ?",
+        "pa-Latn": "Sat Sri Akaal! Main tuhada SkillSphere Assistant han. Main resume upload, jobs search, te interviews vich tuhadi madad kar sakda han. Daso ki help chahidi hai?"
+      }
     },
     {
       "id": "faq_gen_07",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_help_menu",
       "title": "What topics can the SkillSphere Assistant help me with?",
       "sample_questions": [
@@ -719,26 +1716,70 @@
         "What can I ask?",
         "Menu",
         "Options",
-        "Show me topics"
+        "Show me topics",
+        "Menu dikhao",
+        "Kya kya puch sakte hain",
+        "Help menu",
+        "Topics list",
+        "ਮਦਦ ਮੀਨੂ",
+        "मदद मेनू"
       ],
-      "keywords": ["help", "menu", "topics", "options", "what can you do", "commands"],
-      "synonyms": ["assistance list", "available queries", "guide"],
+      "keywords": [
+        "help",
+        "menu",
+        "topics",
+        "options",
+        "what can you do",
+        "commands"
+      ],
+      "synonyms": [
+        "assistance list",
+        "available queries",
+        "guide"
+      ],
       "response": "You can ask me anything about SkillSphere! For Job Seekers: Resume upload & OCR parsing, job search & bookmarks, application tracking, Round 1 MCQ assessments & proctoring, video responses, and live meetings. For Recruiters: Job creation, Kanban pipeline management, candidate dossiers, question bank customization, and scheduling LiveKit meetings.",
       "related_questions": [
         "What is SkillSphere?",
         "What account roles exist in SkillSphere?"
       ],
       "quick_replies": [
-        {"label": "Resume OCR", "query": "How do I upload my resume?", "topic": "candidate_resume_upload"},
-        {"label": "Job Search", "query": "How do I search and filter jobs?", "topic": "candidate_job_search"},
-        {"label": "Kanban Pipeline", "query": "How does the Kanban pipeline work?", "topic": "recruiter_kanban_pipeline"},
-        {"label": "Live Interviews", "query": "How do I join a live video interview?", "topic": "candidate_live_interview"}
-      ]
+        {
+          "label": "Resume OCR",
+          "query": "How do I upload my resume?",
+          "topic": "candidate_resume_upload"
+        },
+        {
+          "label": "Job Search",
+          "query": "How do I search and filter jobs?",
+          "topic": "candidate_job_search"
+        },
+        {
+          "label": "Kanban Pipeline",
+          "query": "How does the Kanban pipeline work?",
+          "topic": "recruiter_kanban_pipeline"
+        },
+        {
+          "label": "Live Interviews",
+          "query": "How do I join a live video interview?",
+          "topic": "candidate_live_interview"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "You can ask me anything about SkillSphere! For Job Seekers: Resume upload & OCR parsing, job search & bookmarks, application tracking, Round 1 MCQ assessments & proctoring, video responses, and live meetings. For Recruiters: Job creation, Kanban pipeline management, candidate dossiers, question bank customization, and scheduling LiveKit meetings.",
+        "hi": "SkillSphere असिस्टेंट 5 मुख्य क्षेत्रों को कवर करता है: 1) रिज्यूम अपलोड और OCR, 2) नौकरी खोज और आवेदन, 3) प्रॉक्टर्ड MCQ असेसमेंट, 4) वीडियो असेसमेंट, और 5) LiveKit वीडियो इंटरव्यू।",
+        "hinglish": "SkillSphere Assistant 5 main areas cover karta hai: 1) Resume Upload & OCR, 2) Job Search & Applications, 3) Proctored MCQ Tests, 4) Video Assessments, aur 5) LiveKit Video Interviews.",
+        "pa": "SkillSphere ਅਸਿਸਟੈਂਟ 5 ਮੁੱਖ ਖੇਤਰਾਂ ਨੂੰ ਕਵਰ ਕਰਦਾ ਹੈ: 1) ਰਿਜ਼ਿਊਮ ਅਪਲੋਡ, 2) ਨੌਕਰੀਆਂ, 3) MCQ ਟੈਸਟ, 4) ਵੀਡੀਓ ਅਸੈਸਮੈਂਟ, ਅਤੇ 5) ਲਾਈਵ ਇੰਟਰਵਿਊ।",
+        "pa-Latn": "SkillSphere Assistant 5 main topics cover karda hai: 1) Resume Upload, 2) Jobs, 3) MCQ Tests, 4) Video Assessments, te 5) LiveKit Interviews."
+      }
     },
     {
       "id": "faq_gen_08",
       "category": "general",
-      "roles": ["JOB_SEEKER", "RECRUITER", "ADMIN"],
+      "roles": [
+        "JOB_SEEKER",
+        "RECRUITER",
+        "ADMIN"
+      ],
       "intent": "general_theme_toggle",
       "title": "How do I toggle between Dark Mode and Light Mode in SkillSphere?",
       "sample_questions": [
@@ -746,19 +1787,50 @@
         "Is there a dark theme?",
         "Light mode",
         "Change website theme",
-        "Night mode"
+        "Night mode",
+        "Dark mode kaise lagaye",
+        "Theme kaise change kare",
+        "Dark mode kive on krna",
+        "डार्क मोड कैसे ऑन करें",
+        "ਡਾਰਕ ਮੋਡ ਕਿਵੇਂ ਲਗਾਈਏ"
       ],
-      "keywords": ["dark mode", "light mode", "theme", "night mode", "toggle theme", "colors"],
-      "synonyms": ["color scheme", "appearance", "dark theme"],
+      "keywords": [
+        "dark mode",
+        "light mode",
+        "theme",
+        "night mode",
+        "toggle theme",
+        "colors"
+      ],
+      "synonyms": [
+        "color scheme",
+        "appearance",
+        "dark theme"
+      ],
       "response": "SkillSphere includes a fully responsive Dark/Light theme toggle. You can switch themes at any time by clicking the Sun/Moon icon located in the upper right corner of the top navigation bar.",
       "related_questions": [
         "What is SkillSphere?",
         "How do I get technical support?"
       ],
       "quick_replies": [
-        {"label": "Platform Overview", "query": "What is SkillSphere?", "topic": "general_skillsphere_overview"},
-        {"label": "Help Menu", "query": "What topics can you help me with?", "topic": "general_help_menu"}
-      ]
+        {
+          "label": "Platform Overview",
+          "query": "What is SkillSphere?",
+          "topic": "general_skillsphere_overview"
+        },
+        {
+          "label": "Help Menu",
+          "query": "What topics can you help me with?",
+          "topic": "general_help_menu"
+        }
+      ],
+      "multilingual_responses": {
+        "en": "SkillSphere includes a fully responsive Dark/Light theme toggle. You can switch themes at any time by clicking the Sun/Moon icon located in the upper right corner of the top navigation bar.",
+        "hi": "डार्क मोड और लाइट मोड के बीच स्विच करने के लिए, नेविगेशन बार के ऊपरी दाएं कोने में सूर्य/चंद्रमा आइकन पर क्लिक करें। आपकी थीम प्राथमिकता अपने आप सेव हो जाती है।",
+        "hinglish": "Dark Mode aur Light Mode switch karne ke liye, navigation bar ke top right corner mein Sun/Moon icon par click karein. Theme preference automatically save ho jati hai.",
+        "pa": "ਡਾਰਕ ਮੋਡ ਬਦਲਣ ਲਈ, ਨੈਵੀਗੇਸ਼ਨ ਬਾਰ ਦੇ ਉੱਪਰ ਸੱਜੇ ਕੋਨੇ ਵਿੱਚ ਸੂਰਜ/ਚੰਦਰਮਾ ਆਈਕਨ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
+        "pa-Latn": "Dark Mode switch karan layi, navigation bar de top right corner vich Sun/Moon icon te click karo. Tuhadi preference auto-save ho jandi hai."
+      }
     }
   ]
 }

@@ -21,11 +21,12 @@ import {
   RefreshCw, Check, AlertTriangle, UserCheck, Download, ExternalLink, Calendar,
   GraduationCap, Layers, ArrowRight, ShieldCheck, Trash2, Eye, HelpCircle,
   Bookmark, BookmarkCheck, MessageSquare, Send, CheckCheck, Video, PhoneCall, Star,
-  Terminal, Cpu, Code, Zap, Play, Lightbulb, Film
+  Terminal, Cpu, Code, Zap, Play, Lightbulb, Film, LifeBuoy
 } from 'lucide-react';
 import { CandidateAssessmentsSection } from '../components/CandidateAssessmentsSection';
 import { CandidateVideoAssessmentsSection } from '../components/CandidateVideoAssessmentsSection';
 import { CandidateMediaLibrarySection } from '../components/CandidateMediaLibrarySection';
+import { UserSupportTicketsTab } from '../components/UserSupportTicketsTab';
 
 export const JobSeekerDashboard = () => {
   const { user } = useAuth();
@@ -903,6 +904,7 @@ export const JobSeekerDashboard = () => {
               { id: 'practice', label: `Tech Practice (${practiceTechs.length})`, icon: Terminal },
               { id: 'resumes', label: `Resumes & AI Intel (${resumes.length})`, icon: Upload },
               { id: 'applications', label: `Applications (${applications.length})`, icon: Briefcase },
+              { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy },
               { id: 'profile', label: 'Candidate Passport', icon: UserCheck }
             ].map((tab) => {
               const Icon = tab.icon;
@@ -2743,6 +2745,15 @@ export const JobSeekerDashboard = () => {
                 </div>
               )}
 
+            </div>
+          )}
+
+          {/* ======================================================== */}
+          {/* TAB: SUPPORT TICKETS & ESCALATION TRACKING */}
+          {/* ======================================================== */}
+          {activeTab === 'tickets' && (
+            <div className="space-y-6">
+              <UserSupportTicketsTab />
             </div>
           )}
 

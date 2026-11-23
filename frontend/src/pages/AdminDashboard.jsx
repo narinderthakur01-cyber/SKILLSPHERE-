@@ -18,10 +18,12 @@ import {
   XCircle, AlertTriangle, RefreshCw, Activity, Check, ArrowUpRight,
   Search, Filter, Shield, UserCheck, Building2, Eye, Clock,
   UserPlus, SlidersHorizontal, Trash2, ExternalLink, Lock, Unlock,
-  Info, X, Sparkles, ChevronRight, BarChart3, PieChart, Database
+  Info, X, Sparkles, ChevronRight, BarChart3, PieChart, Database,
+  LifeBuoy
 } from 'lucide-react';
 import { AdminQuestionBankTab } from '../components/AdminQuestionBankTab';
 import { AdminProctoringTab } from '../components/AdminProctoringTab';
+import { AdminSupportTicketsTab } from '../components/AdminSupportTicketsTab';
 
 export const AdminDashboard = () => {
   const { user: currentAdmin } = useAuth();
@@ -63,6 +65,9 @@ export const AdminDashboard = () => {
   const [selectedAuditLog, setSelectedAuditLog] = useState(null);
   const [showAuditModal, setShowAuditModal] = useState(false);
 
+  // Support Ticket Telemetry Metrics
+  const [ticketMetrics, setTicketMetrics] = useState(null);
+
   useEffect(() => {
     fetchAllData();
   }, []);
@@ -73,8 +78,25 @@ export const AdminDashboard = () => {
 
   const fetchAllData = async () => {
     setRefreshing(true);
-    await Promise.all([fetchAnalytics(), fetchUsers(), fetchJobs(), fetchAuditLogs()]);
+    await Promise.all([
+      fetchAnalytics(),
+      fetchUsers(),
+      fetchJobs(),
+      fetchAuditLogs(),
+      fetchTicketMetrics()
+    ]);
     setRefreshing(false);
+  };
+
+  const fetchTicketMetrics = async () => {
+    try {
+      const res = await adminAPI.getTicketMetrics();
+      if (res.data) {
+        setTicketMetrics(res.data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch support ticket metrics:", err);
+    }
   };
 
   const fetchAuditLogs = async (actionType = auditActionFilter) => {
@@ -382,6 +404,7 @@ export const AdminDashboard = () => {
           <div className="flex border-b border-slate/15 dark:border-rose/15 space-x-2 overflow-x-auto pb-1 scrollbar-none">
             {[
               { id: 'analytics', label: 'Platform Intelligence', icon: Activity, count: null },
+              { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy, count: ticketMetrics ? (ticketMetrics.open + ticketMetrics.in_progress) : null },
               { id: 'users', label: 'User Governance', icon: Users, count: users.length },
               { id: 'jobs', label: 'Job Moderation', icon: Briefcase, count: jobs.length },
               { id: 'activity', label: 'System Event Stream', icon: Clock, count: activityStream.length },
@@ -1398,6 +1421,13 @@ export const AdminDashboard = () => {
           {/* ======================================================== */}
           {activeTab === 'proctoring' && (
             <AdminProctoringTab />
+          )}
+
+          {/* ======================================================== */}
+          {/* TAB 8: SUPPORT TICKETS & INQUIRY TRIAGE */}
+          {/* ======================================================== */}
+          {activeTab === 'tickets' && (
+            <AdminSupportTicketsTab adminList={users.filter((u) => u.role === 'ADMIN')} />
           )}
 
         </div>

@@ -11,6 +11,20 @@ const getBaseURL = () => {
   return '/api/v1';
 };
 
+export const getWsURL = (wsUrlPath) => {
+  let base = '';
+  if (import.meta.env.VITE_API_URL) {
+    base = import.meta.env.VITE_API_URL.replace(/\/+$/, '');
+  } else if (typeof window !== 'undefined' && window.location.hostname.includes('onrender.com')) {
+    base = 'https://skillsphere-ie03.onrender.com';
+  } else if (typeof window !== 'undefined') {
+    base = window.location.origin;
+  }
+  const wsBase = base.replace(/^http:/, 'ws:').replace(/^https:/, 'wss:');
+  const path = wsUrlPath.startsWith('/') ? wsUrlPath : `/${wsUrlPath}`;
+  return `${wsBase}${path}`;
+};
+
 const api = axios.create({
   baseURL: getBaseURL(),
   headers: {
@@ -190,6 +204,28 @@ export const adminAPI = {
   getJobs: () => api.get('/admin/jobs'),
   moderateJob: (jobId, newStatus) => api.put(`/admin/jobs/${jobId}/moderate?new_status=${newStatus}`),
   getAuditLogs: (params) => api.get('/admin/audit-logs', { params }),
+  // Support Tickets
+  getTicketMetrics: () => api.get('/admin/tickets/metrics'),
+  getTickets: (params) => api.get('/admin/tickets', { params }),
+  getTicketDetail: (id) => api.get(`/admin/tickets/${id}`),
+  updateTicketStatus: (id, status, notes) => api.put(`/admin/tickets/${id}/status`, { status, notes }),
+  updateTicketPriority: (id, priority) => api.put(`/admin/tickets/${id}/priority`, { priority }),
+  assignTicket: (id, assignedAdminId) => api.put(`/admin/tickets/${id}/assign`, { assigned_admin_id: assignedAdminId }),
+  sendTicketMessage: (id, message, isInternal = false) => api.post(`/admin/tickets/${id}/messages`, { message, is_internal: isInternal }),
+  getAvailability: () => api.get('/admin/tickets/availability'),
+  updateAvailability: (data) => api.put('/admin/tickets/availability', data),
+  sendHeartbeat: () => api.post('/admin/tickets/availability/heartbeat'),
+  acceptHandoff: (ticketId) => api.post(`/admin/tickets/${ticketId}/accept-handoff`),
+};
+
+export const supportTicketsAPI = {
+  create: (data) => api.post('/tickets', data),
+  getMyTickets: (params) => api.get('/tickets', { params }),
+  getMyTicketDetail: (id) => api.get(`/tickets/${id}`),
+  replyMyTicket: (id, message) => api.post(`/tickets/${id}/messages`, { message }),
+  getWSAuthTicket: (ticketId) => api.post(`/tickets/${ticketId}/ws-auth-ticket`),
+  requestLiveHandoff: (ticketId, reason) => api.post(`/tickets/${ticketId}/live-request`, { reason }),
+  endLiveHandoff: (ticketId, reason) => api.post(`/tickets/${ticketId}/live-end`, { reason }),
 };
 
 export const skillsAPI = {

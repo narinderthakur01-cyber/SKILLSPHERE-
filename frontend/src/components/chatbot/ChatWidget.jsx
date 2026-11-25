@@ -50,7 +50,7 @@ export const ChatWidget = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-13 h-13 rounded-full bg-oxblood text-white shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-200 border-2 border-white/20 dark:border-charcoal/50 group focus:outline-none focus:ring-4 focus:ring-oxblood/30"
+        className="w-14 h-14 rounded-full bg-gradient-to-br from-oxblood to-oxblood-600 text-white shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-200 border-2 border-white/30 dark:border-white/20 group focus:outline-none focus:ring-4 focus:ring-oxblood/40 liquid-metal-pill"
         title={isOpen ? 'Close Assistant' : 'Open SkillSphere Assistant'}
         aria-label="Toggle SkillSphere Assistant"
       >

@@ -729,28 +729,28 @@ export const RecruiterDashboard = () => {
 
             {/* Recruiter Statistics Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 text-center font-mono">
-              <div className="p-3 rounded-2xl bg-slate/5 dark:bg-white/5 border border-slate/10 dark:border-white/5">
+              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
                 <p className="text-2xl font-extrabold text-charcoal dark:text-ivory">
                   <AnimatedCounter value={activeJobsCount} />
                 </p>
                 <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Published Roles</p>
               </div>
 
-              <div className="p-3 rounded-2xl bg-slate/5 dark:bg-white/5 border border-slate/10 dark:border-white/5">
+              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
                 <p className="text-2xl font-extrabold text-charcoal dark:text-ivory">
                   <AnimatedCounter value={applicants.length} />
                 </p>
                 <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Total Applicants</p>
               </div>
 
-              <div className="p-3 rounded-2xl bg-slate/5 dark:bg-white/5 border border-slate/10 dark:border-white/5">
+              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
                 <p className="text-2xl font-extrabold text-oxblood dark:text-rose">
                   <AnimatedCounter value={shortlistedCount} />
                 </p>
                 <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Shortlisted / Interview</p>
               </div>
 
-              <div className="p-3 rounded-2xl bg-slate/5 dark:bg-white/5 border border-slate/10 dark:border-white/5">
+              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
                 <p className="text-2xl font-extrabold text-success">
                   <AnimatedCounter value={selectedCount} />
                 </p>
@@ -762,47 +762,49 @@ export const RecruiterDashboard = () => {
           {/* ======================================================== */}
           {/* TAB NAVIGATION WITH ANIMATED PILL */}
           {/* ======================================================== */}
-          <div className="flex border-b border-slate/15 dark:border-rose/15 space-x-2 overflow-x-auto pb-1 scrollbar-none" role="tablist">
-            {[
-              { id: 'jobs', label: `Manage Postings (${jobs.length})`, icon: Briefcase },
-              { id: 'pipeline', label: `Pipeline & Candidates (${applicants.length})`, icon: Users },
-              { id: 'assessments', label: 'First-Round Assessments', icon: Award },
-              { id: 'video-assessments', label: 'Video Assessments', icon: Video },
-              { id: 'interviews', label: `Interviews (${recruiterInterviews.length})`, icon: Calendar },
-              { id: 'media', label: 'Media Library', icon: Film },
-              { id: 'messages', label: 'Messages', icon: MessageSquare },
-              { id: 'analytics', label: 'Recruitment Analytics', icon: BarChart3 },
-              { id: 'company', label: 'Company Profile', icon: Building },
-              { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy }
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setTab(tab.id)}
-                  role="tab"
-                  aria-selected={isActive}
-                  className={`relative min-h-[44px] flex items-center gap-2 py-3 px-5 text-xs font-mono font-bold uppercase tracking-wider rounded-t-2xl whitespace-nowrap transition-colors duration-200 ${
-                    isActive
-                      ? 'text-ivory'
-                      : 'text-slate/70 dark:text-ivory/60 hover:text-charcoal dark:hover:text-ivory'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="recruiterTabPill"
-                      className="absolute inset-0 bg-oxblood rounded-t-2xl shadow-sm"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Icon className="w-3.5 h-3.5" />
-                    <span>{tab.label}</span>
-                  </span>
-                </button>
-              );
-            })}
+          <div className="p-1.5 rounded-2xl bg-slate/5 dark:bg-black/30 border border-slate/15 dark:border-rose/15">
+            <div className="flex space-x-1.5 overflow-x-auto pb-0.5 scrollbar-none" role="tablist">
+              {[
+                { id: 'jobs', label: `Manage Postings (${jobs.length})`, icon: Briefcase },
+                { id: 'pipeline', label: `Pipeline & Candidates (${applicants.length})`, icon: Users },
+                { id: 'assessments', label: 'First-Round Assessments', icon: Award },
+                { id: 'video-assessments', label: 'Video Assessments', icon: Video },
+                { id: 'interviews', label: `Interviews (${recruiterInterviews.length})`, icon: Calendar },
+                { id: 'media', label: 'Media Library', icon: Film },
+                { id: 'messages', label: 'Messages', icon: MessageSquare },
+                { id: 'analytics', label: 'Recruitment Analytics', icon: BarChart3 },
+                { id: 'company', label: 'Company Profile', icon: Building },
+                { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy }
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setTab(tab.id)}
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`relative min-h-[44px] flex items-center gap-2 py-2.5 px-4 text-xs font-mono font-bold uppercase tracking-wider rounded-xl whitespace-nowrap transition-all duration-200 ${
+                      isActive
+                        ? 'text-ivory shadow-sm'
+                        : 'text-slate/70 dark:text-ivory/60 hover:text-charcoal dark:hover:text-ivory hover:bg-slate/10 dark:hover:bg-white/5'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="recruiterTabPill"
+                        className="absolute inset-0 bg-oxblood liquid-metal-pill rounded-xl shadow-md"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10 flex items-center gap-2">
+                      <Icon className="w-3.5 h-3.5" />
+                      <span>{tab.label}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* ======================================================== */}

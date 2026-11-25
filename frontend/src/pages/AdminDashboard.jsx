@@ -401,50 +401,54 @@ export const AdminDashboard = () => {
           {/* ======================================================== */}
           {/* 2. TAB NAVIGATION WITH ANIMATED PILL */}
           {/* ======================================================== */}
-          <div className="flex border-b border-slate/15 dark:border-rose/15 space-x-2 overflow-x-auto pb-1 scrollbar-none">
-            {[
-              { id: 'analytics', label: 'Platform Intelligence', icon: Activity, count: null },
-              { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy, count: ticketMetrics ? (ticketMetrics.open + ticketMetrics.in_progress) : null },
-              { id: 'users', label: 'User Governance', icon: Users, count: users.length },
-              { id: 'jobs', label: 'Job Moderation', icon: Briefcase, count: jobs.length },
-              { id: 'activity', label: 'System Event Stream', icon: Clock, count: activityStream.length },
-              { id: 'audit', label: 'Audit Logs & Governance', icon: ShieldCheck, count: auditLogs.length },
-              { id: 'question_bank', label: 'Question Bank & Import', icon: Database, count: null },
-              { id: 'proctoring', label: 'Assessment Proctoring', icon: Eye, count: null },
-            ].map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setTab(tab.id)}
-                  className={`relative flex items-center gap-2 py-3 px-5 text-xs font-mono font-bold uppercase tracking-wider rounded-t-2xl whitespace-nowrap transition-colors duration-200 min-h-[44px] ${
-                    isActive
-                      ? 'text-ivory'
-                      : 'text-slate/70 dark:text-ivory/60 hover:text-charcoal dark:hover:text-ivory'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="adminTabPill"
-                      className="absolute inset-0 bg-oxblood rounded-t-2xl shadow-sm"
-                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Icon className="w-3.5 h-3.5" />
-                    <span>{tab.label}</span>
-                    {tab.count !== null && (
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
-                        isActive ? 'bg-black/25 text-ivory' : 'bg-slate/10 dark:bg-white/10 text-slate/70 dark:text-ivory/60'
-                      }`}>
-                        {tab.count}
-                      </span>
+          <div className="p-1.5 rounded-2xl bg-slate/5 dark:bg-black/30 border border-slate/15 dark:border-rose/15">
+            <div className="flex space-x-1.5 overflow-x-auto pb-0.5 scrollbar-none" role="tablist">
+              {[
+                { id: 'analytics', label: 'Platform Intelligence', icon: Activity, count: null },
+                { id: 'tickets', label: 'Support Tickets', icon: LifeBuoy, count: ticketMetrics ? (ticketMetrics.open + ticketMetrics.in_progress) : null },
+                { id: 'users', label: 'User Governance', icon: Users, count: users.length },
+                { id: 'jobs', label: 'Job Moderation', icon: Briefcase, count: jobs.length },
+                { id: 'activity', label: 'System Event Stream', icon: Clock, count: activityStream.length },
+                { id: 'audit', label: 'Audit Logs & Governance', icon: ShieldCheck, count: auditLogs.length },
+                { id: 'question_bank', label: 'Question Bank & Import', icon: Database, count: null },
+                { id: 'proctoring', label: 'Assessment Proctoring', icon: Eye, count: null },
+              ].map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setTab(tab.id)}
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`relative flex items-center gap-2 py-2.5 px-4 text-xs font-mono font-bold uppercase tracking-wider rounded-xl whitespace-nowrap transition-all duration-200 min-h-[44px] ${
+                      isActive
+                        ? 'text-ivory shadow-sm'
+                        : 'text-slate/70 dark:text-ivory/60 hover:text-charcoal dark:hover:text-ivory hover:bg-slate/10 dark:hover:bg-white/5'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="adminTabPill"
+                        className="absolute inset-0 bg-oxblood liquid-metal-pill rounded-xl shadow-md"
+                        transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                      />
                     )}
-                  </span>
-                </button>
-              );
-            })}
+                    <span className="relative z-10 flex items-center gap-2">
+                      <Icon className="w-3.5 h-3.5" />
+                      <span>{tab.label}</span>
+                      {tab.count !== null && (
+                        <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                          isActive ? 'bg-black/25 text-ivory' : 'bg-slate/10 dark:bg-white/10 text-slate/70 dark:text-ivory/60'
+                        }`}>
+                          {tab.count}
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* ======================================================== */}

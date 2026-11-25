@@ -334,13 +334,13 @@ export const AdminDashboard = () => {
 
   return (
     <PageTransitionWrapper>
-      <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8 xl:px-10 font-sans">
+        <div className="w-full max-w-[1520px] mx-auto space-y-8">
           
           {/* ======================================================== */}
           {/* 1. COMMAND CENTER EXECUTIVE HEADER */}
           {/* ======================================================== */}
-          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate/15 dark:border-rose/15 shadow-2xl relative overflow-hidden">
+          <div className="dashboard-hero-card relative overflow-hidden p-6 sm:p-8 rounded-3xl">
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-oxblood/10 rounded-full blur-3xl pointer-events-none transform translate-x-20 -translate-y-20" />
             
@@ -359,7 +359,7 @@ export const AdminDashboard = () => {
                         SUPER ADMIN
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-slate/75 dark:text-ivory/70 mt-1 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-ivory/70 mt-1 leading-relaxed">
                       Real-time enterprise control plane: user identity verification, job posting compliance, and pipeline analytics.
                     </p>
                   </div>
@@ -371,10 +371,10 @@ export const AdminDashboard = () => {
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     Engine 100% Operational
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-slate/10 dark:bg-white/5 text-slate/80 dark:text-ivory/70 border border-slate/15 dark:border-rose/15">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-ivory/70 border border-slate-200 dark:border-white/10">
                     Database: PostgreSQL 18
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-slate/10 dark:bg-white/5 text-slate/80 dark:text-ivory/70 border border-slate/15 dark:border-rose/15">
+                  <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-ivory/70 border border-slate-200 dark:border-white/10">
                     RBAC: JWT Active
                   </span>
                   <span className="px-3 py-1 rounded-full bg-oxblood/10 text-oxblood dark:text-rose border border-oxblood/20">

@@ -14,13 +14,19 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const verifyUser = async () => {
       if (token) {
+        if (token.startsWith('demo-')) {
+          setLoading(false);
+          return;
+        }
         try {
           const res = await authAPI.me();
           setUser(res.data);
           localStorage.setItem('skillsphere_user', JSON.stringify(res.data));
         } catch (err) {
           console.error("Token verification failed:", err);
-          logout();
+          if (err.response?.status === 401) {
+            logout();
+          }
         }
       }
       setLoading(false);

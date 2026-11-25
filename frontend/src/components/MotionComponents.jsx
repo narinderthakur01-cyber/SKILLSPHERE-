@@ -248,7 +248,7 @@ export const AnimatedProgressRing = ({
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
         {children || (
-          <span className="font-mono font-bold text-xs">
+          <span className="font-mono font-bold text-xs text-charcoal dark:text-ivory">
             {validPercentage}%
           </span>
         )}

@@ -811,14 +811,14 @@ export const JobSeekerDashboard = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen py-6 sm:py-8 px-4 sm:px-6 lg:px-8 xl:px-10 font-sans">
+        <div className="w-full max-w-[1520px] mx-auto space-y-8">
           
           {/* ======================================================== */}
           {/* WORKSPACE EDITORIAL HEADER & METRICS GRID */}
           {/* ======================================================== */}
-          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate/15 dark:border-rose/15 shadow-xl">
-            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-6 border-b border-slate/15 dark:border-rose/15">
+          <div className="dashboard-hero-card p-6 sm:p-8 rounded-3xl">
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 pb-6 border-b border-slate-200/70 dark:border-white/10">
               <div>
                 <div className="flex items-center gap-3">
                   <h1 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal dark:text-ivory">
@@ -828,7 +828,7 @@ export const JobSeekerDashboard = () => {
                     VERIFIED PROFILE
                   </span>
                 </div>
-                <p className="text-sm text-slate/80 dark:text-ivory/70 mt-1 font-normal leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-ivory/70 mt-1 font-normal leading-relaxed">
                   Welcome back, <span className="font-semibold text-charcoal dark:text-ivory">{profile?.name || user?.name}</span>. Explore compatible openings, review OCR extraction, and track applications.
                 </p>
               </div>
@@ -838,14 +838,14 @@ export const JobSeekerDashboard = () => {
                 <div className="flex items-center gap-3">
                   <AnimatedProgressRing percentage={completeness} size={54} strokeWidth={5} color="#914F51" />
                   <div>
-                    <p className="text-[10px] font-mono uppercase tracking-wider text-slate/60 dark:text-rose">Profile Score</p>
+                    <p className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-rose">Profile Score</p>
                     <p className="text-xs font-mono font-bold text-charcoal dark:text-ivory">{completeness}% Complete</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 pl-4 border-l border-slate/15 dark:border-rose/15">
+                <div className="flex items-center gap-3 pl-4 border-l border-slate-200/70 dark:border-white/10">
                   <div className="text-right">
-                    <p className="text-[10px] font-mono uppercase tracking-wider text-slate/60 dark:text-rose">Verified Skills</p>
+                    <p className="text-[10px] font-mono uppercase tracking-wider text-slate-500 dark:text-rose">Verified Skills</p>
                     <p className="text-sm font-mono font-bold text-charcoal dark:text-ivory">
                       {profile?.skills?.length || 0} Detected
                     </p>
@@ -857,34 +857,34 @@ export const JobSeekerDashboard = () => {
               </div>
             </div>
 
-            {/* Quick Metrics Bar with Animated Counters */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 text-center font-mono">
-              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
-                <p className="text-2xl font-extrabold text-charcoal dark:text-ivory">
+            {/* Quick Metrics Bar (Watermelon UI Tray Style) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 pt-6 text-center font-mono">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between">
+                <p className="text-3xl sm:text-4xl font-extrabold text-charcoal dark:text-ivory tracking-tight">
                   <AnimatedCounter value={applications.length} />
                 </p>
-                <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Submitted Apps</p>
+                <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-rose mt-2 font-semibold">Submitted Apps</p>
               </div>
 
-              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
-                <p className="text-2xl font-extrabold text-success">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between">
+                <p className="text-3xl sm:text-4xl font-extrabold text-success tracking-tight">
                   <AnimatedCounter value={selectedCount} />
                 </p>
-                <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Offers / Selected</p>
+                <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-rose mt-2 font-semibold">Offers / Selected</p>
               </div>
 
-              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
-                <p className="text-2xl font-extrabold text-oxblood dark:text-rose">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between">
+                <p className="text-3xl sm:text-4xl font-extrabold text-oxblood dark:text-rose tracking-tight">
                   <AnimatedCounter value={inProgressCount} />
                 </p>
-                <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Under Review</p>
+                <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-rose mt-2 font-semibold">Under Review</p>
               </div>
 
-              <div className="p-3.5 rounded-2xl glass-card bg-slate/5 dark:bg-white/5 border border-slate/15 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 hover:shadow-md">
-                <p className="text-2xl font-extrabold text-charcoal dark:text-ivory">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/80 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/10 hover:border-oxblood/40 dark:hover:border-rose/40 transition-all duration-300 shadow-xs hover:shadow-md flex flex-col justify-between">
+                <p className="text-3xl sm:text-4xl font-extrabold text-charcoal dark:text-ivory tracking-tight">
                   <AnimatedCounter value={jobs.length} />
                 </p>
-                <p className="text-[10px] uppercase tracking-wider text-slate/60 dark:text-rose mt-0.5">Active Roles</p>
+                <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-rose mt-2 font-semibold">Active Roles</p>
               </div>
             </div>
           </div>
@@ -892,8 +892,8 @@ export const JobSeekerDashboard = () => {
           {/* ======================================================== */}
           {/* TAB NAVIGATION WITH ANIMATED PILL */}
           {/* ======================================================== */}
-          <div className="p-1.5 rounded-2xl bg-slate/5 dark:bg-black/30 border border-slate/15 dark:border-rose/15">
-            <div className="flex space-x-1.5 overflow-x-auto pb-0.5 scrollbar-none" role="tablist">
+          <div className="p-2 rounded-2xl bg-black/10 dark:bg-black/40 border border-slate-200/50 dark:border-white/10 backdrop-blur-md">
+            <div className="flex space-x-2 overflow-x-auto pb-0.5 scrollbar-none" role="tablist">
               {[
                 { id: 'jobs', label: `Browse Jobs (${jobs.length})`, icon: Search },
                 { id: 'saved', label: `Saved Jobs (${savedJobs.length})`, icon: Bookmark },
@@ -946,8 +946,8 @@ export const JobSeekerDashboard = () => {
             <div className="space-y-6">
               
               {/* Filter and Search Bar */}
-              <div className="glass-card p-4 sm:p-5 rounded-3xl border border-slate/15 dark:border-rose/15 shadow-md flex flex-col md:flex-row gap-3 items-center">
-                <div className="flex-1 w-full flex items-center px-4 py-2 bg-white/50 dark:bg-black/20 rounded-xl border border-slate/15 dark:border-rose/15 min-h-[44px]">
+              <div className="glass-card p-4 sm:p-5 rounded-3xl border border-slate/15 dark:border-rose/15 shadow-md flex flex-col md:flex-row gap-3 items-center w-full max-w-full">
+                <div className="flex-1 min-w-0 w-full flex items-center px-4 py-2 bg-white/50 dark:bg-black/20 rounded-xl border border-slate/15 dark:border-rose/15 min-h-[44px]">
                   <Search className="w-4 h-4 text-slate/40 dark:text-rose/50 mr-2.5 shrink-0" />
                   <input
                     type="text"
@@ -955,11 +955,11 @@ export const JobSeekerDashboard = () => {
                     value={keyword}
                     onChange={(e) => setKeyword(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') fetchJobs(); }}
-                    className="w-full text-xs bg-transparent focus:outline-none text-charcoal dark:text-ivory placeholder:text-slate/40 dark:placeholder:text-ivory/30 font-medium"
+                    className="w-full min-w-0 text-xs bg-transparent focus:outline-none text-charcoal dark:text-ivory placeholder:text-slate/40 dark:placeholder:text-ivory/30 font-medium"
                   />
                 </div>
 
-                <div className="w-full md:w-48 flex items-center px-4 py-2 bg-white/50 dark:bg-black/20 rounded-xl border border-slate/15 dark:border-rose/15 min-h-[44px]">
+                <div className="w-full md:w-56 shrink-0 flex items-center px-4 py-2 bg-white/50 dark:bg-black/20 rounded-xl border border-slate/15 dark:border-rose/15 min-h-[44px]">
                   <MapPin className="w-4 h-4 text-slate/40 dark:text-rose/50 mr-2.5 shrink-0" />
                   <input
                     type="text"
@@ -967,7 +967,7 @@ export const JobSeekerDashboard = () => {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     onKeyDown={(e) => { if (e.key === 'Enter') fetchJobs(); }}
-                    className="w-full text-xs bg-transparent focus:outline-none text-charcoal dark:text-ivory placeholder:text-slate/40 dark:placeholder:text-ivory/30 font-medium"
+                    className="w-full min-w-0 text-xs bg-transparent focus:outline-none text-charcoal dark:text-ivory placeholder:text-slate/40 dark:placeholder:text-ivory/30 font-medium"
                   />
                 </div>
 

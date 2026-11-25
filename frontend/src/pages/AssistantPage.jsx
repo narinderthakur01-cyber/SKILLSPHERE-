@@ -44,7 +44,7 @@ export const AssistantPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <div className="w-full max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-6 sm:py-8">
       {/* Editorial Header */}
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-oxblood/10 dark:border-white/10 pb-5">
         <div>
@@ -73,7 +73,7 @@ export const AssistantPage = () => {
       {/* Main Grid: Chat on Left/Center, Verified FAQ Explorer on Right */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Chat Interface Column */}
-        <div className="lg:col-span-7 xl:col-span-8 h-[680px]">
+        <div className="lg:col-span-7 xl:col-span-8 h-[620px] sm:h-[660px] lg:h-[calc(100vh-220px)] min-h-[560px] max-h-[760px]">
           <ChatWindow key={chatKey} isFullPage={true} />
         </div>
 

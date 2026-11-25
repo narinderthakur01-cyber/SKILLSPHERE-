@@ -193,8 +193,8 @@ export const ChatWindow = ({
         isFullPage
           ? 'w-full h-full rounded-3xl'
           : isExpanded
-          ? 'w-[96vw] sm:w-[620px] md:w-[680px] h-[720px] max-h-[90vh] rounded-3xl'
-          : 'w-[94vw] sm:w-[460px] md:w-[490px] h-[620px] max-h-[85vh] rounded-3xl'
+          ? 'w-[96vw] sm:w-[740px] md:w-[840px] lg:w-[920px] h-[780px] max-h-[92vh] rounded-[32px]'
+          : 'w-[94vw] sm:w-[520px] md:w-[560px] lg:w-[600px] h-[660px] max-h-[88vh] rounded-[28px]'
       }`}
     >
       {/* Header with Liquid Metal & Thermal Accent */}

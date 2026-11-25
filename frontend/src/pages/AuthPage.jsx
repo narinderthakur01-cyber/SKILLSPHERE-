@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../context/ThemeContext';
 import { authAPI } from '../services/api';
 import {
   Briefcase, User, Mail, Lock, AlertCircle, ArrowRight,
@@ -10,6 +11,7 @@ import {
 } from 'lucide-react';
 
 export const AuthPage = () => {
+  const { isDark } = useTheme();
   const [searchParams] = useSearchParams();
   const initialMode = searchParams.get('mode') === 'register' ? 'register' : 'login';
   const initialRole = searchParams.get('role') || 'JOB_SEEKER';
@@ -272,6 +274,20 @@ export const AuthPage = () => {
       setSuccess(true);
       setTimeout(() => redirectUser(res.data.user.role), 650);
     } catch (err) {
+      if (!err.response) {
+        // Local preview fallback when backend PostgreSQL is offline
+        const mockUser = {
+          id: `demo-${demoRole.toLowerCase()}`,
+          name: demoRole === 'Candidate' ? 'Alex Morgan' : demoRole === 'Recruiter' ? 'TechNova Recruiter' : 'System Administrator',
+          email: demoEmail,
+          role: demoRole === 'Candidate' ? 'JOB_SEEKER' : demoRole === 'Recruiter' ? 'RECRUITER' : 'ADMIN',
+          email_verified: true
+        };
+        login(`demo-token-${Date.now()}`, mockUser);
+        setSuccess(true);
+        setTimeout(() => redirectUser(mockUser.role), 300);
+        return;
+      }
       console.error("Quick demo login failed:", err);
       playErrorSound();
       const detail = err.response?.data?.detail;
@@ -286,7 +302,7 @@ export const AuthPage = () => {
     <div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`obsidian-viewport ${isTyping ? 'is-typing' : ''} ${error ? 'is-error' : ''} ${success ? 'is-success' : ''}`}
+      className={`obsidian-viewport ${isDark ? 'dark-mode' : 'light-mode'} ${isTyping ? 'is-typing' : ''} ${error ? 'is-error' : ''} ${success ? 'is-success' : ''}`}
       style={{
         '--mouse-x': `${mousePos.x}px`,
         '--mouse-y': `${mousePos.y}px`,
@@ -309,6 +325,57 @@ export const AuthPage = () => {
           --text-primary: #EFE9E3;
           --text-secondary: #C5A49B;
           --text-muted: rgba(239, 233, 227, 0.65);
+        }
+
+        .light-mode.obsidian-viewport {
+          --core-surface: #EFE9E3;
+          --glass-base: rgba(255, 255, 255, 0.94);
+          --border-stroke: rgba(55, 48, 52, 0.16);
+          --border-stroke-bright: rgba(145, 79, 81, 0.45);
+          --text-primary: #1B1A1B;
+          --text-secondary: #4A3E45;
+          --text-muted: #7A6F75;
+        }
+
+        .light-mode .dual-stroke-field {
+          background: rgba(248, 244, 240, 0.95);
+          border: 1px solid rgba(55, 48, 52, 0.16);
+        }
+
+        .light-mode .dual-stroke-field:focus-within {
+          background: #FFFFFF;
+          border-color: rgba(145, 79, 81, 0.65);
+          box-shadow: 0 0 0 1px rgba(145, 79, 81, 0.3);
+        }
+
+        .light-mode .dual-stroke-input {
+          color: #1B1A1B;
+        }
+
+        .light-mode .dual-stroke-input::placeholder {
+          color: rgba(55, 48, 52, 0.45);
+        }
+
+        .light-mode .titanium-glass-card {
+          box-shadow: 0 20px 54px -12px rgba(27, 26, 27, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+        }
+
+        .light-mode .demo-pill-btn {
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid rgba(55, 48, 52, 0.16);
+          color: #4A3E45;
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .light-mode .demo-pill-btn:hover {
+          background: rgba(145, 79, 81, 0.1);
+          border-color: #914F51;
+          color: #914F51;
+        }
+
+        .light-mode .ribbon-beam {
+          opacity: 0.22;
+          mix-blend-mode: multiply;
         }
 
         .obsidian-viewport {
@@ -702,10 +769,10 @@ export const AuthPage = () => {
                   <div className="orbital-diamond"></div>
                 </div>
                 <div>
-                  <span className="font-bold text-xl tracking-tight text-[#EFE9E3] block font-display">
+                  <span className="font-bold text-xl tracking-tight text-charcoal dark:text-[#EFE9E3] block font-display">
                     Skill<span className="text-[#914F51]">Sphere</span>
                   </span>
-                  <span className="text-[10px] font-mono tracking-widest text-[#C5A49B] uppercase block">
+                  <span className="text-[10px] font-mono tracking-widest text-slate-500 dark:text-[#C5A49B] uppercase block">
                     Autonomous Talent Matrix
                   </span>
                 </div>
@@ -715,7 +782,7 @@ export const AuthPage = () => {
               <button
                 type="button"
                 onClick={() => { setAudioEnabled(!audioEnabled); playActionSound(); }}
-                className="p-2 rounded-xl border border-[rgba(197,164,155,0.18)] bg-[rgba(55,48,52,0.4)] text-[#C5A49B] hover:text-[#EFE9E3] hover:border-[#914F51] transition"
+                className="p-2 rounded-xl border border-slate-300/80 dark:border-[rgba(197,164,155,0.18)] bg-white/80 dark:bg-[rgba(55,48,52,0.4)] text-slate-600 dark:text-[#C5A49B] hover:text-charcoal dark:hover:text-[#EFE9E3] hover:border-[#914F51] transition"
                 title={audioEnabled ? "Synthesized Sound FX: Active" : "Synthesized Sound FX: Muted"}
               >
                 {audioEnabled ? <Volume2 className="w-4 h-4 text-[#914F51]" /> : <VolumeX className="w-4 h-4" />}
@@ -724,56 +791,56 @@ export const AuthPage = () => {
 
             {/* Headline and Value Proposition (Dashboard Typography) */}
             <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(145,79,81,0.18)] border border-[rgba(145,79,81,0.35)] text-[11px] font-mono text-[#EFE9E3] uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(145,79,81,0.12)] dark:bg-[rgba(145,79,81,0.18)] border border-[rgba(145,79,81,0.35)] text-[11px] font-mono text-oxblood dark:text-[#EFE9E3] uppercase tracking-wider font-semibold">
                 <span className="w-2 h-2 rounded-full bg-[#829B88] animate-pulse"></span>
                 <span>CRYPTOGRAPHIC TALENT IDENTIFIER</span>
               </div>
 
-              <h1 className="text-3xl font-extrabold text-[#EFE9E3] tracking-tight leading-snug font-display">
+              <h1 className="text-3xl font-extrabold text-charcoal dark:text-[#EFE9E3] tracking-tight leading-snug font-display">
                 Precision Neural Matching. <br />
-                <span className="bg-gradient-to-r from-[#914F51] via-[#C5A49B] to-[#829B88] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#914F51] via-[#BA7476] to-[#829B88] bg-clip-text text-transparent">
                   Deterministic Calibration.
                 </span>
               </h1>
 
-              <p className="text-sm text-[#C5A49B] leading-relaxed font-normal">
+              <p className="text-sm text-slate-600 dark:text-[#C5A49B] leading-relaxed font-normal">
                 SkillSphere delivers dual-engine OCR skill decomposition, verified graph telemetry, and tenancy-enforced matching with zero algorithmic opacity.
               </p>
             </div>
 
             {/* Feature Pills */}
             <div className="grid grid-cols-2 gap-3 mt-8 text-xs font-mono">
-              <div className="p-3 rounded-2xl bg-[rgba(55,48,52,0.35)] border border-[rgba(197,164,155,0.14)]">
-                <div className="flex items-center gap-2 text-[#C5A49B] font-bold mb-1">
+              <div className="p-3 rounded-2xl bg-white/70 dark:bg-[rgba(55,48,52,0.35)] border border-slate-200/80 dark:border-[rgba(197,164,155,0.14)]">
+                <div className="flex items-center gap-2 text-oxblood dark:text-[#C5A49B] font-bold mb-1">
                   <Cpu className="w-3.5 h-3.5 text-[#914F51]" />
                   <span>Dual OCR Parse</span>
                 </div>
-                <p className="text-[11px] text-[rgba(239,233,227,0.65)]">PyMuPDF + Tesseract coordinate extraction</p>
+                <p className="text-[11px] text-slate-500 dark:text-[rgba(239,233,227,0.65)]">PyMuPDF + Tesseract coordinate extraction</p>
               </div>
 
-              <div className="p-3 rounded-2xl bg-[rgba(55,48,52,0.35)] border border-[rgba(197,164,155,0.14)]">
-                <div className="flex items-center gap-2 text-[#829B88] font-bold mb-1">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#829B88]" />
+              <div className="p-3 rounded-2xl bg-white/70 dark:bg-[rgba(55,48,52,0.35)] border border-slate-200/80 dark:border-[rgba(197,164,155,0.14)]">
+                <div className="flex items-center gap-2 text-[#58745E] dark:text-[#829B88] font-bold mb-1">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#58745E] dark:text-[#829B88]" />
                   <span>Deterministic Math</span>
                 </div>
-                <p className="text-[11px] text-[rgba(239,233,227,0.65)]">Explainable skill-gap telemetry</p>
+                <p className="text-[11px] text-slate-500 dark:text-[rgba(239,233,227,0.65)]">Explainable skill-gap telemetry</p>
               </div>
             </div>
           </div>
 
           {/* Animated Dynamic Metric Counters */}
-          <div className="pt-8 border-t border-[rgba(197,164,155,0.15)] grid grid-cols-3 gap-3 text-center font-mono">
+          <div className="pt-8 border-t border-slate-200/80 dark:border-[rgba(197,164,155,0.15)] grid grid-cols-3 gap-3 text-center font-mono">
             <div>
-              <p className="text-xl font-extrabold text-[#EFE9E3]">50K+</p>
-              <p className="text-[10px] text-[#C5A49B] uppercase tracking-wider mt-0.5">Verified Talents</p>
+              <p className="text-xl font-extrabold text-charcoal dark:text-[#EFE9E3]">50K+</p>
+              <p className="text-[10px] text-slate-500 dark:text-[#C5A49B] uppercase tracking-wider mt-0.5">Verified Talents</p>
             </div>
             <div>
               <p className="text-xl font-extrabold text-[#914F51]">99.9%</p>
-              <p className="text-[10px] text-[#C5A49B] uppercase tracking-wider mt-0.5">Match Precision</p>
+              <p className="text-[10px] text-slate-500 dark:text-[#C5A49B] uppercase tracking-wider mt-0.5">Match Precision</p>
             </div>
             <div>
-              <p className="text-xl font-extrabold text-[#829B88]">24/7</p>
-              <p className="text-[10px] text-[#C5A49B] uppercase tracking-wider mt-0.5">Active Relays</p>
+              <p className="text-xl font-extrabold text-[#58745E] dark:text-[#829B88]">24/7</p>
+              <p className="text-[10px] text-slate-500 dark:text-[#C5A49B] uppercase tracking-wider mt-0.5">Active Relays</p>
             </div>
           </div>
         </div>
@@ -784,31 +851,31 @@ export const AuthPage = () => {
         <div className="titanium-glass-card p-6 sm:p-8">
           
           {/* Mobile Logo Header */}
-          <div className="md:hidden flex items-center justify-between mb-6 pb-4 border-b border-[rgba(197,164,155,0.15)]">
+          <div className="md:hidden flex items-center justify-between mb-6 pb-4 border-b border-slate-200/80 dark:border-[rgba(197,164,155,0.15)]">
             <div className="flex items-center gap-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#914F51] text-[#EFE9E3] font-black flex items-center justify-center text-xs">
+              <div className="w-7 h-7 rounded-lg bg-[#914F51] text-white font-black flex items-center justify-center text-xs">
                 S
               </div>
-              <span className="font-bold text-lg text-[#EFE9E3] font-display">SkillSphere</span>
+              <span className="font-bold text-lg text-charcoal dark:text-[#EFE9E3] font-display">SkillSphere</span>
             </div>
             <button
               type="button"
               onClick={() => { setAudioEnabled(!audioEnabled); playActionSound(); }}
-              className="p-1.5 rounded-lg border border-[rgba(197,164,155,0.18)] text-[#C5A49B]"
+              className="p-1.5 rounded-lg border border-slate-200/80 dark:border-[rgba(197,164,155,0.18)] text-slate-500 dark:text-[#C5A49B]"
             >
               {audioEnabled ? <Volume2 className="w-3.5 h-3.5 text-[#914F51]" /> : <VolumeX className="w-3.5 h-3.5" />}
             </button>
           </div>
 
           {/* Mode Switcher: Sign In vs Register */}
-          <div className="flex bg-[rgba(55,48,52,0.45)] p-1 rounded-2xl mb-6 border border-[rgba(197,164,155,0.15)] font-mono text-xs">
+          <div className="flex bg-slate-200/60 dark:bg-[rgba(55,48,52,0.45)] p-1 rounded-2xl mb-6 border border-slate-300/80 dark:border-[rgba(197,164,155,0.15)] font-mono text-xs">
             <button
               type="button"
               onClick={() => { setIsLogin(true); setError(''); setIsUnverifiedError(false); playActionSound(); }}
               className={`flex-1 min-h-[44px] py-2.5 rounded-xl uppercase tracking-wider font-bold transition flex items-center justify-center ${
                 isLogin
-                  ? 'bg-[#914F51] text-[#EFE9E3] shadow-md'
-                  : 'text-[#C5A49B] hover:text-[#EFE9E3]'
+                  ? 'bg-[#914F51] text-white shadow-md'
+                  : 'text-slate-600 dark:text-[#C5A49B] hover:text-charcoal dark:hover:text-[#EFE9E3]'
               }`}
             >
               Sign In
@@ -818,8 +885,8 @@ export const AuthPage = () => {
               onClick={() => { setIsLogin(false); setError(''); setIsUnverifiedError(false); playActionSound(); }}
               className={`flex-1 min-h-[44px] py-2.5 rounded-xl uppercase tracking-wider font-bold transition flex items-center justify-center ${
                 !isLogin
-                  ? 'bg-[#914F51] text-[#EFE9E3] shadow-md'
-                  : 'text-[#C5A49B] hover:text-[#EFE9E3]'
+                  ? 'bg-[#914F51] text-white shadow-md'
+                  : 'text-slate-600 dark:text-[#C5A49B] hover:text-charcoal dark:hover:text-[#EFE9E3]'
               }`}
             >
               Register
@@ -828,13 +895,13 @@ export const AuthPage = () => {
 
           {/* RESTORED QUICK DEMO ACCESS SECTION (DEVELOPMENT MODE ONLY) */}
           {import.meta.env.DEV && (
-            <div className="mb-6 p-3.5 rounded-2xl bg-[rgba(55,48,52,0.3)] border border-[rgba(197,164,155,0.15)] font-mono">
+            <div className="mb-6 p-3.5 rounded-2xl bg-white/70 dark:bg-[rgba(55,48,52,0.3)] border border-slate-200/80 dark:border-[rgba(197,164,155,0.15)] font-mono shadow-xs">
               <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#C5A49B] flex items-center gap-1.5">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-slate-700 dark:text-[#C5A49B] flex items-center gap-1.5">
                   <Zap className="w-3 h-3 text-[#914F51]" />
                   <span>Quick Demo Access (Dev Mode)</span>
                 </span>
-                <span className="text-[9px] text-[rgba(239,233,227,0.5)]">1-Click Login</span>
+                <span className="text-[9px] text-slate-500 dark:text-[rgba(239,233,227,0.5)]">1-Click Login</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -845,7 +912,7 @@ export const AuthPage = () => {
                   className="demo-pill-btn justify-center"
                   title="Login as Alex Morgan (Candidate, 2 SELECTED applications)"
                 >
-                  <User className="w-3 h-3 text-[#C5A49B]" />
+                  <User className="w-3 h-3 text-[#914F51] dark:text-[#C5A49B]" />
                   <span>Candidate</span>
                 </button>
 
@@ -856,7 +923,7 @@ export const AuthPage = () => {
                   className="demo-pill-btn justify-center"
                   title="Login as TechNova Recruiter"
                 >
-                  <Briefcase className="w-3 h-3 text-[#829B88]" />
+                  <Briefcase className="w-3 h-3 text-[#58745E] dark:text-[#829B88]" />
                   <span>Recruiter</span>
                 </button>
 
@@ -941,13 +1008,13 @@ export const AuthPage = () => {
                         onClick={() => { setRole('JOB_SEEKER'); playActionSound(); }}
                         className={`p-3 min-h-[48px] rounded-2xl border text-left transition ${
                           role === 'JOB_SEEKER'
-                            ? 'border-[#914F51] bg-[rgba(145,79,81,0.2)] text-[#EFE9E3] shadow-sm'
-                            : 'border-[rgba(197,164,155,0.15)] bg-[rgba(55,48,52,0.3)] text-[#C5A49B] hover:border-[rgba(197,164,155,0.3)]'
+                            ? 'border-[#914F51] bg-[rgba(145,79,81,0.15)] text-charcoal dark:text-[#EFE9E3] shadow-sm'
+                            : 'border-slate-200 dark:border-[rgba(197,164,155,0.15)] bg-slate-50 dark:bg-[rgba(55,48,52,0.3)] text-slate-600 dark:text-[#C5A49B] hover:border-oxblood/40'
                         }`}
                       >
-                        <User className={`w-4 h-4 mb-1.5 ${role === 'JOB_SEEKER' ? 'text-[#914F51]' : 'text-[#C5A49B]'}`} />
-                        <p className="text-xs font-bold text-[#EFE9E3]">Talent</p>
-                        <p className="text-[10px] text-[#C5A49B]">Applicant Node</p>
+                        <User className={`w-4 h-4 mb-1.5 ${role === 'JOB_SEEKER' ? 'text-[#914F51]' : 'text-slate-500 dark:text-[#C5A49B]'}`} />
+                        <p className="text-xs font-bold text-charcoal dark:text-[#EFE9E3]">Talent</p>
+                        <p className="text-[10px] text-slate-500 dark:text-[#C5A49B]">Applicant Node</p>
                       </button>
 
                       <button
@@ -955,13 +1022,13 @@ export const AuthPage = () => {
                         onClick={() => { setRole('RECRUITER'); playActionSound(); }}
                         className={`p-3 min-h-[48px] rounded-2xl border text-left transition ${
                           role === 'RECRUITER'
-                            ? 'border-[#914F51] bg-[rgba(145,79,81,0.2)] text-[#EFE9E3] shadow-sm'
-                            : 'border-[rgba(197,164,155,0.15)] bg-[rgba(55,48,52,0.3)] text-[#C5A49B] hover:border-[rgba(197,164,155,0.3)]'
+                            ? 'border-[#914F51] bg-[rgba(145,79,81,0.15)] text-charcoal dark:text-[#EFE9E3] shadow-sm'
+                            : 'border-slate-200 dark:border-[rgba(197,164,155,0.15)] bg-slate-50 dark:bg-[rgba(55,48,52,0.3)] text-slate-600 dark:text-[#C5A49B] hover:border-oxblood/40'
                         }`}
                       >
-                        <Briefcase className={`w-4 h-4 mb-1.5 ${role === 'RECRUITER' ? 'text-[#914F51]' : 'text-[#C5A49B]'}`} />
-                        <p className="text-xs font-bold text-[#EFE9E3]">Enterprise</p>
-                        <p className="text-[10px] text-[#C5A49B]">Recruiter Node</p>
+                        <Briefcase className={`w-4 h-4 mb-1.5 ${role === 'RECRUITER' ? 'text-[#914F51]' : 'text-slate-500 dark:text-[#C5A49B]'}`} />
+                        <p className="text-xs font-bold text-charcoal dark:text-[#EFE9E3]">Enterprise</p>
+                        <p className="text-[10px] text-slate-500 dark:text-[#C5A49B]">Recruiter Node</p>
                       </button>
                     </div>
                   </div>
@@ -1126,13 +1193,13 @@ export const AuthPage = () => {
           </form>
 
           {/* Bottom Telemetry Strip */}
-          <div className="mt-6 pt-5 border-t border-[rgba(197,164,155,0.15)] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#C5A49B]">
+          <div className="mt-6 pt-5 border-t border-slate-200/80 dark:border-[rgba(197,164,155,0.15)] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-slate-500 dark:text-[#C5A49B]">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#829B88] animate-ping"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#58745E] dark:bg-[#829B88] animate-ping"></span>
               <span>GATEWAY: 127.0.0.1:8000 [ACTIVE]</span>
             </span>
             <span>AUTH: JWT HS256</span>
-            <span className="text-[#EFE9E3]">TALENT GRAPH: READY</span>
+            <span className="text-slate-700 dark:text-[#EFE9E3] font-bold">TALENT GRAPH: READY</span>
           </div>
         </div>
 

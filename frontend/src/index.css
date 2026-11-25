@@ -102,6 +102,22 @@ h1, h2, h3, h4, .font-display {
   box-shadow: 0 24px 56px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px 0 var(--color-specular);
 }
 
+/* Navbar-Adjacent Hero Workspace Card (Clear Boundary & Specular Elevation) */
+.dashboard-hero-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(55, 48, 52, 0.18);
+  box-shadow: 0 14px 40px -4px rgba(27, 26, 27, 0.08), 0 2px 8px -2px rgba(27, 26, 27, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 1);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dark .dashboard-hero-card {
+  background: rgba(22, 20, 25, 0.92);
+  border: 1px solid rgba(197, 164, 155, 0.22);
+  box-shadow: 0 20px 54px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(145, 79, 81, 0.18), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+}
+
 /* Accessible High-Contrast Form Inputs & Select Controls */
 select {
   background-color: #FFFFFF;
@@ -494,6 +510,39 @@ select option {
   animation: thermalPulse 10s ease-in-out infinite;
 }
 
+/* ==============================================================================
+   LIQUID NITROGEN CRYOGENIC AMBIENT SYSTEM
+   ============================================================================== */
+
+@keyframes nitrogenDriftA {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  35% { transform: translate3d(-45px, 35px, 0) scale(1.08) rotate(-3deg); }
+  70% { transform: translate3d(35px, -50px, 0) scale(0.94) rotate(4deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes nitrogenDriftB {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  40% { transform: translate3d(55px, -30px, 0) scale(1.12) rotate(3deg); }
+  75% { transform: translate3d(-30px, 45px, 0) scale(0.92) rotate(-4deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes nitrogenVaporBreathe {
+  0%, 100% { opacity: 0.16; transform: scale(1); }
+  50% { opacity: 0.30; transform: scale(1.06); }
+}
+
+.nitrogen-stream-1 {
+  animation: nitrogenDriftA 22s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.nitrogen-stream-2 {
+  animation: nitrogenDriftB 30s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.nitrogen-vapor {
+  animation: nitrogenVaporBreathe 12s ease-in-out infinite;
+}
+
 /* Caret visibility & input contrast protection */
 input, textarea {
   caret-color: #914F51;
@@ -504,7 +553,8 @@ input, textarea {
 
 @media (prefers-reduced-motion: reduce) {
   .liquid-metal-shimmer::after,
-  .thermal-wave-1, .thermal-wave-2, .thermal-wave-3, .thermal-pulse {
+  .thermal-wave-1, .thermal-wave-2, .thermal-wave-3, .thermal-pulse,
+  .nitrogen-stream-1, .nitrogen-stream-2, .nitrogen-vapor {
     animation: none !important;
   }
 }

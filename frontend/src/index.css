@@ -397,3 +397,114 @@ select option {
 ::-webkit-scrollbar-thumb:hover {
   background: #914F51;
 }
+
+/* ==============================================================================
+   LIQUID METAL ORGANIC REFLECTIONS & METALLIC SHEEN
+   ============================================================================== */
+
+.liquid-metal-surface {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(197, 164, 155, 0.14) 28%, rgba(255, 255, 255, 0.03) 52%, rgba(145, 79, 81, 0.16) 78%, rgba(255, 255, 255, 0.09) 100%);
+  border: 1px solid rgba(239, 233, 227, 0.2);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3), 0 10px 32px -4px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.liquid-metal-pill {
+  background: linear-gradient(135deg, rgba(145, 79, 81, 0.95) 0%, rgba(197, 164, 155, 0.85) 50%, rgba(145, 79, 81, 0.95) 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 4px 16px rgba(145, 79, 81, 0.35);
+  color: #FFFFFF;
+}
+
+.liquid-metal-border {
+  position: relative;
+}
+.liquid-metal-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(145, 79, 81, 0.5) 40%, rgba(197, 164, 155, 0.4) 70%, rgba(255, 255, 255, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.liquid-metal-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.liquid-metal-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.16) 50%, transparent 100%);
+  transform: translateX(-100%);
+  animation: metalShimmerFlow 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes metalShimmerFlow {
+  0%, 25% { transform: translateX(-100%); }
+  55%, 100% { transform: translateX(100%); }
+}
+
+/* ==============================================================================
+   ANIMATED THERMAL GRADIENT AMBIENT SYSTEM
+   ============================================================================== */
+
+@keyframes thermalDriftA {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate3d(60px, -40px, 0) scale(1.12) rotate(4deg); }
+  66% { transform: translate3d(-40px, 50px, 0) scale(0.92) rotate(-3deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes thermalDriftB {
+  0% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+  35% { transform: translate3d(-50px, 45px, 0) scale(0.9) rotate(-4deg); }
+  70% { transform: translate3d(45px, -35px, 0) scale(1.1) rotate(5deg); }
+  100% { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+}
+
+@keyframes thermalDriftC {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  40% { transform: translate3d(35px, 35px, 0) scale(1.14); }
+  75% { transform: translate3d(-30px, -30px, 0) scale(0.94); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes thermalPulse {
+  0%, 100% { opacity: 0.28; }
+  50% { opacity: 0.44; }
+}
+
+.thermal-wave-1 {
+  animation: thermalDriftA 26s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.thermal-wave-2 {
+  animation: thermalDriftB 32s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.thermal-wave-3 {
+  animation: thermalDriftC 28s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.thermal-pulse {
+  animation: thermalPulse 10s ease-in-out infinite;
+}
+
+/* Caret visibility & input contrast protection */
+input, textarea {
+  caret-color: #914F51;
+}
+.dark input, .dark textarea {
+  caret-color: #C5A49B;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-metal-shimmer::after,
+  .thermal-wave-1, .thermal-wave-2, .thermal-wave-3, .thermal-pulse {
+    animation: none !important;
+  }
+}

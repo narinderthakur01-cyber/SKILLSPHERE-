@@ -127,7 +127,7 @@ export const AssistantPage = () => {
                 filteredFaqs.map((faq) => (
                   <details
                     key={faq.id}
-                    className="group border border-oxblood/10 dark:border-white/10 rounded-xl bg-ivory-warm/40 dark:bg-charcoal-light/40 overflow-hidden text-xs transition-all open:bg-white dark:open:bg-charcoal open:shadow-xs"
+                    className="group border border-slate-200/80 dark:border-white/10 rounded-xl bg-white/70 dark:bg-[#221F24] overflow-hidden text-xs transition-all open:bg-white dark:open:bg-[#201E22] open:shadow-xs"
                   >
                     <summary className="cursor-pointer font-medium p-3 text-charcoal dark:text-ivory hover:text-oxblood dark:hover:text-ivory flex items-center justify-between list-none">
                       <span className="pr-2">{faq.title}</span>

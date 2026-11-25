@@ -583,21 +583,21 @@ export const VideoInterviewRoomPage = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-charcoal text-ivory flex flex-col items-center justify-center p-6">
+      <div className="min-h-screen bg-[#0E1116] text-white flex flex-col items-center justify-center p-6">
         <div className="w-12 h-12 rounded-full border-4 border-oxblood/30 border-t-oxblood animate-spin mb-4" />
-        <h2 className="font-display text-xl font-bold">Connecting to SkillSphere Live Room...</h2>
-        <p className="text-xs font-mono text-ivory/60 mt-1">Securing end-to-end WebRTC channels & credentials</p>
+        <h2 className="font-display text-xl font-bold text-white">Connecting to SkillSphere Live Room...</h2>
+        <p className="text-xs font-mono text-slate-300 mt-1">Securing end-to-end WebRTC channels & credentials</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-charcoal text-ivory flex flex-col items-center justify-center p-6">
-        <div className="glass-card max-w-md w-full p-8 rounded-3xl border border-red-500/30 text-center space-y-4">
+      <div className="min-h-screen bg-[#0E1116] text-white flex flex-col items-center justify-center p-6">
+        <div className="glass-card max-w-md w-full p-8 rounded-3xl border border-red-500/40 text-center space-y-4 bg-[#141820]">
           <AlertTriangle className="w-12 h-12 text-red-400 mx-auto" />
           <h2 className="font-display text-xl font-bold text-white">Interview Access Denied</h2>
-          <p className="text-xs text-ivory/70 font-mono">{error}</p>
+          <p className="text-xs text-slate-300 font-mono">{error}</p>
           <button
             onClick={() => navigate(isRecruiter ? '/recruiter?tab=interviews' : '/dashboard?tab=interviews')}
             className="btn-oxblood w-full py-2.5 rounded-xl font-semibold text-xs mt-4"
@@ -612,29 +612,29 @@ export const VideoInterviewRoomPage = () => {
   // Waiting Room View (For Candidates before recruiter admits)
   if (!isRecruiter && !isAdmitted) {
     return (
-      <div className="min-h-screen bg-charcoal text-ivory flex flex-col items-center justify-center p-6">
-        <div className="glass-card max-w-xl w-full p-8 rounded-3xl border border-oxblood/30 text-center space-y-6 shadow-2xl">
+      <div className="min-h-screen bg-[#0E1116] text-white flex flex-col items-center justify-center p-6">
+        <div className="glass-card max-w-xl w-full p-8 rounded-3xl border border-oxblood/40 text-center space-y-6 shadow-2xl bg-[#141820]">
           <div className="w-16 h-16 rounded-2xl bg-oxblood/20 border border-oxblood/40 flex items-center justify-center mx-auto text-oxblood dark:text-rose">
             <Lock className="w-8 h-8 animate-pulse" />
           </div>
 
           <div>
-            <span className="badge-selected font-mono text-[11px] px-3 py-1 rounded-full uppercase">
+            <span className="badge-selected font-mono text-[11px] px-3.5 py-1 rounded-full uppercase bg-oxblood/25 text-rose-300 border border-oxblood/40">
               SkillSphere Waiting Room
             </span>
             <h2 className="font-display text-2xl font-bold text-white mt-3">
               Waiting for the Interviewer
             </h2>
-            <p className="text-xs text-ivory/70 font-mono mt-1 max-w-md mx-auto">
+            <p className="text-xs text-slate-300 font-mono mt-1 max-w-md mx-auto">
               {roomStatus?.job_title} &bull; {roomStatus?.recruiter_name || 'Hiring Team'}
             </p>
-            <p className="text-xs text-ivory/50 font-sans mt-3">
+            <p className="text-xs text-slate-400 font-sans mt-3">
               Please stay on this page. You will automatically join as soon as the recruiter admits you.
             </p>
           </div>
 
           {/* Local Camera Test Preview */}
-          <div className="relative rounded-2xl overflow-hidden bg-black/40 border border-ivory/10 aspect-video max-w-sm mx-auto flex items-center justify-center">
+          <div className="relative rounded-2xl overflow-hidden bg-black/60 border border-white/15 aspect-video max-w-sm mx-auto flex items-center justify-center">
             <video
               ref={localVideoRef}
               autoPlay
@@ -644,10 +644,10 @@ export const VideoInterviewRoomPage = () => {
             />
             {isVideoMuted && (
               <div className="absolute inset-0 bg-black/80 flex items-center justify-center">
-                <VideoOff className="w-10 h-10 text-ivory/40" />
+                <VideoOff className="w-10 h-10 text-white/50" />
               </div>
             )}
-            <div className="absolute bottom-3 left-3 bg-black/60 px-2.5 py-1 rounded-lg text-[10px] font-mono text-ivory/80">
+            <div className="absolute bottom-3 left-3 bg-black/75 px-2.5 py-1 rounded-lg text-[10px] font-mono text-white/90 border border-white/10">
               Camera Preview (Self-check)
             </div>
           </div>
@@ -656,35 +656,35 @@ export const VideoInterviewRoomPage = () => {
           <div className="flex items-center justify-center gap-3">
             <button
               onClick={toggleAudio}
-              className={`p-3 rounded-full transition ${isAudioMuted ? 'bg-red-600 text-white' : 'bg-ivory/10 text-ivory hover:bg-ivory/20'}`}
+              className={`p-3 rounded-full transition ${isAudioMuted ? 'bg-red-600 text-white' : 'bg-white/15 text-white hover:bg-white/25 border border-white/20'}`}
               title={isAudioMuted ? "Unmute Mic" : "Mute Mic"}
             >
               {isAudioMuted ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
             </button>
             <button
               onClick={toggleVideo}
-              className={`p-3 rounded-full transition ${isVideoMuted ? 'bg-red-600 text-white' : 'bg-ivory/10 text-ivory hover:bg-ivory/20'}`}
+              className={`p-3 rounded-full transition ${isVideoMuted ? 'bg-red-600 text-white' : 'bg-white/15 text-white hover:bg-white/25 border border-white/20'}`}
               title={isVideoMuted ? "Turn Video On" : "Turn Video Off"}
             >
               {isVideoMuted ? <VideoOff className="w-5 h-5" /> : <Video className="w-5 h-5" />}
             </button>
             <button
               onClick={() => setShowConsentModal(true)}
-              className="px-4 py-2 rounded-xl text-xs font-mono border border-ivory/20 hover:border-ivory/40 flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl text-xs font-mono border border-white/20 hover:border-white/40 text-white flex items-center gap-1.5 bg-white/5"
             >
-              <Shield className="w-3.5 h-3.5 text-oxblood dark:text-rose" />
+              <Shield className="w-3.5 h-3.5 text-rose-300" />
               <span>{myConsent ? "Consent Granted" : "Review Consent"}</span>
             </button>
           </div>
 
-          <div className="pt-4 border-t border-ivory/10 flex justify-between items-center text-[11px] font-mono text-ivory/60">
+          <div className="pt-4 border-t border-white/10 flex justify-between items-center text-[11px] font-mono text-slate-300">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-              <span>Connection Active</span>
+              <span className="text-emerald-300">Connection Active</span>
             </div>
             <button
               onClick={() => navigate('/dashboard?tab=interviews')}
-              className="text-ivory/50 hover:text-white"
+              className="text-slate-400 hover:text-white"
             >
               Cancel & Exit
             </button>
@@ -696,21 +696,21 @@ export const VideoInterviewRoomPage = () => {
 
   // ACTIVE INTERVIEW ROOM VIEW
   return (
-    <div className="min-h-screen bg-[#0E1116] text-ivory flex flex-col justify-between select-none">
+    <div className="min-h-screen bg-[#0E1116] text-white flex flex-col justify-between select-none">
       {/* 1. Header Bar */}
-      <header className="h-16 px-6 border-b border-ivory/10 flex items-center justify-between bg-charcoal/90 backdrop-blur-md z-30">
+      <header className="h-16 px-6 border-b border-white/10 flex items-center justify-between bg-[#141820]/95 backdrop-blur-md z-30">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-oxblood/30 border border-oxblood flex items-center justify-center font-display font-bold text-oxblood dark:text-rose text-sm">
+          <div className="w-8 h-8 rounded-lg bg-oxblood/30 border border-oxblood flex items-center justify-center font-display font-bold text-white text-sm">
             SS
           </div>
           <div>
             <h1 className="font-display font-bold text-sm text-white flex items-center gap-2">
               <span>{roomStatus?.job_title || 'SkillSphere Video Interview'}</span>
-              <span className="badge-slate font-mono text-[10px] px-2 py-0.5 rounded">
+              <span className="font-mono text-[10px] px-2 py-0.5 rounded bg-white/10 text-slate-200 border border-white/15">
                 Room {interviewId.slice(0, 8)}
               </span>
             </h1>
-            <p className="text-[11px] font-mono text-ivory/60">
+            <p className="text-[11px] font-mono text-slate-300">
               {roomStatus?.recruiter_name} &bull; {roomStatus?.candidate_name}
             </p>
           </div>
@@ -719,13 +719,13 @@ export const VideoInterviewRoomPage = () => {
         {/* Center: Recording Indicator & Duration */}
         <div className="flex items-center gap-3">
           {recordingStatus === 'RECORDING' ? (
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-600/60 text-red-400 font-mono text-xs font-bold animate-pulse">
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-600/60 text-red-300 font-mono text-xs font-bold animate-pulse">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
               <span>REC {formatDuration(recordingDuration)}</span>
             </div>
           ) : (
-            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-ivory/5 border border-ivory/10 text-ivory/60 font-mono text-xs">
-              <Shield className="w-3.5 h-3.5 text-oxblood dark:text-rose" />
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-slate-200 font-mono text-xs">
+              <Shield className="w-3.5 h-3.5 text-rose-300" />
               <span>{bothConsented ? "Mutual Consent Verified" : "Consent Required to Record"}</span>
             </div>
           )}
@@ -739,7 +739,7 @@ export const VideoInterviewRoomPage = () => {
               className={`px-3 py-1.5 rounded-xl font-mono text-xs font-bold flex items-center gap-1.5 border transition shadow ${
                 hybridRecruiterActive
                   ? 'bg-amber-500 text-black border-amber-400 animate-pulse'
-                  : 'bg-emerald-600/30 text-emerald-400 border-emerald-500/40 hover:bg-emerald-600/50'
+                  : 'bg-emerald-600/40 text-emerald-300 border-emerald-500/50 hover:bg-emerald-600/60'
               }`}
               title="Toggle Recruiter Speaking vs AI Speaking"
             >
@@ -753,7 +753,7 @@ export const VideoInterviewRoomPage = () => {
               <button
                 onClick={() => setShowScorecardDrawer(!showScorecardDrawer)}
                 className={`px-3 py-1.5 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 border transition ${
-                  showScorecardDrawer ? 'bg-oxblood text-white border-oxblood' : 'bg-ivory/5 border-ivory/15 text-ivory/80 hover:bg-ivory/10'
+                  showScorecardDrawer ? 'bg-oxblood text-white border-oxblood' : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
                 }`}
               >
                 <FileText className="w-3.5 h-3.5" />
@@ -763,7 +763,7 @@ export const VideoInterviewRoomPage = () => {
               <button
                 onClick={handleLoadAI}
                 disabled={loadingAI}
-                className="px-3 py-1.5 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 bg-oxblood/20 border border-oxblood/40 text-oxblood dark:text-rose hover:bg-oxblood/30 transition"
+                className="px-3 py-1.5 rounded-xl font-mono text-xs font-semibold flex items-center gap-1.5 bg-oxblood/30 border border-oxblood/50 text-rose-200 hover:bg-oxblood/40 transition"
               >
                 <Sparkles className="w-3.5 h-3.5" />
                 <span className="hidden md:inline">{loadingAI ? 'Analyzing...' : 'AI Assistant'}</span>
@@ -773,7 +773,7 @@ export const VideoInterviewRoomPage = () => {
 
           <button
             onClick={() => setShowConsentModal(true)}
-            className="p-2 rounded-xl bg-ivory/5 border border-ivory/15 text-ivory/70 hover:text-white"
+            className="p-2 rounded-xl bg-white/10 border border-white/20 text-white hover:bg-white/20"
             title="Recording Privacy & Consent"
           >
             <Shield className="w-4 h-4" />
@@ -783,7 +783,7 @@ export const VideoInterviewRoomPage = () => {
 
       {/* Recruiter Waiting Room Notification Banner if Candidate is waiting */}
       {isRecruiter && !roomStatus?.is_admitted && (
-        <div className="bg-oxblood/20 border-b border-oxblood/40 px-6 py-2.5 flex items-center justify-between text-xs font-mono text-ivory/90 z-20">
+        <div className="bg-oxblood/20 border-b border-oxblood/40 px-6 py-2.5 flex items-center justify-between text-xs font-mono text-slate-200 z-20">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping" />
             <span>Candidate <strong>{roomStatus?.candidate_name}</strong> is in the waiting room ready to be admitted.</span>
@@ -802,7 +802,7 @@ export const VideoInterviewRoomPage = () => {
       <main className="flex-1 p-4 md:p-6 flex flex-col md:flex-row gap-4 relative overflow-hidden">
         {/* Remote Participant or AI Interviewer Box */}
         {(roomStatus?.interview_mode === 'AI_LIVE' || roomStatus?.interview_mode === 'HYBRID' || roomStatus?.interview_mode === 'CONFIGURED') ? (
-          <div className="flex-1 rounded-3xl bg-[#141820] border border-ivory/10 relative overflow-hidden flex flex-col justify-between p-6 shadow-inner min-h-[400px]">
+          <div className="flex-1 rounded-3xl bg-[#141820] border border-white/15 relative overflow-hidden flex flex-col justify-between p-6 shadow-inner min-h-[400px]">
             {/* Top AI Status Bar */}
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
@@ -829,7 +829,7 @@ export const VideoInterviewRoomPage = () => {
                   <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-lg bg-oxblood/30 border border-oxblood text-oxblood dark:text-rose">
                     Question {currentQIndex + 1} / {interviewQuestions.length}
                   </span>
-                  <div className="flex items-center gap-1 font-mono text-xs text-ivory/80 bg-black/40 px-2.5 py-1 rounded-lg border border-ivory/10">
+                  <div className="flex items-center gap-1 font-mono text-xs text-slate-200 bg-black/50 px-2.5 py-1 rounded-lg border border-white/15">
                     <Clock className="w-3.5 h-3.5 text-oxblood dark:text-rose" />
                     <span>{Math.floor(qTimeRemaining / 60)}:{(qTimeRemaining % 60).toString().padStart(2, '0')}</span>
                   </div>
@@ -868,17 +868,17 @@ export const VideoInterviewRoomPage = () => {
               </div>
 
               {/* Active Question Prompt Display */}
-              <div className="max-w-xl mx-auto px-4 py-3 rounded-2xl bg-black/50 border border-ivory/15 backdrop-blur-md">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-[10px] font-mono font-bold text-oxblood dark:text-rose uppercase tracking-wider">
+              <div className="max-w-xl mx-auto px-5 py-4 rounded-2xl bg-black/70 border border-white/20 backdrop-blur-md shadow-xl">
+                <div className="flex items-center justify-between mb-1.5">
+                  <span className="text-[10px] font-mono font-bold text-rose-300 uppercase tracking-wider">
                     {interviewQuestions[currentQIndex]?.question_type || 'TECHNICAL'} PROMPT
                   </span>
                   <button
                     onClick={() => speakAI(interviewQuestions[currentQIndex]?.question_text || aiSpeechText)}
-                    className="text-[10px] text-ivory/60 hover:text-white flex items-center gap-1 font-mono"
+                    className="text-[10px] text-slate-300 hover:text-white flex items-center gap-1 font-mono transition"
                     title="Repeat Question Audio"
                   >
-                    <Volume2 className="w-3 h-3" />
+                    <Volume2 className="w-3.5 h-3.5" />
                     <span>Repeat Audio</span>
                   </button>
                 </div>
@@ -889,12 +889,12 @@ export const VideoInterviewRoomPage = () => {
 
               {/* Live Candidate Speech Captions */}
               {candidateLiveTranscript && (
-                <div className="max-w-lg mx-auto p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-left">
-                  <div className="flex items-center gap-1 text-[10px] font-mono text-emerald-400 mb-0.5">
-                    <Mic className="w-3 h-3 animate-pulse" />
-                    <span>Transcribing Candidate Voice:</span>
+                <div className="max-w-lg mx-auto p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-left shadow-lg">
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-emerald-300 mb-1">
+                    <Mic className="w-3.5 h-3.5 animate-pulse" />
+                    <span className="font-bold">Live Transcription:</span>
                   </div>
-                  <p className="text-xs font-mono text-ivory/90 line-clamp-3">
+                  <p className="text-xs font-mono text-emerald-100 line-clamp-3">
                     {candidateLiveTranscript}
                   </p>
                 </div>
@@ -902,8 +902,8 @@ export const VideoInterviewRoomPage = () => {
             </div>
 
             {/* Bottom Question Controls */}
-            <div className="flex justify-between items-center pt-3 border-t border-ivory/10">
-              <span className="text-xs text-ivory/60 font-mono">
+            <div className="flex justify-between items-center pt-3 border-t border-white/10">
+              <span className="text-xs text-slate-300 font-mono">
                 {interviewQuestions.length === 0 ? 'AI Session Active' :
                  currentQIndex + 1 === interviewQuestions.length ? 'Final Question' : `${interviewQuestions.length - currentQIndex - 1} questions remaining`}
               </span>
@@ -912,7 +912,7 @@ export const VideoInterviewRoomPage = () => {
                 <button
                   onClick={handleNextAIQuestion}
                   disabled={isSubmittingFinal}
-                  className="px-4 py-2 rounded-xl bg-oxblood text-white font-mono text-xs font-bold hover:bg-oxblood/90 transition shadow flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-oxblood text-white font-mono text-xs font-bold hover:bg-oxblood-600 transition shadow-md flex items-center gap-1.5"
                 >
                   <span>{currentQIndex + 1 >= interviewQuestions.length ? 'Submit & Conclude' : 'Next Question'}</span>
                   <ChevronRight className="w-4 h-4" />
@@ -921,33 +921,33 @@ export const VideoInterviewRoomPage = () => {
             </div>
           </div>
         ) : (
-          <div className="flex-1 rounded-3xl bg-[#141820] border border-ivory/10 relative overflow-hidden flex items-center justify-center shadow-inner min-h-[300px]">
+          <div className="flex-1 rounded-3xl bg-[#141820] border border-white/15 relative overflow-hidden flex items-center justify-center shadow-inner min-h-[300px]">
             <div className="text-center p-6 space-y-3">
-              <div className="w-20 h-20 rounded-full bg-oxblood/20 border border-oxblood/40 flex items-center justify-center mx-auto text-oxblood dark:text-rose font-display text-2xl font-bold">
+              <div className="w-20 h-20 rounded-full bg-oxblood/30 border border-oxblood flex items-center justify-center mx-auto text-rose-300 font-display text-2xl font-bold">
                 {isRecruiter ? (roomStatus?.candidate_name?.[0] || 'C') : (roomStatus?.recruiter_name?.[0] || 'R')}
               </div>
               <div>
                 <p className="font-display font-bold text-base text-white">
                   {isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}
                 </p>
-                <p className="font-mono text-xs text-ivory/50">
+                <p className="font-mono text-xs text-slate-300">
                   {isRecruiter ? 'Candidate Feed Connected' : 'Interviewer Feed Connected'}
                 </p>
               </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-ivory/10 text-[10px] font-mono text-emerald-400">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 text-[10px] font-mono text-emerald-300 font-bold">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span>WebRTC Direct Stream Active</span>
               </div>
             </div>
 
-            <div className="absolute top-4 left-4 bg-black/60 px-3 py-1 rounded-xl text-xs font-mono text-ivory/80 backdrop-blur-sm border border-ivory/10">
+            <div className="absolute top-4 left-4 bg-black/75 px-3 py-1 rounded-xl text-xs font-mono text-white backdrop-blur-sm border border-white/20">
               {isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}
             </div>
           </div>
         )}
 
         {/* Local Stream PIP / Side-by-Side Box */}
-        <div className="w-full md:w-80 lg:w-96 rounded-3xl bg-[#141820] border border-ivory/10 relative overflow-hidden flex items-center justify-center shadow-lg aspect-video md:aspect-auto">
+        <div className="w-full md:w-80 lg:w-96 rounded-3xl bg-[#141820] border border-white/15 relative overflow-hidden flex items-center justify-center shadow-lg aspect-video md:aspect-auto">
           <video
             ref={localVideoRef}
             autoPlay
@@ -958,18 +958,18 @@ export const VideoInterviewRoomPage = () => {
 
           {isVideoMuted && (
             <div className="absolute inset-0 bg-[#141820] flex flex-col items-center justify-center space-y-2">
-              <VideoOff className="w-10 h-10 text-ivory/30" />
-              <span className="font-mono text-[11px] text-ivory/50">Camera Off</span>
+              <VideoOff className="w-10 h-10 text-slate-400" />
+              <span className="font-mono text-[11px] text-slate-300">Camera Off</span>
             </div>
           )}
 
-          <div className="absolute top-3 left-3 bg-black/60 px-2.5 py-1 rounded-lg text-[10px] font-mono text-ivory/80 backdrop-blur-sm border border-ivory/10 flex items-center gap-1.5">
+          <div className="absolute top-3 left-3 bg-black/75 px-2.5 py-1 rounded-lg text-[10px] font-mono text-white backdrop-blur-sm border border-white/20 flex items-center gap-1.5">
             <span>You ({user?.name})</span>
             {isAudioMuted && <MicOff className="w-3 h-3 text-red-400" />}
           </div>
 
           {isScreenSharing && (
-            <div className="absolute bottom-3 left-3 bg-oxblood/80 px-2.5 py-1 rounded-lg text-[10px] font-mono text-white flex items-center gap-1">
+            <div className="absolute bottom-3 left-3 bg-oxblood px-2.5 py-1 rounded-lg text-[10px] font-mono text-white flex items-center gap-1 shadow-md">
               <Monitor className="w-3 h-3" />
               <span>Sharing Screen</span>
             </div>
@@ -977,13 +977,13 @@ export const VideoInterviewRoomPage = () => {
         </div>
       </main>
 
-      {/* 3. Bottom Meeting Controls Bar */}
-      <footer className="h-20 px-6 border-t border-ivory/10 bg-charcoal/95 backdrop-blur-md flex items-center justify-between z-30">
+      {/* 3. Bottom Meeting Controls Bar with Fixed High-Contrast Buttons & Labels */}
+      <footer className="h-20 px-6 border-t border-white/10 bg-[#141820]/95 backdrop-blur-md flex items-center justify-between z-30">
         {/* Left: Session details */}
-        <div className="hidden sm:block text-xs font-mono text-ivory/60">
+        <div className="hidden sm:block text-xs font-mono text-slate-300">
           <span>SkillSphere WebRTC v2.0</span>
           {devicePermissionError && (
-            <span className="block text-amber-400 text-[10px]">{devicePermissionError}</span>
+            <span className="block text-amber-400 text-[10px] font-bold">{devicePermissionError}</span>
           )}
         </div>
 
@@ -992,7 +992,7 @@ export const VideoInterviewRoomPage = () => {
           <button
             onClick={toggleAudio}
             className={`p-3.5 rounded-2xl transition shadow-lg ${
-              isAudioMuted ? 'bg-red-600 text-white' : 'bg-ivory/10 text-ivory hover:bg-ivory/20 border border-ivory/10'
+              isAudioMuted ? 'bg-red-600 text-white' : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
             }`}
             title={isAudioMuted ? "Unmute Microphone" : "Mute Microphone"}
           >
@@ -1002,7 +1002,7 @@ export const VideoInterviewRoomPage = () => {
           <button
             onClick={toggleVideo}
             className={`p-3.5 rounded-2xl transition shadow-lg ${
-              isVideoMuted ? 'bg-red-600 text-white' : 'bg-ivory/10 text-ivory hover:bg-ivory/20 border border-ivory/10'
+              isVideoMuted ? 'bg-red-600 text-white' : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
             }`}
             title={isVideoMuted ? "Turn On Camera" : "Turn Off Camera"}
           >
@@ -1012,7 +1012,7 @@ export const VideoInterviewRoomPage = () => {
           <button
             onClick={toggleScreenShare}
             className={`p-3.5 rounded-2xl transition shadow-lg ${
-              isScreenSharing ? 'bg-oxblood text-white' : 'bg-ivory/10 text-ivory hover:bg-ivory/20 border border-ivory/10'
+              isScreenSharing ? 'bg-oxblood text-white' : 'bg-white/10 text-white hover:bg-white/20 border border-white/20'
             }`}
             title={isScreenSharing ? "Stop Sharing" : "Share Screen"}
           >
@@ -1035,8 +1035,8 @@ export const VideoInterviewRoomPage = () => {
                 disabled={!bothConsented}
                 className={`px-4 py-3 rounded-2xl font-mono text-xs font-bold flex items-center gap-2 shadow-lg transition ${
                   bothConsented
-                    ? 'bg-ivory/10 hover:bg-ivory/20 text-white border border-ivory/20'
-                    : 'bg-ivory/5 text-ivory/40 cursor-not-allowed border border-ivory/10'
+                    ? 'bg-white/10 hover:bg-white/20 text-white border border-white/25'
+                    : 'bg-white/5 text-white/35 cursor-not-allowed border border-white/10'
                 }`}
                 title={bothConsented ? "Start Recording Session" : "Requires mutual consent from both participants"}
               >
@@ -1057,8 +1057,8 @@ export const VideoInterviewRoomPage = () => {
         </div>
 
         {/* Right: Round details */}
-        <div className="hidden sm:block text-right text-xs font-mono text-ivory/60">
-          <span className="badge-selected px-2.5 py-0.5 rounded text-[10px]">
+        <div className="hidden sm:block text-right text-xs font-mono text-slate-300">
+          <span className="px-2.5 py-0.5 rounded text-[10px] bg-white/10 text-slate-200 border border-white/15">
             {roomStatus?.round_title || 'Technical Screen'}
           </span>
         </div>
@@ -1085,31 +1085,31 @@ export const VideoInterviewRoomPage = () => {
                     <h3 className="font-display font-bold text-lg text-white">
                       Recording & Privacy Policy
                     </h3>
-                    <p className="text-xs font-mono text-ivory/60">
+                    <p className="text-xs font-mono text-slate-300">
                       Mutual Informed Consent Protocol
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowConsentModal(false)}
-                  className="p-1 rounded-lg text-ivory/60 hover:text-white"
+                  className="p-1 rounded-lg text-slate-300 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="p-4 rounded-2xl bg-black/40 border border-ivory/10 space-y-2 text-xs font-sans text-ivory/80 leading-relaxed">
+              <div className="p-4 rounded-2xl bg-black/50 border border-white/15 space-y-2 text-xs font-sans text-slate-200 leading-relaxed">
                 <p>
                   To uphold the highest recruitment integrity, security, and privacy standards, SkillSphere requires <strong>both the candidate and recruiter</strong> to grant explicit consent before session recording can be initialized.
                 </p>
-                <ul className="list-disc pl-4 space-y-1 font-mono text-[11px] text-ivory/70">
+                <ul className="list-disc pl-4 space-y-1 font-mono text-[11px] text-slate-300">
                   <li>Recordings are transferred durably into private, authenticated Cloudinary cloud storage.</li>
                   <li>Access is restricted solely to authorized recruitment evaluators via signed, time-limited URLs.</li>
                   <li>Consent grant timestamp, participant user ID, and IP address are immutably logged for audit.</li>
                 </ul>
               </div>
 
-              <div className="flex justify-between items-center text-xs font-mono p-3 rounded-xl bg-ivory/5 border border-ivory/10">
+              <div className="flex justify-between items-center text-xs font-mono p-3 rounded-xl bg-white/5 border border-white/15 text-slate-200">
                 <span>Mutual Consent Status:</span>
                 <span className={bothConsented ? "text-emerald-400 font-bold" : "text-amber-400 font-bold"}>
                   {bothConsented ? "Both Consented (Recording Permitted)" : "Pending Consent"}
@@ -1119,7 +1119,7 @@ export const VideoInterviewRoomPage = () => {
               <div className="flex gap-3 pt-2">
                 <button
                   onClick={() => handleToggleConsent(false)}
-                  className="flex-1 py-2.5 rounded-xl border border-ivory/20 font-mono text-xs text-ivory/80 hover:bg-ivory/10 transition"
+                  className="flex-1 py-2.5 rounded-xl border border-white/25 font-mono text-xs text-slate-200 hover:bg-white/10 transition"
                 >
                   Decline / Revoke
                 </button>
@@ -1146,22 +1146,22 @@ export const VideoInterviewRoomPage = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-[480px] bg-[#141820] border-l border-ivory/15 shadow-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto"
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-[480px] bg-[#141820] border-l border-white/20 shadow-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto"
           >
             <div className="space-y-6">
-              <div className="flex justify-between items-center pb-4 border-b border-ivory/10">
+              <div className="flex justify-between items-center pb-4 border-b border-white/15">
                 <div>
                   <h3 className="font-display font-bold text-lg text-white flex items-center gap-2">
                     <FileText className="w-5 h-5 text-oxblood dark:text-rose" />
                     <span>Recruiter Scorecard</span>
                   </h3>
-                  <p className="text-xs font-mono text-ivory/60">
+                  <p className="text-xs font-mono text-slate-300">
                     Candidate: {roomStatus?.candidate_name}
                   </p>
                 </div>
                 <button
                   onClick={() => setShowScorecardDrawer(false)}
-                  className="p-1 rounded-lg text-ivory/60 hover:text-white"
+                  className="p-1 rounded-lg text-slate-300 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1171,7 +1171,7 @@ export const VideoInterviewRoomPage = () => {
                 {/* 1. Technical Knowledge */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-bold font-mono text-ivory/90">Technical Knowledge (1 - 5)</label>
+                    <label className="font-bold font-mono text-slate-200">Technical Knowledge (1 - 5)</label>
                     <span className="font-mono text-oxblood dark:text-rose font-bold">{scorecard.technical_knowledge_score} / 5</span>
                   </div>
                   <input
@@ -1188,14 +1188,14 @@ export const VideoInterviewRoomPage = () => {
                     placeholder="Evidence / technical notes..."
                     value={scorecard.technical_evidence_notes}
                     onChange={(e) => setScorecard({ ...scorecard, technical_evidence_notes: e.target.value })}
-                    className="w-full mt-1 px-3 py-1.5 rounded-lg bg-black/40 border border-ivory/15 text-xs text-ivory focus:border-oxblood outline-none"
+                    className="w-full mt-1 px-3 py-1.5 rounded-lg bg-black/60 border border-white/20 text-xs text-white placeholder:text-slate-400 focus:border-rose outline-none"
                   />
                 </div>
 
                 {/* 2. Communication */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-bold font-mono text-ivory/90">Communication & Clarity (1 - 5)</label>
+                    <label className="font-bold font-mono text-slate-200">Communication & Clarity (1 - 5)</label>
                     <span className="font-mono text-oxblood dark:text-rose font-bold">{scorecard.communication_score} / 5</span>
                   </div>
                   <input
@@ -1212,7 +1212,7 @@ export const VideoInterviewRoomPage = () => {
                 {/* 3. Problem Solving */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-bold font-mono text-ivory/90">Problem Solving & Architecture (1 - 5)</label>
+                    <label className="font-bold font-mono text-slate-200">Problem Solving & Architecture (1 - 5)</label>
                     <span className="font-mono text-oxblood dark:text-rose font-bold">{scorecard.problem_solving_score} / 5</span>
                   </div>
                   <input
@@ -1229,7 +1229,7 @@ export const VideoInterviewRoomPage = () => {
                 {/* 4. Role-Specific Skills */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-bold font-mono text-ivory/90">Role-Specific Competence (1 - 5)</label>
+                    <label className="font-bold font-mono text-slate-200">Role-Specific Competence (1 - 5)</label>
                     <span className="font-mono text-oxblood dark:text-rose font-bold">{scorecard.role_specific_score} / 5</span>
                   </div>
                   <input
@@ -1246,7 +1246,7 @@ export const VideoInterviewRoomPage = () => {
                 {/* 5. Cultural Alignment */}
                 <div>
                   <div className="flex justify-between items-center mb-1">
-                    <label className="font-bold font-mono text-ivory/90">Cultural Alignment (1 - 5)</label>
+                    <label className="font-bold font-mono text-slate-200">Cultural Alignment (1 - 5)</label>
                     <span className="font-mono text-oxblood dark:text-rose font-bold">{scorecard.cultural_alignment_score} / 5</span>
                   </div>
                   <input
@@ -1262,11 +1262,11 @@ export const VideoInterviewRoomPage = () => {
 
                 {/* Overall Recommendation */}
                 <div className="pt-2">
-                  <label className="font-bold font-mono text-ivory/90 block mb-1">Overall Recommendation</label>
+                  <label className="font-bold font-mono text-slate-200 block mb-1">Overall Recommendation</label>
                   <select
                     value={scorecard.overall_recommendation}
                     onChange={(e) => setScorecard({ ...scorecard, overall_recommendation: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-black/40 border border-ivory/15 font-mono text-xs text-ivory focus:border-oxblood outline-none"
+                    className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 font-mono text-xs text-white focus:border-rose outline-none"
                   >
                     <option value="RECOMMENDED">RECOMMENDED (Advance to Next Step / Offer)</option>
                     <option value="ADDITIONAL_INTERVIEW_REQUIRED">ADDITIONAL INTERVIEW REQUIRED</option>
@@ -1277,24 +1277,24 @@ export const VideoInterviewRoomPage = () => {
 
                 {/* Strengths & Improvement Notes */}
                 <div>
-                  <label className="font-bold font-mono text-ivory/90 block mb-1">Key Strengths</label>
+                  <label className="font-bold font-mono text-slate-200 block mb-1">Key Strengths</label>
                   <textarea
                     rows={2}
                     value={scorecard.strengths}
                     onChange={(e) => setScorecard({ ...scorecard, strengths: e.target.value })}
                     placeholder="Candidate demonstrated deep knowledge of..."
-                    className="w-full px-3 py-2 rounded-xl bg-black/40 border border-ivory/15 text-xs text-ivory focus:border-oxblood outline-none resize-none"
+                    className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs text-white placeholder:text-slate-400 focus:border-rose outline-none resize-none"
                   />
                 </div>
 
                 <div>
-                  <label className="font-bold font-mono text-ivory/90 block mb-1">Private Evaluation Notes</label>
+                  <label className="font-bold font-mono text-slate-200 block mb-1">Private Evaluation Notes</label>
                   <textarea
                     rows={2}
                     value={scorecard.private_evaluation_notes}
                     onChange={(e) => setScorecard({ ...scorecard, private_evaluation_notes: e.target.value })}
                     placeholder="Internal debrief notes (never visible to candidate)..."
-                    className="w-full px-3 py-2 rounded-xl bg-black/40 border border-ivory/15 text-xs text-ivory focus:border-oxblood outline-none resize-none"
+                    className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs text-white placeholder:text-slate-400 focus:border-rose outline-none resize-none"
                   />
                 </div>
 
@@ -1322,10 +1322,10 @@ export const VideoInterviewRoomPage = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 bottom-0 w-full sm:w-[480px] bg-[#141820] border-l border-ivory/15 shadow-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto"
+            className="fixed top-0 right-0 bottom-0 w-full sm:w-[480px] bg-[#141820] border-l border-white/20 shadow-2xl z-40 p-6 flex flex-col justify-between overflow-y-auto"
           >
             <div className="space-y-6">
-              <div className="flex justify-between items-center pb-4 border-b border-ivory/10">
+              <div className="flex justify-between items-center pb-4 border-b border-white/15">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-lg bg-oxblood/30 border border-oxblood flex items-center justify-center text-oxblood dark:text-rose">
                     <Sparkles className="w-4 h-4" />
@@ -1334,14 +1334,14 @@ export const VideoInterviewRoomPage = () => {
                     <h3 className="font-display font-bold text-base text-white">
                       AI Interview Intelligence
                     </h3>
-                    <p className="text-[10px] font-mono text-ivory/60">
+                    <p className="text-[10px] font-mono text-slate-300">
                       Assistant Draft &bull; Requires Recruiter Approval
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowAIDrawer(false)}
-                  className="p-1 rounded-lg text-ivory/60 hover:text-white"
+                  className="p-1 rounded-lg text-slate-300 hover:text-white"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1369,7 +1369,7 @@ export const VideoInterviewRoomPage = () => {
               {/* Topics Explored */}
               {aiTranscript?.technical_topics_json?.length > 0 && (
                 <div>
-                  <h4 className="font-mono text-xs font-bold text-ivory/80 uppercase mb-2">Technical Topics Analyzed</h4>
+                  <h4 className="font-mono text-xs font-bold text-slate-200 uppercase mb-2">Technical Topics Analyzed</h4>
                   <div className="flex flex-wrap gap-1.5">
                     {aiTranscript.technical_topics_json.map((topic, idx) => (
                       <span key={idx} className="badge-slate font-mono text-[10px] px-2 py-0.5 rounded">
@@ -1382,24 +1382,24 @@ export const VideoInterviewRoomPage = () => {
 
               {/* Editable AI Executive Summary */}
               <div>
-                <h4 className="font-mono text-xs font-bold text-ivory/80 uppercase mb-1">Executive Summary</h4>
+                <h4 className="font-mono text-xs font-bold text-slate-200 uppercase mb-1">Executive Summary</h4>
                 <textarea
                   rows={4}
                   value={editedSummary}
                   onChange={(e) => setEditedSummary(e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl bg-black/40 border border-ivory/15 text-xs text-ivory focus:border-oxblood outline-none resize-none font-sans leading-relaxed"
+                  className="w-full px-3 py-2 rounded-xl bg-black/60 border border-white/20 text-xs text-white placeholder:text-slate-400 focus:border-rose outline-none resize-none font-sans leading-relaxed"
                 />
               </div>
 
               {/* Timestamp Breakdown */}
               {aiTranscript?.timestamps_json?.length > 0 && (
                 <div>
-                  <h4 className="font-mono text-xs font-bold text-ivory/80 uppercase mb-2">Interview Segments</h4>
+                  <h4 className="font-mono text-xs font-bold text-slate-200 uppercase mb-2">Interview Segments</h4>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
                     {aiTranscript.timestamps_json.map((seg, idx) => (
-                      <div key={idx} className="p-2.5 rounded-lg bg-black/40 border border-ivory/10 text-xs font-mono">
+                      <div key={idx} className="p-2.5 rounded-lg bg-black/60 border border-white/15 text-xs font-mono">
                         <span className="text-oxblood dark:text-rose font-bold mr-2">{seg.time}</span>
-                        <span className="text-ivory/90">{seg.topic}</span>
+                        <span className="text-slate-200">{seg.topic}</span>
                       </div>
                     ))}
                   </div>
@@ -1441,12 +1441,12 @@ export const VideoInterviewRoomPage = () => {
                 <h3 className="font-display text-2xl font-bold text-white mt-3">
                   Session Completed Successfully
                 </h3>
-                <p className="text-xs font-mono text-ivory/70 mt-2 max-w-sm mx-auto leading-relaxed">
+                <p className="text-xs font-mono text-slate-300 mt-2 max-w-sm mx-auto leading-relaxed">
                   Thank you for completing your interview. Your verbal responses, technical explanations, and recording have been securely transferred to Cloudinary for recruiter review.
                 </p>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-white/5 border border-ivory/10 text-left font-mono text-xs space-y-1.5 text-ivory/80">
+              <div className="p-3.5 rounded-xl bg-white/5 border border-white/15 text-left font-mono text-xs space-y-1.5 text-slate-200">
                 <div className="flex justify-between">
                   <span>Room ID:</span>
                   <span className="text-white">{interviewId.slice(0, 12)}</span>

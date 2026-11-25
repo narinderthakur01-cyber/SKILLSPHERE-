@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Send, Trash2, Bot, AlertCircle, RefreshCw, X, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Send, Trash2, Bot, AlertCircle, RefreshCw, X, Sparkles, CheckCircle2, Maximize2, Minimize2, Languages } from 'lucide-react';
 import { chatAPI } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { ChatMessage } from './ChatMessage';
@@ -22,6 +22,7 @@ export const ChatWindow = ({
   const [currentTopic, setCurrentTopic] = useState(initialTopic);
   const [quickReplies, setQuickReplies] = useState([]);
   const [showClearConfirm, setShowClearConfirm] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
@@ -53,13 +54,11 @@ export const ChatWindow = ({
             return;
           }
         } catch {
-          // If session not found or expired, clear local storage
           sessionStorage.removeItem('skillsphere_chat_session_id');
           if (isMounted) setSessionId(null);
         }
       }
 
-      // If no prior session, send initial welcome
       if (isMounted) {
         const defaultReplies = role === 'RECRUITER'
           ? [
@@ -81,7 +80,7 @@ export const ChatWindow = ({
           {
             id: 'welcome',
             sender: 'assistant',
-            content: `Hello ${user?.name ? user.name.split(' ')[0] : 'there'}! I am your SkillSphere Assistant. How can I help you today? You can select any question below or type your own question.`,
+            content: `Hello ${user?.name ? user.name.split(' ')[0] : 'there'}! I am your SkillSphere Multilingual Assistant. I can help you with resumes, jobs, assessments, interviews, and support tickets in English, Hindi, Hinglish, and Punjabi.`,
             intent: 'general_greeting',
             created_at: new Date().toISOString()
           }
@@ -96,7 +95,7 @@ export const ChatWindow = ({
     return () => {
       isMounted = false;
     };
-  }, [sessionId, role]);
+  }, [sessionId, role, user]);
 
   const handleSend = async (messageText = input, topicHint = null) => {
     const textToSend = messageText.trim();
@@ -177,7 +176,6 @@ export const ChatWindow = ({
     setCurrentTopic(null);
     setShowClearConfirm(false);
 
-    // Reset messages to welcome
     setMessages([
       {
         id: `welcome-${Date.now()}`,
@@ -191,36 +189,56 @@ export const ChatWindow = ({
 
   return (
     <div
-      className={`flex flex-col bg-ivory-warm/95 dark:bg-charcoal/95 backdrop-blur-md border border-oxblood/15 dark:border-white/10 shadow-xl overflow-hidden transition-all ${
+      className={`flex flex-col bg-[#FDFBF9] dark:bg-[#181619] border border-slate-200/80 dark:border-white/10 shadow-2xl overflow-hidden transition-all duration-300 ${
         isFullPage
-          ? 'w-full h-full rounded-2xl'
-          : 'w-[92vw] sm:w-[420px] h-[560px] max-h-[82vh] rounded-2xl'
+          ? 'w-full h-full rounded-3xl'
+          : isExpanded
+          ? 'w-[96vw] sm:w-[620px] md:w-[680px] h-[720px] max-h-[90vh] rounded-3xl'
+          : 'w-[94vw] sm:w-[460px] md:w-[490px] h-[620px] max-h-[85vh] rounded-3xl'
       }`}
     >
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-white/90 dark:bg-charcoal-light/90 border-b border-oxblood/10 dark:border-white/10 shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-oxblood text-white flex items-center justify-center shadow-xs">
-            <Bot className="w-4 h-4" />
+      {/* Header with Liquid Metal & Thermal Accent */}
+      <div className="flex items-center justify-between px-5 py-3.5 bg-white/95 dark:bg-[#201E22]/95 border-b border-slate-200/70 dark:border-white/10 shrink-0 backdrop-blur-md">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-2xl bg-gradient-to-br from-oxblood to-oxblood-600 text-white flex items-center justify-center shadow-md liquid-metal-pill">
+            <Bot className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-xs sm:text-sm font-semibold text-charcoal dark:text-ivory leading-tight flex items-center gap-1.5">
-              SkillSphere Assistant
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Online" />
-            </h3>
-            <p className="text-[10px] text-slate/70 dark:text-ivory/50 font-mono tracking-wide">
-              Rule-Based • Zero External AI
+            <div className="flex items-center gap-2">
+              <h3 className="text-sm font-display font-bold text-charcoal dark:text-ivory leading-tight">
+                SkillSphere Assistant
+              </h3>
+              <span className="flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-mono font-bold bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>ONLINE</span>
+              </span>
+            </div>
+            <p className="text-[10px] text-slate-500 dark:text-rose font-mono flex items-center gap-1.5 mt-0.5">
+              <Languages className="w-3 h-3 text-oxblood" />
+              <span>EN • HI • Hinglish • PA</span>
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-1">
+          {/* Expand / Minimize Window (Non-full-page only) */}
+          {!isFullPage && (
+            <button
+              type="button"
+              onClick={() => setIsExpanded((prev) => !prev)}
+              title={isExpanded ? "Collapse to standard size" : "Expand conversation area"}
+              className="p-2 rounded-xl text-slate-500 dark:text-ivory/70 hover:text-charcoal dark:hover:text-ivory hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+            >
+              {isExpanded ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+            </button>
+          )}
+
           {/* Clear Chat Confirmation Trigger */}
           <button
             type="button"
             onClick={() => setShowClearConfirm(true)}
             title="Clear conversation"
-            className="p-1.5 rounded-lg text-slate/70 dark:text-ivory/60 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
+            className="p-2 rounded-xl text-slate-500 dark:text-ivory/70 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors"
           >
             <Trash2 className="w-4 h-4" />
           </button>
@@ -231,7 +249,7 @@ export const ChatWindow = ({
               type="button"
               onClick={onClose}
               title="Close Assistant"
-              className="p-1.5 rounded-lg text-slate/70 dark:text-ivory/60 hover:text-charcoal dark:hover:text-ivory hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+              className="p-2 rounded-xl text-slate-500 dark:text-ivory/70 hover:text-charcoal dark:hover:text-ivory hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -241,20 +259,20 @@ export const ChatWindow = ({
 
       {/* Clear Chat Confirmation Dialog */}
       {showClearConfirm && (
-        <div className="bg-rose-50 dark:bg-rose-950/40 border-b border-rose-200 dark:border-rose-900/50 p-3 flex items-center justify-between gap-2 text-xs text-rose-900 dark:text-rose-200 shrink-0">
-          <span>Clear conversation history?</span>
-          <div className="flex items-center gap-1.5">
+        <div className="bg-rose-50 dark:bg-rose-950/50 border-b border-rose-200 dark:border-rose-900/60 p-3.5 flex items-center justify-between gap-3 text-xs text-rose-900 dark:text-rose-200 shrink-0">
+          <span className="font-medium">Clear conversation history and reset session?</span>
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={handleClearChat}
-              className="px-2.5 py-1 rounded bg-rose-600 text-white font-medium hover:bg-rose-700 transition"
+              className="px-3 py-1.5 rounded-xl bg-rose-600 text-white font-bold hover:bg-rose-700 transition shadow-xs text-xs"
             >
-              Yes, Clear
+              Clear
             </button>
             <button
               type="button"
               onClick={() => setShowClearConfirm(false)}
-              className="px-2 py-1 rounded bg-black/5 dark:bg-white/10 hover:bg-black/10 transition"
+              className="px-2.5 py-1.5 rounded-xl bg-black/5 dark:bg-white/10 hover:bg-black/10 text-xs font-medium transition"
             >
               Cancel
             </button>
@@ -263,7 +281,7 @@ export const ChatWindow = ({
       )}
 
       {/* Message Feed Container */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-2 select-text">
+      <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 space-y-3 select-text scrollbar-thin">
         {messages.map((m) => (
           <ChatMessage
             key={m.id}
@@ -272,26 +290,26 @@ export const ChatWindow = ({
           />
         ))}
 
-        {/* Typing / Thinking Indicator */}
+        {/* Natural Typing & Thinking Indicator */}
         {loading && (
-          <div className="flex items-center gap-2 text-xs text-slate/70 dark:text-ivory/50 py-2">
-            <div className="w-6 h-6 rounded-full bg-oxblood/10 text-oxblood flex items-center justify-center">
-              <Bot className="w-3.5 h-3.5 animate-spin" />
+          <div className="flex items-center gap-2.5 text-xs text-slate-500 dark:text-rose py-2">
+            <div className="w-7 h-7 rounded-full bg-oxblood/15 text-oxblood dark:text-rose flex items-center justify-center shrink-0">
+              <Bot className="w-4 h-4 animate-spin" />
             </div>
-            <div className="flex items-center gap-1 px-3 py-2 rounded-2xl bg-white dark:bg-charcoal border border-oxblood/10 dark:border-white/10 shadow-2xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-oxblood/60 animate-bounce" style={{ animationDelay: '0ms' }} />
-              <span className="w-1.5 h-1.5 rounded-full bg-oxblood/60 animate-bounce" style={{ animationDelay: '150ms' }} />
-              <span className="w-1.5 h-1.5 rounded-full bg-oxblood/60 animate-bounce" style={{ animationDelay: '300ms' }} />
+            <div className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-white dark:bg-[#252327] border border-slate-200/80 dark:border-white/10 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-oxblood dark:bg-rose animate-bounce" style={{ animationDelay: '0ms' }} />
+              <span className="w-2 h-2 rounded-full bg-oxblood dark:bg-rose animate-bounce" style={{ animationDelay: '160ms' }} />
+              <span className="w-2 h-2 rounded-full bg-oxblood dark:bg-rose animate-bounce" style={{ animationDelay: '320ms' }} />
             </div>
           </div>
         )}
 
         {/* Error Alert Banner */}
         {error && (
-          <div className="p-3 my-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/50 text-xs text-amber-800 dark:text-amber-200 flex items-start gap-2">
+          <div className="p-3.5 my-2 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 text-xs text-amber-800 dark:text-amber-200 flex items-start gap-2.5">
             <AlertCircle className="w-4 h-4 shrink-0 text-amber-600 mt-0.5" />
             <div className="flex-1">
-              <p>{error}</p>
+              <p className="font-medium">{error}</p>
             </div>
           </div>
         )}
@@ -299,9 +317,9 @@ export const ChatWindow = ({
         {/* Quick Replies below latest message */}
         {!loading && quickReplies.length > 0 && (
           <div className="pt-2">
-            <p className="text-[11px] font-medium text-slate/60 dark:text-ivory/50 uppercase tracking-wider mb-1 flex items-center gap-1">
-              <Sparkles className="w-3 h-3 text-oxblood/70" />
-              Suggested Queries
+            <p className="text-[11px] font-mono font-bold text-slate-500 dark:text-rose uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-oxblood" />
+              <span>Suggested Queries</span>
             </p>
             <QuickReplies
               quickReplies={quickReplies}
@@ -314,9 +332,9 @@ export const ChatWindow = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Box & Action Bar */}
-      <div className="p-3 bg-white/95 dark:bg-charcoal-light/95 border-t border-oxblood/10 dark:border-white/10 shrink-0">
-        <div className="flex items-center gap-2">
+      {/* Input Box & Action Bar with Fixed Contrast & Typing Bugs */}
+      <div className="p-3.5 bg-white/95 dark:bg-[#201E22]/95 border-t border-slate-200/70 dark:border-white/10 shrink-0">
+        <div className="flex items-center gap-2 relative">
           <input
             ref={inputRef}
             type="text"
@@ -324,23 +342,23 @@ export const ChatWindow = ({
             disabled={loading}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask anything about SkillSphere..."
+            placeholder="Ask anything in English, Hindi, Hinglish, Punjabi..."
             maxLength={1000}
-            className="flex-1 bg-ivory-warm/70 dark:bg-charcoal/70 border border-oxblood/15 dark:border-white/10 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-charcoal dark:text-ivory placeholder:text-slate/40 dark:placeholder:text-ivory/30 focus:outline-none focus:ring-2 focus:ring-oxblood/30 focus:border-oxblood transition-all disabled:opacity-50"
+            className="flex-1 bg-[#F5F2EE] dark:bg-[#2A282D] border border-slate-300/80 dark:border-white/15 rounded-2xl px-4 py-3 text-sm text-[#1B1A1B] dark:text-[#EFE9E3] placeholder:text-slate-400 dark:placeholder:text-[#C5A49B]/60 focus:outline-none focus:ring-2 focus:ring-oxblood/40 focus:border-oxblood dark:focus:ring-rose/40 dark:focus:border-rose transition-all disabled:opacity-50 caret-oxblood dark:caret-rose shadow-inner"
           />
 
           <button
             type="button"
             disabled={!input.trim() || loading}
             onClick={() => handleSend()}
-            className="p-2.5 rounded-xl bg-oxblood text-white hover:bg-oxblood-dark active:scale-95 transition-all shadow-xs disabled:opacity-40 disabled:pointer-events-none shrink-0"
+            className="p-3 rounded-2xl bg-oxblood text-white hover:bg-oxblood-600 active:scale-95 transition-all shadow-md disabled:opacity-40 disabled:pointer-events-none shrink-0 liquid-metal-shimmer"
             title="Send Message"
           >
             <Send className="w-4 h-4" />
           </button>
         </div>
-        <div className="flex items-center justify-between mt-1 px-1 text-[10px] text-slate/50 dark:text-ivory/30">
-          <span>Press Enter to send</span>
+        <div className="flex items-center justify-between mt-1.5 px-2 text-[10px] font-mono text-slate-400 dark:text-rose/70">
+          <span>Enter ↵ to send • Shift+Enter for new line</span>
           <span>{input.length}/1000</span>
         </div>
       </div>

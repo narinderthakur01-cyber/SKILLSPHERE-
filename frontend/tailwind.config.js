@@ -97,7 +97,24 @@ export default {
           600: '#9E4F4F',
           700: '#7E3C3C',
         },
-        // Semantic Compatibility Mappings
+        // Semantic Compatibility Mappings & System Tokens
+        ivory: {
+          DEFAULT: '#EFE9E3',
+          warm: '#FAF7F4',
+          light: '#FDFCFA',
+        },
+        rose: {
+          DEFAULT: '#C5A49B',
+          50: '#FAF7F6',
+          100: '#F4EDED',
+          200: '#E6D7D3',
+          300: '#D8C1BA',
+          400: '#C5A49B',
+          500: '#A88379',
+        },
+        'charcoal-light': '#262124',
+        'charcoal-hover': '#2E282C',
+        'ivory-warm': '#FAF7F4',
         slate: {
           DEFAULT: '#373034',
         },

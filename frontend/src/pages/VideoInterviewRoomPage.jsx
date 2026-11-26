@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Room, RoomEvent, Track, VideoPresets } from 'livekit-client';
 import {
   Mic, MicOff, Video, VideoOff, PhoneOff, Monitor, Shield,
   CheckCircle2, AlertTriangle, Users, FileText, Sparkles, Clock,
@@ -32,9 +33,17 @@ export const VideoInterviewRoomPage = () => {
   const [isScreenSharing, setIsScreenSharing] = useState(false);
   const [devicePermissionError, setDevicePermissionError] = useState('');
 
-  // Video element refs
+  // Video & Audio element refs
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
+  const remoteAudioRef = useRef(null);
+
+  // LiveKit WebRTC Room & Track State
+  const [livekitRoom, setLivekitRoom] = useState(null);
+  const [connectionState, setConnectionState] = useState('DISCONNECTED');
+  const [remoteParticipants, setRemoteParticipants] = useState([]);
+  const [remoteVideoTrack, setRemoteVideoTrack] = useState(null);
+  const [remoteAudioTrack, setRemoteAudioTrack] = useState(null);
 
   // Recording & Consent State
   const [myConsent, setMyConsent] = useState(false);
@@ -193,6 +202,172 @@ export const VideoInterviewRoomPage = () => {
       localVideoRef.current.srcObject = localStream;
     }
   }, [localStream, isAdmitted]);
+
+  // Connect to LiveKit Room when token is available and participant is admitted (or recruiter)
+  useEffect(() => {
+    if (!tokenData?.token || !tokenData?.server_url || (!isAdmitted && !isRecruiter)) {
+      return;
+    }
+
+    let activeRoom = null;
+    let isCancelled = false;
+
+    async function connectLiveKit() {
+      try {
+        const room = new Room({
+          adaptiveStream: true,
+          dynacast: true,
+          videoCaptureDefaults: {
+            resolution: VideoPresets.h720.resolution,
+          },
+        });
+
+        activeRoom = room;
+
+        room.on(RoomEvent.Connected, () => {
+          if (!isCancelled) {
+            setConnectionState('CONNECTED');
+            setLivekitRoom(room);
+          }
+        });
+
+        room.on(RoomEvent.Disconnected, () => {
+          if (!isCancelled) {
+            setConnectionState('DISCONNECTED');
+            setRemoteParticipants([]);
+            setRemoteVideoTrack(null);
+            setRemoteAudioTrack(null);
+          }
+        });
+
+        room.on(RoomEvent.Reconnecting, () => {
+          if (!isCancelled) setConnectionState('RECONNECTING');
+        });
+
+        room.on(RoomEvent.Reconnected, () => {
+          if (!isCancelled) setConnectionState('CONNECTED');
+        });
+
+        room.on(RoomEvent.TrackSubscribed, (track) => {
+          if (isCancelled) return;
+          if (track.kind === Track.Kind.Video) {
+            setRemoteVideoTrack(track);
+            if (remoteVideoRef.current) {
+              track.attach(remoteVideoRef.current);
+            }
+          } else if (track.kind === Track.Kind.Audio) {
+            setRemoteAudioTrack(track);
+            if (remoteAudioRef.current) {
+              track.attach(remoteAudioRef.current);
+            }
+          }
+        });
+
+        room.on(RoomEvent.TrackUnsubscribed, (track) => {
+          if (isCancelled) return;
+          try { track.detach(); } catch (e) {}
+          if (track.kind === Track.Kind.Video) {
+            setRemoteVideoTrack(null);
+          } else if (track.kind === Track.Kind.Audio) {
+            setRemoteAudioTrack(null);
+          }
+        });
+
+        room.on(RoomEvent.ParticipantConnected, () => {
+          if (!isCancelled) {
+            setRemoteParticipants(Array.from(room.remoteParticipants.values()));
+          }
+        });
+
+        room.on(RoomEvent.ParticipantDisconnected, () => {
+          if (!isCancelled) {
+            setRemoteParticipants(Array.from(room.remoteParticipants.values()));
+          }
+        });
+
+        setConnectionState('CONNECTING');
+        await room.connect(tokenData.server_url, tokenData.token);
+
+        if (isCancelled) {
+          room.disconnect();
+          return;
+        }
+
+        setLivekitRoom(room);
+        setConnectionState('CONNECTED');
+        setRemoteParticipants(Array.from(room.remoteParticipants.values()));
+
+        // Check if existing remote participants already published tracks
+        room.remoteParticipants.forEach((p) => {
+          p.trackPublications.forEach((pub) => {
+            if (pub.track) {
+              if (pub.track.kind === Track.Kind.Video) {
+                setRemoteVideoTrack(pub.track);
+                if (remoteVideoRef.current) {
+                  pub.track.attach(remoteVideoRef.current);
+                }
+              } else if (pub.track.kind === Track.Kind.Audio) {
+                setRemoteAudioTrack(pub.track);
+                if (remoteAudioRef.current) {
+                  pub.track.attach(remoteAudioRef.current);
+                }
+              }
+            }
+          });
+        });
+
+        // Publish local camera and mic
+        try {
+          await room.localParticipant.enableCameraAndMicrophone();
+          if (isVideoMuted) {
+            await room.localParticipant.setCameraEnabled(false);
+          }
+          if (isAudioMuted) {
+            await room.localParticipant.setMicrophoneEnabled(false);
+          }
+        } catch (pubErr) {
+          console.warn("LiveKit publish local tracks notice:", pubErr);
+        }
+
+      } catch (err) {
+        console.warn("LiveKit connection notice:", err);
+        if (!isCancelled) {
+          setConnectionState('STANDALONE');
+        }
+      }
+    }
+
+    connectLiveKit();
+
+    return () => {
+      isCancelled = true;
+      if (activeRoom) {
+        try {
+          activeRoom.disconnect();
+        } catch (e) {}
+      }
+    };
+  }, [tokenData, isAdmitted, isRecruiter]);
+
+  // Attach remote video track when remoteVideoRef mounts or track changes
+  useEffect(() => {
+    if (remoteVideoRef.current && remoteVideoTrack) {
+      remoteVideoTrack.attach(remoteVideoRef.current);
+      return () => {
+        try { remoteVideoTrack.detach(remoteVideoRef.current); } catch (e) {}
+      };
+    }
+  }, [remoteVideoTrack, isAdmitted]);
+
+  // Attach remote audio track when remoteAudioRef mounts or track changes
+  useEffect(() => {
+    if (remoteAudioRef.current && remoteAudioTrack) {
+      remoteAudioTrack.attach(remoteAudioRef.current);
+      return () => {
+        try { remoteAudioTrack.detach(remoteAudioRef.current); } catch (e) {}
+      };
+    }
+  }, [remoteAudioTrack, isAdmitted]);
 
   // 2. Poll room status every 3.5 seconds (admissions, consents, recording status, hybrid takeover sync)
   useEffect(() => {
@@ -363,21 +538,37 @@ export const VideoInterviewRoomPage = () => {
   };
 
   // Device Toggle Handlers
-  const toggleAudio = () => {
+  const toggleAudio = async () => {
+    const nextState = !isAudioMuted;
+    setIsAudioMuted(nextState);
     if (localStream) {
       localStream.getAudioTracks().forEach(track => {
-        track.enabled = !track.enabled;
+        track.enabled = !nextState;
       });
-      setIsAudioMuted(!isAudioMuted);
+    }
+    if (livekitRoom?.localParticipant) {
+      try {
+        await livekitRoom.localParticipant.setMicrophoneEnabled(!nextState);
+      } catch (err) {
+        console.warn("LiveKit toggle mic notice:", err);
+      }
     }
   };
 
-  const toggleVideo = () => {
+  const toggleVideo = async () => {
+    const nextState = !isVideoMuted;
+    setIsVideoMuted(nextState);
     if (localStream) {
       localStream.getVideoTracks().forEach(track => {
-        track.enabled = !track.enabled;
+        track.enabled = !nextState;
       });
-      setIsVideoMuted(!isVideoMuted);
+    }
+    if (livekitRoom?.localParticipant) {
+      try {
+        await livekitRoom.localParticipant.setCameraEnabled(!nextState);
+      } catch (err) {
+        console.warn("LiveKit toggle video notice:", err);
+      }
     }
   };
 
@@ -388,24 +579,34 @@ export const VideoInterviewRoomPage = () => {
         setScreenStream(null);
       }
       setIsScreenSharing(false);
+      if (livekitRoom?.localParticipant) {
+        try {
+          await livekitRoom.localParticipant.setScreenShareEnabled(false);
+        } catch (e) {}
+      }
       if (localVideoRef.current && localStream) {
         localVideoRef.current.srcObject = localStream;
       }
     } else {
       try {
-        const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-        setScreenStream(displayStream);
-        setIsScreenSharing(true);
-        if (localVideoRef.current) {
-          localVideoRef.current.srcObject = displayStream;
-        }
-        displayStream.getVideoTracks()[0].onended = () => {
-          setIsScreenSharing(false);
-          setScreenStream(null);
-          if (localVideoRef.current && localStream) {
-            localVideoRef.current.srcObject = localStream;
+        if (livekitRoom?.localParticipant) {
+          await livekitRoom.localParticipant.setScreenShareEnabled(true);
+          setIsScreenSharing(true);
+        } else {
+          const displayStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+          setScreenStream(displayStream);
+          setIsScreenSharing(true);
+          if (localVideoRef.current) {
+            localVideoRef.current.srcObject = displayStream;
           }
-        };
+          displayStream.getVideoTracks()[0].onended = () => {
+            setIsScreenSharing(false);
+            setScreenStream(null);
+            if (localVideoRef.current && localStream) {
+              localVideoRef.current.srcObject = localStream;
+            }
+          };
+        }
       } catch (err) {
         console.warn("Screen share cancelled:", err);
       }
@@ -565,6 +766,17 @@ export const VideoInterviewRoomPage = () => {
 
   // Leave / End Meeting
   const handleLeaveMeeting = async () => {
+    if (livekitRoom) {
+      try {
+        livekitRoom.disconnect();
+      } catch (e) {}
+    }
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+    }
+    if (screenStream) {
+      screenStream.getTracks().forEach(track => track.stop());
+    }
     if (isRecruiter) {
       if (window.confirm("Do you want to end this interview session for everyone?")) {
         try {
@@ -922,26 +1134,52 @@ export const VideoInterviewRoomPage = () => {
           </div>
         ) : (
           <div className="flex-1 rounded-3xl bg-[#141820] border border-white/15 relative overflow-hidden flex items-center justify-center shadow-inner min-h-[300px]">
-            <div className="text-center p-6 space-y-3">
-              <div className="w-20 h-20 rounded-full bg-oxblood/30 border border-oxblood flex items-center justify-center mx-auto text-rose-300 font-display text-2xl font-bold">
-                {isRecruiter ? (roomStatus?.candidate_name?.[0] || 'C') : (roomStatus?.recruiter_name?.[0] || 'R')}
-              </div>
-              <div>
-                <p className="font-display font-bold text-base text-white">
-                  {isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}
-                </p>
-                <p className="font-mono text-xs text-slate-300">
-                  {isRecruiter ? 'Candidate Feed Connected' : 'Interviewer Feed Connected'}
-                </p>
-              </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 text-[10px] font-mono text-emerald-300 font-bold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>WebRTC Direct Stream Active</span>
-              </div>
-            </div>
+            {/* LiveKit Remote Video Feed */}
+            <video
+              ref={remoteVideoRef}
+              autoPlay
+              playsInline
+              className={`w-full h-full object-cover ${remoteVideoTrack ? 'block' : 'hidden'}`}
+            />
+            {/* Hidden Audio Element for Remote Audio Track */}
+            <audio ref={remoteAudioRef} autoPlay />
 
-            <div className="absolute top-4 left-4 bg-black/75 px-3 py-1 rounded-xl text-xs font-mono text-white backdrop-blur-sm border border-white/20">
-              {isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}
+            {/* Placeholder when peer video track is unattached or muted */}
+            {!remoteVideoTrack && (
+              <div className="text-center p-6 space-y-3">
+                <div className="w-20 h-20 rounded-full bg-oxblood/30 border border-oxblood flex items-center justify-center mx-auto text-rose-300 font-display text-2xl font-bold">
+                  {isRecruiter ? (roomStatus?.candidate_name?.[0] || 'C') : (roomStatus?.recruiter_name?.[0] || 'R')}
+                </div>
+                <div>
+                  <p className="font-display font-bold text-base text-white">
+                    {isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}
+                  </p>
+                  <p className="font-mono text-xs text-slate-300">
+                    {remoteParticipants.length > 0
+                      ? `${isRecruiter ? 'Candidate' : 'Interviewer'} connected (Camera off)`
+                      : `Waiting for ${isRecruiter ? 'candidate' : 'interviewer'} to join...`}
+                  </p>
+                </div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-white/15 text-[10px] font-mono text-emerald-300 font-bold">
+                  <span className={`w-2 h-2 rounded-full ${
+                    connectionState === 'CONNECTED' ? 'bg-emerald-400 animate-pulse' :
+                    connectionState === 'CONNECTING' ? 'bg-amber-400 animate-ping' :
+                    'bg-slate-400'
+                  }`} />
+                  <span>
+                    {connectionState === 'CONNECTED'
+                      ? (remoteParticipants.length > 0 ? 'LiveKit Room Active' : 'Connected & Ready')
+                      : connectionState === 'CONNECTING'
+                      ? 'Connecting LiveKit Room...'
+                      : 'WebRTC Waiting Room'}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <div className="absolute top-4 left-4 bg-black/75 px-3 py-1 rounded-xl text-xs font-mono text-white backdrop-blur-sm border border-white/20 flex items-center gap-2">
+              <span>{isRecruiter ? (roomStatus?.candidate_name || 'Candidate') : (roomStatus?.recruiter_name || 'Interviewer')}</span>
+              {remoteAudioTrack && <span className="text-emerald-400 text-[10px]">&bull; Audio Live</span>}
             </div>
           </div>
         )}
@@ -981,7 +1219,16 @@ export const VideoInterviewRoomPage = () => {
       <footer className="h-20 px-6 border-t border-white/10 bg-[#141820]/95 backdrop-blur-md flex items-center justify-between z-30">
         {/* Left: Session details */}
         <div className="hidden sm:block text-xs font-mono text-slate-300">
-          <span>SkillSphere WebRTC v2.0</span>
+          <div className="flex items-center gap-2">
+            <span>SkillSphere LiveKit WebRTC</span>
+            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+              connectionState === 'CONNECTED' ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/30' :
+              connectionState === 'CONNECTING' || connectionState === 'RECONNECTING' ? 'bg-amber-950/80 text-amber-300 border border-amber-500/30' :
+              'bg-white/10 text-slate-300 border border-white/10'
+            }`}>
+              {connectionState}
+            </span>
+          </div>
           {devicePermissionError && (
             <span className="block text-amber-400 text-[10px] font-bold">{devicePermissionError}</span>
           )}

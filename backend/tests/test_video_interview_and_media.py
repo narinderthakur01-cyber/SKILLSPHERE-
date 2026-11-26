@@ -215,6 +215,53 @@ def test_room_token_generation_and_waiting_room_admission(
     )
     assert cand_res2.json()["is_admitted"] is True
 
+def test_room_token_deadline_and_cancellation_enforcement(
+    client, recruiter_token, candidate_token, test_setup_data, db
+):
+    """
+    Enforce interview timing, cancellation, and deadline constraints on room token generation.
+    """
+    interview = test_setup_data["interview"]
+
+    # 1. Cancelled interview cannot be joined
+    interview.status = "CANCELLED"
+    db.commit()
+    res_cancel = client.post(
+        f"/api/v1/interviews/{interview.id}/room-token",
+        headers={"Authorization": f"Bearer {candidate_token}"}
+    )
+    assert res_cancel.status_code == 400
+    assert "cancelled" in res_cancel.json()["detail"].lower()
+
+    # 2. Concluded interview cannot be joined
+    interview.status = "COMPLETED"
+    db.commit()
+    res_completed = client.post(
+        f"/api/v1/interviews/{interview.id}/room-token",
+        headers={"Authorization": f"Bearer {candidate_token}"}
+    )
+    assert res_completed.status_code == 400
+    assert "concluded" in res_completed.json()["detail"].lower()
+
+    # 3. Expired interview past deadline cannot be joined if not in progress
+    interview.status = "SCHEDULED"
+    interview.room_status = "WAITING"
+    interview.scheduled_time = datetime.now(timezone.utc) - timedelta(hours=6)
+    interview.duration_minutes = 45
+    db.commit()
+    res_expired = client.post(
+        f"/api/v1/interviews/{interview.id}/room-token",
+        headers={"Authorization": f"Bearer {candidate_token}"}
+    )
+    assert res_expired.status_code == 400
+    assert "expired" in res_expired.json()["detail"].lower()
+
+    # Reset back to valid future schedule for subsequent test isolation
+    interview.scheduled_time = datetime.now(timezone.utc) + timedelta(days=2)
+    interview.status = "SCHEDULED"
+    interview.room_status = "WAITING"
+    db.commit()
+
 def test_room_status_and_lifecycle(client, recruiter_token, test_setup_data):
     """Test start and end room lifecycle."""
     interview = test_setup_data["interview"]

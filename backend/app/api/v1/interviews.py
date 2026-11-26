@@ -626,6 +626,31 @@ def get_interview_room_token(
     if not interview:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Interview not found.")
 
+    if interview.status == "CANCELLED":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot join interview: This interview session has been cancelled."
+        )
+
+    if interview.status == "COMPLETED" or interview.room_status == "COMPLETED":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot join interview: This interview session has already concluded."
+        )
+
+    now_utc = datetime.now(timezone.utc)
+    sched_time = interview.scheduled_time
+    if sched_time:
+        if sched_time.tzinfo is None:
+            sched_time = sched_time.replace(tzinfo=timezone.utc)
+        duration_mins = interview.duration_minutes or 45
+        interview_deadline = sched_time + timedelta(minutes=duration_mins) + timedelta(hours=4)
+        if now_utc > interview_deadline and interview.status != "IN_PROGRESS" and interview.room_status != "IN_PROGRESS":
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Cannot join interview: The scheduled interview window has expired. Please contact your coordinator."
+            )
+
     is_recruiter = False
     is_candidate = False
     is_admin = current_user.role == RoleEnum.ADMIN
